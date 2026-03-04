@@ -34,6 +34,11 @@ ctx.closePath();
 ctx.fill();
 ctx.stroke();
 
+// Roof outline
+ctx.strokeStyle = "#d8e4e9";
+ctx.lineWidth = 2;
+ctx.stroke();
+
 // 6) Door
 ctx.fillStyle = #4b2328";
 ctx.fillRect(380, 290, 60, 120);
