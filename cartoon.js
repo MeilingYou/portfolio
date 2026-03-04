@@ -21,7 +21,7 @@ ctx.font = '28px "Apple Chancery", "Comic Sans MS", cursive';
 ctx.fillText("Midnight cartoon house", 20, 40);
 
 // 5) House (base)
-ctx.fillStyle = "##191970"; 
+ctx.fillStyle = "#191970"; 
 ctx.fillRect(250, 210, 300, 200);
 
 // Roof (triangle using moveTo/lineTo)
