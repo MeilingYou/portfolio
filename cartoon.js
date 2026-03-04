@@ -40,7 +40,7 @@ ctx.lineWidth = 2;
 ctx.stroke();
 
 // 6) Door
-ctx.fillStyle = #4b2328";
+ctx.fillStyle = "#4b2328";
 ctx.fillRect(380, 290, 60, 120);
 
 // doorknob
