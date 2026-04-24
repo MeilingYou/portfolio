@@ -14,7 +14,6 @@
     />
 
     <style>
-      /* Optional tiny tweaks (still mostly Bootstrap) */
       .hero {
         background: linear-gradient(180deg, rgba(13,110,253,.10), rgba(13,110,253,0));
       }
@@ -42,7 +41,8 @@
         <div class="collapse navbar-collapse" id="nav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#assignments">Assignments</a></li>
+            <li class="nav-item"><a class="nav-link" href="#homework">Homework</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -56,7 +56,7 @@
           <div class="col-12 col-lg-8">
             <h1 class="display-5 fw-bold mb-2">CISC 3610 Portfolio</h1>
             <p class="lead mb-0">
-              Assignments and projects for class, built with a Bootstrap 5.3 layout.
+              Homework and projects for class, organized with a Bootstrap 5.3 layout.
             </p>
           </div>
           <div class="col-12 col-lg-4">
@@ -89,72 +89,99 @@
               <h2 class="h5 mb-2">About this site</h2>
               <p class="mb-0">
                 This page uses Bootstrap’s container + grid to create a clean,
-                responsive layout and organize assignments into cards.
+                responsive layout and organize work into Homework and Projects.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Assignments -->
-      <section id="assignments" class="mb-5">
+      <!-- Homework -->
+      <section id="homework" class="mb-5">
         <div class="d-flex align-items-end justify-content-between mb-3">
-          <h2 class="h3 mb-0">Assignments</h2>
+          <h2 class="h3 mb-0">Homework</h2>
           <span class="text-muted small">Cards auto-wrap using the grid</span>
         </div>
 
-        <!-- Grid of cards -->
         <div class="row g-4">
-          <!-- Assignment 1 -->
+          <!-- Homework 1 -->
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-            <div class="card-body">
-            <h3 class="h5 card-title">Assignment 1</h3>
-          <p class="card-text text-muted mb-0">
-        HTML5 Canvas cartoon scene (moon, ground, house, caption, loop items).
-          </p>
+              <div class="card-body">
+                <h3 class="h5 card-title">Homework 1</h3>
+                <p class="card-text text-muted">
+                  Coming soon.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 pt-0">
+                <a class="btn btn-outline-primary w-100" href="#" target="_blank" rel="noopener">
+                  View Homework
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="card-footer bg-white border-0 pt-0">
-          <a class="btn btn-primary w-100" href="cartoon.html">
-        View Cartoon
-          </a>
+
+          <!-- Homework 2 -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5 card-title">Homework 2</h3>
+                <p class="card-text text-muted">
+                  Coming soon.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 pt-0">
+                <a class="btn btn-outline-primary w-100" href="#" target="_blank" rel="noopener">
+                  View Homework
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-      </div>
+      </section>
 
-          <!-- Assignment 2 (copy/paste more cards like this) -->
+      <!-- Projects -->
+      <section id="projects" class="mb-5">
+        <div class="d-flex align-items-end justify-content-between mb-3">
+          <h2 class="h3 mb-0">Projects</h2>
+          <span class="text-muted small">Bigger work / class projects</span>
+        </div>
+
+        <div class="row g-4">
+          <!-- Cartoon Project (moved from Assignments) -->
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
               <div class="card-body">
-                <h3 class="h5 card-title">Assignment 2</h3>
+                <h3 class="h5 card-title">Cartoon Project</h3>
+                <p class="card-text text-muted mb-0">
+                  HTML5 Canvas cartoon scene (moon, ground, house, caption, loop items).
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 pt-0">
+                <a class="btn btn-primary w-100" href="cartoon.html">
+                  View Cartoon
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Future Project placeholder -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5 card-title">Project 2</h3>
                 <p class="card-text text-muted">
                   Coming soon.
                 </p>
               </div>
               <div class="card-footer bg-white border-0 pt-0">
                 <a class="btn btn-outline-primary w-100" href="#" target="_blank" rel="noopener">
-                  View Assignment
+                  View Project
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- Assignment 3 -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h3 class="h5 card-title">Assignment 3</h3>
-                <p class="card-text text-muted">
-                  Coming soon.
-                </p>
-              </div>
-              <div class="card-footer bg-white border-0 pt-0">
-                <a class="btn btn-outline-primary w-100" href="#" target="_blank" rel="noopener">
-                  View Assignment
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
