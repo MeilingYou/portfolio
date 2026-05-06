@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide — Game Atmosphere Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #1a1a2e;
+      --yellow: #FFD93D;
+      --green: #7AA35A;
+      --white: #F5F0E8;
+      --pixel: "Press Start 2P", monospace;
+      --vt: "VT323", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: var(--vt);
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    header {
+      background: #0d0b1f;
+      border-bottom: 6px solid var(--yellow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: var(--pixel);
+      font-size: clamp(0.7rem, 2.5vw, 1rem);
+      color: var(--yellow);
+      text-shadow: 3px 3px 0 #000;
+      margin-bottom: 0.5rem;
+    }
+    header p { color: #aaa; font-size: 1.3rem; }
+    nav {
+      background: #16213e;
+      border-bottom: 4px solid var(--green);
+      padding: 1rem 1.5rem;
+      font-family: var(--pixel);
+      font-size: 0.5rem;
+    }
+    nav a {
+      color: var(--yellow);
+      text-decoration: none;
+      margin-right: 1.5rem;
+    }
+    nav a:hover { color: var(--white); }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    h2 {
+      font-family: var(--pixel);
+      font-size: clamp(0.6rem, 2vw, 0.85rem);
+      color: var(--yellow);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--green);
+    }
+    h3 {
+      font-family: var(--pixel);
+      font-size: 0.55rem;
+      color: var(--green);
+      margin: 1.5rem 0 0.5rem;
+    }
+    p { margin-bottom: 1rem; font-size: 1.2rem; color: #ccc; }
+    ul { margin: 0.5rem 0 1rem 1.5rem; color: #ccc; }
+    ul li { margin-bottom: 0.4rem; }
+    .tip {
+      background: #16213e;
+      border-left: 5px solid var(--yellow);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+    }
+    .tip strong {
+      font-family: var(--pixel);
+      font-size: 0.5rem;
+      color: var(--yellow);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .steps { counter-reset: step; }
+    .step-item {
+      background: #16213e;
+      border: 3px solid var(--green);
+      box-shadow: 4px 4px 0 #000;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      font-family: var(--pixel);
+      font-size: 0.9rem;
+      color: var(--yellow);
+      min-width: 2rem;
+      margin-top: 0.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #000;
+      border-top: 4px solid var(--green);
+      font-family: var(--pixel);
+      font-size: 0.45rem;
+      color: #555;
+    }
+    footer a { color: var(--yellow); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📖 User Guide</h1>
+  <p>Game Atmosphere Lab — Learn how to use the app</p>
+</header>
+
+<nav>
+  <a href="../promo.html">← Back to Promo</a>
+  <a href="../index.html">Launch App</a>
+  <a href="programmer-guide.html">Dev Docs</a>
+</nav>
+
+<main>
+
+  <h2>What is Game Atmosphere Lab?</h2>
+  <p>Game Atmosphere Lab is an educational Progressive Web App (PWA) that teaches you how different video game art styles, colors, typography, and sounds are used to create specific moods and feelings in players.</p>
+  <p>Each "atmosphere" is based on a real game genre and shows you exactly why it looks and feels the way it does.</p>
+
+  <h2>Getting Started</h2>
+  <div class="steps">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div>
+        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Open the App</strong>
+        Visit the app in your browser or launch it from your home screen if installed.
+      </div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div>
+        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Choose an Atmosphere</strong>
+        Click any button in the "Choose an Atmosphere" menu at the top of the page.
+      </div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div>
+        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Explore the Content</strong>
+        Read about the art style, mood, and why it creates that atmosphere. Look at the image and notice how colors and visuals match the description.
+      </div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">4</span>
+      <div>
+        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Play the Sound</strong>
+        Click "Play Atmosphere Sound" to hear audio that matches the mood. Click again to pause.
+      </div>
+    </div>
+  </div>
+
+  <h2>App Features</h2>
+
+  <h3>Atmosphere Menu</h3>
+  <p>The row of buttons at the top lets you switch between 8 different game atmospheres. The currently selected atmosphere is highlighted. Each click instantly changes the page's colors, fonts, image, and available audio.</p>
+
+  <h3>Atmosphere Content</h3>
+  <p>Each atmosphere card shows:</p>
+  <ul>
+    <li><strong>Game Examples</strong> — real games that use this style</li>
+    <li><strong>Art Style</strong> — description of the visual design approach</li>
+    <li><strong>Mood</strong> — the emotional feeling it creates</li>
+    <li><strong>Why It Creates This Atmosphere</strong> — an explanation of the design choices</li>
+  </ul>
+
+  <h3>Audio Player</h3>
+  <p>The "Play Atmosphere Sound" button plays looping audio matched to each atmosphere. The button label changes to "Pause Atmosphere Sound" while audio is playing. Audio automatically stops when you switch atmospheres.</p>
+
+  <div class="tip">
+    <strong>💡 TIP</strong>
+    Some browsers block audio from playing automatically. If sound doesn't start when you switch atmospheres, just click the Play button manually.
+  </div>
+
+  <h3>Bookmarking & Sharing</h3>
+  <p>Each atmosphere has a unique URL (e.g. <code>#neon-cyberpunk-city</code>). You can copy the URL from your browser's address bar to bookmark or share a specific atmosphere directly.</p>
+
+  <h2>Installing the App</h2>
+
+  <h3>On Android (Chrome)</h3>
+  <ul>
+    <li>Open the app in Chrome</li>
+    <li>Tap the three-dot menu (⋮) in the top right</li>
+    <li>Select "Add to Home Screen"</li>
+    <li>Tap "Add" to confirm</li>
+  </ul>
+
+  <h3>On iPhone / iPad (Safari)</h3>
+  <ul>
+    <li>Open the app in Safari</li>
+    <li>Tap the Share button (□↑) at the bottom</li>
+    <li>Scroll down and tap "Add to Home Screen"</li>
+    <li>Tap "Add" to confirm</li>
+  </ul>
+
+  <h3>On Desktop (Chrome / Edge)</h3>
+  <ul>
+    <li>Open the app in Chrome or Edge</li>
+    <li>Look for the install icon (⊕) in the address bar</li>
+    <li>Click it and select "Install"</li>
+  </ul>
+
+  <div class="tip">
+    <strong>📶 OFFLINE USE</strong>
+    Once installed, the app works fully offline. All images, audio, and content are saved to your device on the first visit.
+  </div>
+
+  <h2>The 8 Atmospheres</h2>
+  <ul>
+    <li>🌾 <strong>Cozy Pixel Farming</strong> — warm, peaceful, life-sim</li>
+    <li>🌆 <strong>Neon Cyberpunk City</strong> — futuristic, electric, intense</li>
+    <li>👻 <strong>Low-Poly Horror</strong> — tense, eerie, unsettling</li>
+    <li>🐑 <strong>Dark Cute Cartoon</strong> — dark cute, creepy, playful</li>
+    <li>🕹️ <strong>Retro Arcade</strong> — nostalgic, fast-paced, playful</li>
+    <li>⚔️ <strong>Dark Fantasy</strong> — epic, dangerous, mysterious</li>
+    <li>🗺️ <strong>Open-World Fantasy</strong> — open, heroic, adventurous</li>
+    <li>🧱 <strong>Voxel Sandbox</strong> — creative, blocky, playful</li>
+  </ul>
+
+  <h2>Troubleshooting</h2>
+
+  <h3>Images not showing</h3>
+  <p>Make sure your image files are inside an <code>images/</code> subfolder in the project directory and are named exactly as listed in <code>data.json</code>.</p>
+
+  <h3>Audio not playing</h3>
+  <p>Check that your audio files are inside an <code>audio/</code> subfolder and are in MP3 format. Some browsers require a user interaction (like clicking a button) before audio can play.</p>
+
+  <h3>App won't install</h3>
+  <p>Make sure you're visiting the site over HTTPS (required for PWA install). GitHub Pages automatically provides HTTPS.</p>
+
+</main>
+
+<footer>
+  <p>Game Atmosphere Lab — User Guide</p>
+  <p style="margin-top:0.5rem;"><a href="../promo.html">Promo Page</a> &nbsp;|&nbsp; <a href="programmer-guide.html">Dev Docs</a></p>
+</footer>
+
+</body>
+</html>
