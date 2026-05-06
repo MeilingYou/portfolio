@@ -1,1 +1,17 @@
-
+{
+  "topics": [
+    {
+      "title": "Cozy Pixel Farming",
+      "gameExample": "Stardew Valley",
+      "artStyle": "Pixel art farming and life-sim style",
+      "mood": "Peaceful, warm, relaxing",
+      "description": "Cozy pixel farming games use warm colors, soft light, small pixel details, and nature-based objects to create a calm and welcoming mood.",
+      "backgroundColor": "#F3E7C9",
+      "accentColor": "#7AA35A",
+      "textColor": "#4B3425",
+      "fontClass": "pixel",
+      "image": "images/cozy-pixel-farming.png",
+      "audio": "audio/cozy-pixel-farming.mp3"
+    }
+  ]
+}
