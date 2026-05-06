@@ -4,8 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Atmosphere Lab</title>
+  <meta name="description" content="Explore how video game art styles, colors, fonts, and sounds create different moods.">
   <meta name="theme-color" content="#F3E7C9">
+
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
+
+  <!-- iOS PWA support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AtmoLab">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&family=Creepster&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -40,5 +51,16 @@
     <p>Game Atmosphere Lab | Educational PWA Project</p>
   </footer>
   <script src="script.js"></script>
+  <script>
+    // Register Service Worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(reg => console.log("[SW] Registered:", reg.scope))
+          .catch(err => console.log("[SW] Registration failed:", err));
+      });
+    }
+  </script>
 </body>
 </html>
