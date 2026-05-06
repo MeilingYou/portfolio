@@ -5,7 +5,7 @@
   --bg-color: #f3e7c9;
   --accent-color: #7aa35a;
   --text-color: #4b3425;
-  --card-color: rgba(255, 255, 255, 0.55);
+  --card-color: rgba(243, 231, 201, 0.55);
 }
 
 * {
@@ -74,6 +74,13 @@ main {
   transform: translateY(-2px);
 }
 
+/* Active state for selected topic button */
+.topic-btn.active {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 0 0 3px var(--text-color);
+}
+
 /* Main content layout */
 .content-card {
   display: grid;
@@ -111,7 +118,7 @@ main {
   transform: scale(1.01);
 }
 
-/* Transparent text/content background */
+/* Transparent text/content background — color is now set dynamically per theme */
 .info-box {
   background: var(--card-color);
   padding: 1.5rem;
@@ -157,28 +164,49 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Font themes */
-.pixel,
-.arcade,
-.voxel {
+/* =====================
+   Font themes
+   Class names match fontClass values in data.json exactly
+   ===================== */
+
+/* pixel */
+.pixel {
   font-family: "Press Start 2P", cursive;
 }
 
+/* retro-arcade (was .arcade) */
+.retro-arcade {
+  font-family: "Press Start 2P", cursive;
+}
+
+/* voxel-sandbox (was .voxel) */
+.voxel-sandbox {
+  font-family: "Press Start 2P", cursive;
+}
+
+/* cyberpunk */
 .cyberpunk {
   font-family: "Orbitron", sans-serif;
 }
 
-.horror {
+/* low-poly-horror (was .horror) */
+.low-poly-horror {
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 1px;
 }
 
+/* dark-cute */
 .dark-cute {
   font-family: "Creepster", cursive;
 }
 
-.dark-fantasy,
-.open-fantasy {
+/* dark-fantasy */
+.dark-fantasy {
+  font-family: "Cinzel", serif;
+}
+
+/* open-world-fantasy (was .open-fantasy) */
+.open-world-fantasy {
   font-family: "Cinzel", serif;
 }
 
