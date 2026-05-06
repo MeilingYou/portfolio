@@ -9,7 +9,7 @@ fetch("data.json")
   .then(data => {
     topics = data.topics;
     createTopicMenu();
-    showTopic(0); // show first topic when page loads
+    showTopic(0, false); // show first topic, but do not autoplay at page load
   })
   .catch(error => {
     console.log("Error loading JSON:", error);
@@ -25,7 +25,7 @@ function createTopicMenu() {
     button.classList.add("topic-btn");
 
     button.addEventListener("click", () => {
-      showTopic(index);
+      showTopic(index, true); // autoplay sound when user clicks a topic
     });
 
     topicMenu.appendChild(button);
@@ -33,7 +33,7 @@ function createTopicMenu() {
 }
 
 // Show selected topic
-function showTopic(index) {
+function showTopic(index, autoPlaySound) {
   const topic = topics[index];
 
   document.getElementById("topicTitle").textContent = topic.title;
@@ -55,13 +55,35 @@ function showTopic(index) {
   document.body.className = "";
   document.body.classList.add(topic.fontClass);
 
-  // Prepare audio
+  // Stop old sound before starting new sound
   currentAudio.pause();
   currentAudio.currentTime = 0;
+
+  // Load new topic sound
   currentAudio = new Audio(topic.audio);
+  currentAudio.loop = true; // atmosphere sound keeps playing until another topic is clicked
+
+  // Reset button when audio ends, just in case loop is turned off later
+  currentAudio.addEventListener("ended", () => {
+    document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
+  });
+
+  // Autoplay only after user clicks a topic button
+  if (autoPlaySound) {
+    currentAudio.play()
+      .then(() => {
+        document.getElementById("audioBtn").textContent = "Pause Atmosphere Sound";
+      })
+      .catch(error => {
+        console.log("Audio could not autoplay:", error);
+        document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
+      });
+  } else {
+    document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
+  }
 }
 
-// Play / pause atmosphere sound
+// Play / pause atmosphere sound button
 document.getElementById("audioBtn").addEventListener("click", () => {
   if (currentAudio.paused) {
     currentAudio.play();
@@ -70,9 +92,4 @@ document.getElementById("audioBtn").addEventListener("click", () => {
     currentAudio.pause();
     document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
   }
-});
-
-// Reset button text when audio ends
-currentAudio.addEventListener("ended", () => {
-  document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
 });
