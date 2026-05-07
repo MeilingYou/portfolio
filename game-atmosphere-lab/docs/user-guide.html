@@ -4,175 +4,341 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Guide — Game Atmosphere Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark: #1a1a2e;
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #1a1a26;
+      --border: rgba(255,255,255,0.08);
       --yellow: #FFD93D;
       --green: #7AA35A;
-      --white: #F5F0E8;
+      --white: #F0EEE8;
+      --muted: #888;
       --pixel: "Press Start 2P", monospace;
-      --vt: "VT323", monospace;
+      --body: "Outfit", sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
-      background: var(--dark);
+      background: var(--bg);
       color: var(--white);
-      font-family: var(--vt);
-      font-size: 1.2rem;
-      line-height: 1.7;
+      font-family: var(--body);
+      font-size: 1rem;
+      line-height: 1.75;
     }
-    header {
-      background: #0d0b1f;
-      border-bottom: 6px solid var(--yellow);
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-    header h1 {
-      font-family: var(--pixel);
-      font-size: clamp(0.7rem, 2.5vw, 1rem);
-      color: var(--yellow);
-      text-shadow: 3px 3px 0 #000;
-      margin-bottom: 0.5rem;
-    }
-    header p { color: #aaa; font-size: 1.3rem; }
+
+    /* NAV */
     nav {
-      background: #16213e;
-      border-bottom: 4px solid var(--green);
-      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(10,10,15,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
       font-family: var(--pixel);
       font-size: 0.5rem;
-    }
-    nav a {
       color: var(--yellow);
       text-decoration: none;
-      margin-right: 1.5rem;
+      letter-spacing: 1px;
     }
-    nav a:hover { color: var(--white); }
-    main {
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--yellow) !important;
+      color: #000 !important;
+      font-weight: 600 !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+    }
+
+    /* HERO */
+    .page-hero {
+      padding: 4rem 2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .page-hero-inner {
       max-width: 860px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
     }
-    h2 {
+
+    .label {
       font-family: var(--pixel);
-      font-size: clamp(0.6rem, 2vw, 0.85rem);
+      font-size: 0.45rem;
       color: var(--yellow);
-      margin: 2.5rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 3px solid var(--green);
+      letter-spacing: 3px;
+      display: block;
+      margin-bottom: 1rem;
     }
-    h3 {
+
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 500px;
+    }
+
+    /* LAYOUT */
+    .doc-layout {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* SECTIONS */
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2 .h2-tag {
       font-family: var(--pixel);
-      font-size: 0.55rem;
-      color: var(--green);
-      margin: 1.5rem 0 0.5rem;
+      font-size: 0.4rem;
+      color: var(--yellow);
+      letter-spacing: 2px;
+      font-weight: 400;
     }
-    p { margin-bottom: 1rem; font-size: 1.2rem; color: #ccc; }
-    ul { margin: 0.5rem 0 1rem 1.5rem; color: #ccc; }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--yellow);
+      margin: 1.75rem 0 0.5rem;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    ul {
+      margin: 0.5rem 0 1.25rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
     ul li { margin-bottom: 0.4rem; }
-    .tip {
-      background: #16213e;
-      border-left: 5px solid var(--yellow);
-      padding: 1rem 1.25rem;
-      margin: 1.5rem 0;
-      font-size: 1.1rem;
+
+    strong { color: var(--white); font-weight: 600; }
+
+    code {
+      font-family: monospace;
+      background: var(--surface2);
+      color: var(--yellow);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
     }
-    .tip strong {
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
+
+    .step-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .step-item:hover { border-color: rgba(255,255,255,0.18); }
+
+    .step-num {
       font-family: var(--pixel);
       font-size: 0.5rem;
       color: var(--yellow);
-      display: block;
-      margin-bottom: 0.4rem;
+      min-width: 1.5rem;
+      padding-top: 0.2rem;
+      flex-shrink: 0;
     }
-    .steps { counter-reset: step; }
-    .step-item {
-      background: #16213e;
-      border: 3px solid var(--green);
-      box-shadow: 4px 4px 0 #000;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1rem;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .step-num {
-      font-family: var(--pixel);
+
+    .step-item h4 {
       font-size: 0.9rem;
-      color: var(--yellow);
-      min-width: 2rem;
-      margin-top: 0.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
     }
+
+    .step-item p { margin: 0; font-size: 0.875rem; }
+
+    /* TIP */
+    .tip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .tip-label {
+      font-family: var(--pixel);
+      font-size: 0.4rem;
+      color: var(--yellow);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .tip p { margin: 0; font-size: 0.9rem; }
+
+    /* ATMOSPHERE LIST */
+    .atmo-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+      list-style: none;
+      padding: 0;
+    }
+
+    .atmo-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+
+    .atmo-list li:hover { border-color: rgba(255,255,255,0.2); }
+
+    .atmo-list small { display: block; color: var(--muted); font-size: 0.75rem; font-weight: 300; }
+
+    /* FOOTER */
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #000;
-      border-top: 4px solid var(--green);
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
       font-family: var(--pixel);
       font-size: 0.45rem;
-      color: #555;
+      color: var(--yellow);
+      text-decoration: none;
     }
-    footer a { color: var(--yellow); text-decoration: none; }
+
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.8rem; color: #444; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-hero { padding: 2.5rem 1.5rem; }
+      .doc-layout { padding: 2rem 1.5rem 4rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>📖 User Guide</h1>
-  <p>Game Atmosphere Lab — Learn how to use the app</p>
-</header>
-
 <nav>
-  <a href="../promo.html">← Back to Promo</a>
-  <a href="../index.html">Launch App</a>
-  <a href="programmer-guide.html">Dev Docs</a>
+  <a href="../promo.html" class="nav-logo">AtmoLab</a>
+  <ul class="nav-links">
+    <li><a href="../promo.html">← Promo</a></li>
+    <li><a href="programmer-guide.html">Dev Docs</a></li>
+    <li><a href="../index.html" class="nav-cta">Launch App</a></li>
+  </ul>
 </nav>
 
-<main>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="label">// User Guide</span>
+    <h1>How to use Game Atmosphere Lab</h1>
+    <p>Everything you need to explore, install, and get the most out of the app.</p>
+  </div>
+</div>
 
-  <h2>What is Game Atmosphere Lab?</h2>
+<div class="doc-layout">
+
+  <h2><span class="h2-tag">01 //</span> What is Game Atmosphere Lab?</h2>
   <p>Game Atmosphere Lab is an educational Progressive Web App (PWA) that teaches you how different video game art styles, colors, typography, and sounds are used to create specific moods and feelings in players.</p>
   <p>Each "atmosphere" is based on a real game genre and shows you exactly why it looks and feels the way it does.</p>
 
-  <h2>Getting Started</h2>
+  <h2><span class="h2-tag">02 //</span> Getting Started</h2>
   <div class="steps">
     <div class="step-item">
-      <span class="step-num">1</span>
-      <div>
-        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Open the App</strong>
-        Visit the app in your browser or launch it from your home screen if installed.
-      </div>
+      <span class="step-num">01</span>
+      <div><h4>Open the App</h4><p>Visit the app in your browser or launch it from your home screen if already installed.</p></div>
     </div>
     <div class="step-item">
-      <span class="step-num">2</span>
-      <div>
-        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Choose an Atmosphere</strong>
-        Click any button in the "Choose an Atmosphere" menu at the top of the page.
-      </div>
+      <span class="step-num">02</span>
+      <div><h4>Choose an Atmosphere</h4><p>Click any button in the "Choose an Atmosphere" menu at the top of the page.</p></div>
     </div>
     <div class="step-item">
-      <span class="step-num">3</span>
-      <div>
-        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Explore the Content</strong>
-        Read about the art style, mood, and why it creates that atmosphere. Look at the image and notice how colors and visuals match the description.
-      </div>
+      <span class="step-num">03</span>
+      <div><h4>Explore the Content</h4><p>Read about the art style, mood, and why it creates that atmosphere. Notice how the colors, font, and image all shift to match.</p></div>
     </div>
     <div class="step-item">
-      <span class="step-num">4</span>
-      <div>
-        <strong style="font-family:'Press Start 2P',monospace;font-size:0.5rem;color:#FFD93D;">Play the Sound</strong>
-        Click "Play Atmosphere Sound" to hear audio that matches the mood. Click again to pause.
-      </div>
+      <span class="step-num">04</span>
+      <div><h4>Play the Sound</h4><p>Click "Play Atmosphere Sound" to hear ambient audio that matches the mood. Click again to pause.</p></div>
     </div>
   </div>
 
-  <h2>App Features</h2>
+  <h2><span class="h2-tag">03 //</span> App Features</h2>
 
   <h3>Atmosphere Menu</h3>
-  <p>The row of buttons at the top lets you switch between 8 different game atmospheres. The currently selected atmosphere is highlighted. Each click instantly changes the page's colors, fonts, image, and available audio.</p>
+  <p>The row of buttons at the top lets you switch between 8 different game atmospheres. The active atmosphere is highlighted. Each click instantly changes the page's colors, fonts, image, and audio.</p>
 
   <h3>Atmosphere Content</h3>
-  <p>Each atmosphere card shows:</p>
+  <p>Each atmosphere shows:</p>
   <ul>
     <li><strong>Game Examples</strong> — real games that use this style</li>
     <li><strong>Art Style</strong> — description of the visual design approach</li>
@@ -181,19 +347,19 @@
   </ul>
 
   <h3>Audio Player</h3>
-  <p>The "Play Atmosphere Sound" button plays looping audio matched to each atmosphere. The button label changes to "Pause Atmosphere Sound" while audio is playing. Audio automatically stops when you switch atmospheres.</p>
+  <p>The "Play Atmosphere Sound" button plays looping audio matched to each atmosphere. The button label updates while playing. Audio automatically stops when you switch atmospheres.</p>
 
   <div class="tip">
-    <strong>💡 TIP</strong>
-    Some browsers block audio from playing automatically. If sound doesn't start when you switch atmospheres, just click the Play button manually.
+    <span class="tip-label">💡 Tip</span>
+    <p>Some browsers block audio from autoplaying. If sound doesn't start when switching atmospheres, click the Play button manually.</p>
   </div>
 
   <h3>Bookmarking & Sharing</h3>
-  <p>Each atmosphere has a unique URL (e.g. <code>#neon-cyberpunk-city</code>). You can copy the URL from your browser's address bar to bookmark or share a specific atmosphere directly.</p>
+  <p>Each atmosphere has a unique URL hash (e.g. <code>#neon-cyberpunk-city</code>). Copy the URL from your browser's address bar to bookmark or share a specific atmosphere directly.</p>
 
-  <h2>Installing the App</h2>
+  <h2><span class="h2-tag">04 //</span> Installing the App</h2>
 
-  <h3>On Android (Chrome)</h3>
+  <h3>On Android — Chrome</h3>
   <ul>
     <li>Open the app in Chrome</li>
     <li>Tap the three-dot menu (⋮) in the top right</li>
@@ -201,7 +367,7 @@
     <li>Tap "Add" to confirm</li>
   </ul>
 
-  <h3>On iPhone / iPad (Safari)</h3>
+  <h3>On iPhone / iPad — Safari</h3>
   <ul>
     <li>Open the app in Safari</li>
     <li>Tap the Share button (□↑) at the bottom</li>
@@ -209,7 +375,7 @@
     <li>Tap "Add" to confirm</li>
   </ul>
 
-  <h3>On Desktop (Chrome / Edge)</h3>
+  <h3>On Desktop — Chrome or Edge</h3>
   <ul>
     <li>Open the app in Chrome or Edge</li>
     <li>Look for the install icon (⊕) in the address bar</li>
@@ -217,38 +383,43 @@
   </ul>
 
   <div class="tip">
-    <strong>📶 OFFLINE USE</strong>
-    Once installed, the app works fully offline. All images, audio, and content are saved to your device on the first visit.
+    <span class="tip-label">📶 Offline Use</span>
+    <p>Once installed, the app works fully offline. All images, audio, and content are saved to your device on the first visit.</p>
   </div>
 
-  <h2>The 8 Atmospheres</h2>
-  <ul>
-    <li>🌾 <strong>Cozy Pixel Farming</strong> — warm, peaceful, life-sim</li>
-    <li>🌆 <strong>Neon Cyberpunk City</strong> — futuristic, electric, intense</li>
-    <li>👻 <strong>Low-Poly Horror</strong> — tense, eerie, unsettling</li>
-    <li>🐑 <strong>Dark Cute Cartoon</strong> — dark cute, creepy, playful</li>
-    <li>🕹️ <strong>Retro Arcade</strong> — nostalgic, fast-paced, playful</li>
-    <li>⚔️ <strong>Dark Fantasy</strong> — epic, dangerous, mysterious</li>
-    <li>🗺️ <strong>Open-World Fantasy</strong> — open, heroic, adventurous</li>
-    <li>🧱 <strong>Voxel Sandbox</strong> — creative, blocky, playful</li>
+  <h2><span class="h2-tag">05 //</span> The 8 Atmospheres</h2>
+  <ul class="atmo-list">
+    <li><span>🌾</span><div><strong>Cozy Pixel Farming</strong><small>Peaceful · Warm · Relaxing</small></div></li>
+    <li><span>🌆</span><div><strong>Neon Cyberpunk City</strong><small>Futuristic · Electric · Intense</small></div></li>
+    <li><span>👻</span><div><strong>Low-Poly Horror</strong><small>Tense · Eerie · Unsettling</small></div></li>
+    <li><span>🐑</span><div><strong>Dark Cute Cartoon</strong><small>Creepy · Charming · Playful</small></div></li>
+    <li><span>🕹️</span><div><strong>Retro Arcade</strong><small>Nostalgic · Fast-paced · Bold</small></div></li>
+    <li><span>⚔️</span><div><strong>Dark Fantasy</strong><small>Epic · Dangerous · Mysterious</small></div></li>
+    <li><span>🗺️</span><div><strong>Open-World Fantasy</strong><small>Open · Heroic · Adventurous</small></div></li>
+    <li><span>🧱</span><div><strong>Voxel Sandbox</strong><small>Creative · Blocky · Playful</small></div></li>
   </ul>
 
-  <h2>Troubleshooting</h2>
+  <h2><span class="h2-tag">06 //</span> Troubleshooting</h2>
 
   <h3>Images not showing</h3>
-  <p>Make sure your image files are inside an <code>images/</code> subfolder in the project directory and are named exactly as listed in <code>data.json</code>.</p>
+  <p>Make sure your image files are inside an <code>images/</code> subfolder and named exactly as listed in <code>data.json</code>. File names are case-sensitive.</p>
 
   <h3>Audio not playing</h3>
-  <p>Check that your audio files are inside an <code>audio/</code> subfolder and are in MP3 format. Some browsers require a user interaction (like clicking a button) before audio can play.</p>
+  <p>Check that audio files are inside an <code>audio/</code> subfolder and in MP3 format. Most browsers require a user interaction before audio can play — clicking the Play button manually will always work.</p>
 
   <h3>App won't install</h3>
-  <p>Make sure you're visiting the site over HTTPS (required for PWA install). GitHub Pages automatically provides HTTPS.</p>
+  <p>PWA install requires HTTPS. Make sure you're accessing the app via your GitHub Pages URL, not a local <code>file://</code> path. GitHub Pages provides HTTPS automatically.</p>
 
-</main>
+</div>
 
 <footer>
-  <p>Game Atmosphere Lab — User Guide</p>
-  <p style="margin-top:0.5rem;"><a href="../promo.html">Promo Page</a> &nbsp;|&nbsp; <a href="programmer-guide.html">Dev Docs</a></p>
+  <a href="../promo.html" class="footer-logo">AtmoLab</a>
+  <ul class="footer-links">
+    <li><a href="../index.html">App</a></li>
+    <li><a href="../promo.html">Promo</a></li>
+    <li><a href="programmer-guide.html">Dev Docs</a></li>
+  </ul>
+  <p class="footer-copy">Game Atmosphere Lab — User Guide</p>
 </footer>
 
 </body>
