@@ -6,17 +6,11 @@
   <title>Game Atmosphere Lab</title>
   <meta name="description" content="Explore how video game art styles, colors, fonts, and sounds create different moods.">
   <meta name="theme-color" content="#F3E7C9">
-
-  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
-
-  <!-- iOS PWA support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="AtmoLab">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&family=Creepster&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -25,11 +19,14 @@
     <h1>Game Atmosphere Lab</h1>
     <p>Explore how video game art styles, colors, fonts, and sounds create different moods.</p>
   </header>
+
   <main>
     <section class="menu-section">
       <h2>Choose an Atmosphere</h2>
       <div id="topicMenu" class="topic-menu"></div>
     </section>
+
+    <!-- INFO CARD -->
     <section class="content-card">
       <div class="image-box">
         <img id="topicImage" src="" alt="">
@@ -37,6 +34,13 @@
       <div class="info-box">
         <h2 id="topicTitle">Topic Title</h2>
         <p id="gameExamples"></p>
+
+        <!-- COLOR PALETTE SWATCHES -->
+        <div class="palette-section">
+          <span class="palette-label">Color Palette</span>
+          <div class="palette-swatches" id="paletteSwatches"></div>
+        </div>
+
         <h3>Art Style</h3>
         <p id="artStyle"></p>
         <h3>Mood</h3>
@@ -46,18 +50,74 @@
         <button id="audioBtn">Play Atmosphere Sound</button>
       </div>
     </section>
+
+    <!-- ATMOSPHERE DEMO LAB -->
+    <section class="demo-lab" id="demoLab">
+      <div class="demo-lab-header">
+        <div>
+          <span class="demo-label">// Atmosphere Lab</span>
+          <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
+          <p class="demo-subtitle">Apply this atmosphere's color palette and art style to a neutral scene — and watch the mood transform.</p>
+        </div>
+      </div>
+
+      <div class="demo-body">
+        <!-- Canvas scene -->
+        <div class="canvas-wrap">
+          <canvas id="sceneCanvas" width="640" height="360"></canvas>
+          <div class="canvas-badge" id="canvasBadge">Original</div>
+        </div>
+
+        <!-- Controls -->
+        <div class="demo-controls">
+
+          <div class="control-group">
+            <span class="control-label">🎨 Color Mode</span>
+            <div class="toggle-row">
+              <button class="demo-btn active" id="btnColorOff" onclick="setColor('off')">None</button>
+              <button class="demo-btn" id="btnColorOn" onclick="setColor('on')">Apply Palette</button>
+              <button class="demo-btn" id="btnColorRandom" onclick="setColor('random')">Randomize</button>
+            </div>
+            <p class="control-hint">Palette shifts the hue, saturation and brightness to match the atmosphere's color identity.</p>
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <span class="control-label">✏️ Art Style</span>
+            <div class="style-grid" id="styleGrid">
+              <button class="style-btn active" onclick="setStyle('none')" data-style="none">Original</button>
+              <button class="style-btn" onclick="setStyle('pixel')" data-style="pixel">Pixel Art</button>
+              <button class="style-btn" onclick="setStyle('lowpoly')" data-style="lowpoly">Low Poly</button>
+              <button class="style-btn" onclick="setStyle('horror')" data-style="horror">Horror</button>
+              <button class="style-btn" onclick="setStyle('neon')" data-style="neon">Neon / Cyber</button>
+              <button class="style-btn" onclick="setStyle('watercolor')" data-style="watercolor">Painterly</button>
+              <button class="style-btn" onclick="setStyle('dark')" data-style="dark">Dark Fantasy</button>
+              <button class="style-btn" onclick="setStyle('bright')" data-style="bright">Open World</button>
+            </div>
+            <p class="control-hint">Art styles use CSS filters and canvas effects to simulate different visual rendering techniques.</p>
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <span class="control-label">⚡ Quick Combine</span>
+            <button class="demo-btn full" id="btnMatchAtmo" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
+            <p class="control-hint">Automatically applies both the color palette and matching art style for the selected atmosphere.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer>
     <p>Game Atmosphere Lab | Educational PWA Project</p>
-     <p>
-    <a href="promo.html">About</a> &nbsp;|&nbsp;
-    <a href="docs/user-guide.html">User Guide</a> &nbsp;|&nbsp;
-    <a href="docs/programmer-guide.html">Dev Docs</a>
-  </p>
+    <p><a href="promo.html">About</a> | <a href="docs/user-guide.html">User Guide</a> | <a href="docs/programmer-guide.html">Dev Docs</a></p>
   </footer>
+
   <script src="script.js"></script>
   <script>
-    // Register Service Worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
