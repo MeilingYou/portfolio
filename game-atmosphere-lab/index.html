@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
     <h1>Game Atmosphere Lab</h1>
     <p>Explore how video game art styles, colors, fonts, and sounds create different moods.</p>
@@ -35,7 +36,7 @@
         <h2 id="topicTitle">Topic Title</h2>
         <p id="gameExamples"></p>
 
-        <!-- COLOR PALETTE SWATCHES -->
+        <!-- PALETTE SWATCHES -->
         <div class="palette-section">
           <span class="palette-label">Color Palette</span>
           <div class="palette-swatches" id="paletteSwatches"></div>
@@ -57,28 +58,63 @@
         <div>
           <span class="demo-label">// Atmosphere Lab</span>
           <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
-          <p class="demo-subtitle">Apply this atmosphere's color palette and art style to a neutral scene — and watch the mood transform.</p>
+          <p class="demo-subtitle">Upload any image and apply this atmosphere's exact color palette and art style effects — pixel by pixel.</p>
         </div>
       </div>
 
       <div class="demo-body">
-        <!-- Canvas scene -->
-        <div class="canvas-wrap">
-          <canvas id="sceneCanvas" width="640" height="360"></canvas>
-          <div class="canvas-badge" id="canvasBadge">Original</div>
+
+        <!-- Canvases: before + after -->
+        <div class="canvas-area">
+          <div class="canvas-col">
+            <div class="canvas-top-bar">
+              <span class="canvas-tag">Original</span>
+              <!-- Upload button -->
+              <label class="upload-btn" for="imageUpload">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Upload Image
+              </label>
+              <input type="file" id="imageUpload" accept="image/*" style="display:none">
+            </div>
+            <div class="canvas-wrap">
+              <canvas id="sourceCanvas" width="640" height="360"></canvas>
+            </div>
+          </div>
+
+          <div class="canvas-divider">
+            <div class="arrow-line"></div>
+            <div class="arrow-label" id="arrowLabel">→</div>
+          </div>
+
+          <div class="canvas-col">
+            <div class="canvas-top-bar">
+              <span class="canvas-tag" id="resultTag">Result</span>
+              <button class="download-btn" id="downloadBtn" onclick="downloadResult()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Save
+              </button>
+            </div>
+            <div class="canvas-wrap">
+              <canvas id="resultCanvas" width="640" height="360"></canvas>
+              <div class="processing-overlay" id="processingOverlay">
+                <div class="spinner"></div>
+                <span>Processing…</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Controls -->
         <div class="demo-controls">
 
           <div class="control-group">
-            <span class="control-label">🎨 Color Mode</span>
+            <span class="control-label">🎨 Color Palette</span>
             <div class="toggle-row">
-              <button class="demo-btn active" id="btnColorOff" onclick="setColor('off')">None</button>
+              <button class="demo-btn active" id="btnColorOff" onclick="setColor('off')">Off</button>
               <button class="demo-btn" id="btnColorOn" onclick="setColor('on')">Apply Palette</button>
               <button class="demo-btn" id="btnColorRandom" onclick="setColor('random')">Randomize</button>
             </div>
-            <p class="control-hint">Palette shifts the hue, saturation and brightness to match the atmosphere's color identity.</p>
+            <p class="control-hint">Remaps every pixel to the closest color in the atmosphere's palette — keeping shapes and light but shifting the entire mood.</p>
           </div>
 
           <div class="control-divider"></div>
@@ -91,19 +127,19 @@
               <button class="style-btn" onclick="setStyle('lowpoly')" data-style="lowpoly">Low Poly</button>
               <button class="style-btn" onclick="setStyle('horror')" data-style="horror">Horror</button>
               <button class="style-btn" onclick="setStyle('neon')" data-style="neon">Neon / Cyber</button>
-              <button class="style-btn" onclick="setStyle('watercolor')" data-style="watercolor">Painterly</button>
-              <button class="style-btn" onclick="setStyle('dark')" data-style="dark">Dark Fantasy</button>
-              <button class="style-btn" onclick="setStyle('bright')" data-style="bright">Open World</button>
+              <button class="style-btn" onclick="setStyle('painterly')" data-style="painterly">Painterly</button>
+              <button class="style-btn" onclick="setStyle('darkfantasy')" data-style="darkfantasy">Dark Fantasy</button>
+              <button class="style-btn" onclick="setStyle('openworld')" data-style="openworld">Open World</button>
             </div>
-            <p class="control-hint">Art styles use CSS filters and canvas effects to simulate different visual rendering techniques.</p>
+            <p class="control-hint">Each style applies real pixel-level transformations — not just filters. Pixel Art downsamples to a grid; Horror crushes blacks and adds grain; Neon detects edges and adds glow.</p>
           </div>
 
           <div class="control-divider"></div>
 
           <div class="control-group">
-            <span class="control-label">⚡ Quick Combine</span>
-            <button class="demo-btn full" id="btnMatchAtmo" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
-            <p class="control-hint">Automatically applies both the color palette and matching art style for the selected atmosphere.</p>
+            <span class="control-label">⚡ Quick Match</span>
+            <button class="demo-btn full" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
+            <p class="control-hint">Applies the exact palette + best-matched art style for the selected atmosphere in one click.</p>
           </div>
 
         </div>
@@ -120,10 +156,9 @@
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("service-worker.js")
-          .then(reg => console.log("[SW] Registered:", reg.scope))
-          .catch(err => console.log("[SW] Registration failed:", err));
+        navigator.serviceWorker.register("service-worker.js")
+          .then(r => console.log("[SW] Registered:", r.scope))
+          .catch(e => console.log("[SW] Failed:", e));
       });
     }
   </script>
