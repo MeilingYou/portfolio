@@ -1,4 +1,3 @@
-
 {
   "topics": [
     {
@@ -14,7 +13,13 @@
       "fontClass": "pixel",
       "image": "images/cozy-pixel-farming.png",
       "imageAlt": "A warm pixel art farm scene with crops, animals, and golden sunlight",
-      "audio": "audio/cozy-pixel-farming.mp3"
+      "audio": "audio/cozy-pixel-farming.mp3",
+      "gif": "media/cozy-pixel-farming.gif",
+      "screenshots": [
+        { "src": "screenshots/cozy-pixel-farming-1.jpg", "caption": "Stardew Valley — Farm at sunrise" },
+        { "src": "screenshots/cozy-pixel-farming-2.jpg", "caption": "Sun Haven — Town square" },
+        { "src": "screenshots/cozy-pixel-farming-3.jpg", "caption": "Coral Island — Tropical farm life" }
+      ]
     },
     {
       "id": "neon-cyberpunk-city",
@@ -29,7 +34,13 @@
       "fontClass": "cyberpunk",
       "image": "images/neon-cyberpunk-city.png",
       "imageAlt": "A rain-soaked futuristic city at night lit by glowing neon signs",
-      "audio": "audio/neon-cyberpunk-city.mp3"
+      "audio": "audio/neon-cyberpunk-city.mp3",
+      "gif": "media/neon-cyberpunk-city.gif",
+      "screenshots": [
+        { "src": "screenshots/neon-cyberpunk-city-1.jpg", "caption": "Cyberpunk 2077 — Night City streets" },
+        { "src": "screenshots/neon-cyberpunk-city-2.jpg", "caption": "Ghostrunner — Neon rooftop chase" },
+        { "src": "screenshots/neon-cyberpunk-city-3.jpg", "caption": "Observer — Dark apartment corridor" }
+      ]
     },
     {
       "id": "low-poly-horror",
@@ -44,7 +55,13 @@
       "fontClass": "low-poly-horror",
       "image": "images/low-poly-horror.png",
       "imageAlt": "A dark, empty low-poly room with dim red lighting and eerie shadows",
-      "audio": "audio/low-poly-horror.mp3"
+      "audio": "audio/low-poly-horror.mp3",
+      "gif": "media/low-poly-horror.gif",
+      "screenshots": [
+        { "src": "screenshots/low-poly-horror-1.jpg", "caption": "Fears to Fathom — Empty hallway" },
+        { "src": "screenshots/low-poly-horror-2.jpg", "caption": "Dagon — Coastal village at night" },
+        { "src": "screenshots/low-poly-horror-3.jpg", "caption": "The Shore — Foggy coastline" }
+      ]
     },
     {
       "id": "dark-cute-cartoon",
@@ -59,7 +76,13 @@
       "fontClass": "dark-cute",
       "image": "images/dark-cute-cartoon.png",
       "imageAlt": "A cute cartoon lamb character surrounded by dark cult symbols and candles",
-      "audio": "audio/dark-cute-cartoon.mp3"
+      "audio": "audio/dark-cute-cartoon.mp3",
+      "gif": "media/dark-cute-cartoon.gif",
+      "screenshots": [
+        { "src": "screenshots/dark-cute-cartoon-1.jpg", "caption": "Cult of the Lamb — Cult ritual" },
+        { "src": "screenshots/dark-cute-cartoon-2.jpg", "caption": "Hollow Knight — Forgotten crossroads" },
+        { "src": "screenshots/dark-cute-cartoon-3.jpg", "caption": "Little Nightmares — The kitchen" }
+      ]
     },
     {
       "id": "retro-arcade",
@@ -74,7 +97,13 @@
       "fontClass": "retro-arcade",
       "image": "images/retro-arcade.png",
       "imageAlt": "A classic arcade screen with bright pixel characters on a black background",
-      "audio": "audio/retro-arcade.mp3"
+      "audio": "audio/retro-arcade.mp3",
+      "gif": "media/retro-arcade.gif",
+      "screenshots": [
+        { "src": "screenshots/retro-arcade-1.jpg", "caption": "Pac-Man — Classic maze" },
+        { "src": "screenshots/retro-arcade-2.jpg", "caption": "Space Invaders — Alien waves" },
+        { "src": "screenshots/retro-arcade-3.jpg", "caption": "Galaga — Boss stage" }
+      ]
     },
     {
       "id": "dark-fantasy",
@@ -89,7 +118,13 @@
       "fontClass": "dark-fantasy",
       "image": "images/dark-fantasy.png",
       "imageAlt": "A foggy gothic landscape with crumbling ruins and a dramatic stormy sky",
-      "audio": "audio/dark-fantasy.mp3"
+      "audio": "audio/dark-fantasy.mp3",
+      "gif": "media/dark-fantasy.gif",
+      "screenshots": [
+        { "src": "screenshots/dark-fantasy-1.jpg", "caption": "Elden Ring — The Lands Between" },
+        { "src": "screenshots/dark-fantasy-2.jpg", "caption": "Dark Souls — Anor Londo" },
+        { "src": "screenshots/dark-fantasy-3.jpg", "caption": "Blasphemous — Cathedral of the True Torment" }
+      ]
     },
     {
       "id": "open-world-fantasy",
@@ -104,7 +139,13 @@
       "fontClass": "open-world-fantasy",
       "image": "images/open-world-fantasy.png",
       "imageAlt": "A vast open landscape with bright skies, rolling hills, and a distant mountain",
-      "audio": "audio/open-world-fantasy.mp3"
+      "audio": "audio/open-world-fantasy.mp3",
+      "gif": "media/open-world-fantasy.gif",
+      "screenshots": [
+        { "src": "screenshots/open-world-fantasy-1.jpg", "caption": "Breath of the Wild — Hyrule fields" },
+        { "src": "screenshots/open-world-fantasy-2.jpg", "caption": "Genshin Impact — Mondstadt overlook" },
+        { "src": "screenshots/open-world-fantasy-3.jpg", "caption": "Immortals Fenyx Rising — Golden Isle" }
+      ]
     },
     {
       "id": "voxel-sandbox",
@@ -119,7 +160,13 @@
       "fontClass": "voxel-sandbox",
       "image": "images/voxel-sandbox.png",
       "imageAlt": "A colorful blocky voxel world with trees, grass, and a clear blue sky",
-      "audio": "audio/voxel-sandbox.mp3"
+      "audio": "audio/voxel-sandbox.mp3",
+      "gif": "media/voxel-sandbox.gif",
+      "screenshots": [
+        { "src": "screenshots/voxel-sandbox-1.jpg", "caption": "Minecraft — Mountain biome build" },
+        { "src": "screenshots/voxel-sandbox-2.jpg", "caption": "Hytale — Adventure zone" },
+        { "src": "screenshots/voxel-sandbox-3.jpg", "caption": "Creativerse — Jungle exploration" }
+      ]
     }
   ]
 }
