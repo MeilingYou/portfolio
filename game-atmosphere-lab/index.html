@@ -52,29 +52,28 @@
       </div>
     </section>
 
-    <!-- STEAM-STYLE MEDIA GALLERY -->
+    <!-- SCREENSHOT GALLERY -->
     <section class="media-gallery" id="mediaGallery">
       <div class="gallery-header">
-        <span class="gallery-label">// Media</span>
+        <span class="gallery-label">// Screenshots</span>
         <h2 class="gallery-title" id="galleryTitle">Atmosphere Showcase</h2>
+        <p class="gallery-subtitle">Click any screenshot to view fullscreen</p>
       </div>
 
-      <!-- Main display area -->
       <div class="gallery-main">
-        <!-- GIF / main display -->
+        <!-- Main display -->
         <div class="gallery-display" id="galleryDisplay">
           <img id="galleryMainImg" src="" alt="" class="gallery-main-img">
-          <div class="gallery-gif-badge" id="gifBadge">
-            <span class="gif-dot"></span> GIF
-          </div>
-          <!-- Caption bar -->
           <div class="gallery-caption" id="galleryCaption"></div>
+          <!-- Expand hint -->
+          <div class="gallery-expand-hint">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            Click to expand
+          </div>
         </div>
 
         <!-- Thumbnail strip -->
-        <div class="gallery-strip" id="galleryStrip">
-          <!-- Populated by JS -->
-        </div>
+        <div class="gallery-strip" id="galleryStrip"></div>
       </div>
 
       <!-- Lightbox -->
@@ -82,19 +81,18 @@
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <button class="lightbox-prev" id="lightboxPrev" onclick="lightboxNav(-1, event)">&#8249;</button>
         <button class="lightbox-next" id="lightboxNext" onclick="lightboxNav(1, event)">&#8250;</button>
-        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
         <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
       </div>
     </section>
 
     <!-- ATMOSPHERE DEMO LAB -->
     <section class="demo-lab" id="demoLab">
       <div class="demo-lab-header">
-        <div>
-          <span class="demo-label">// Atmosphere Lab</span>
-          <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
-          <p class="demo-subtitle">Upload any image and apply this atmosphere's exact color palette and art style effects — pixel by pixel.</p>
-        </div>
+        <span class="demo-label">// Atmosphere Lab</span>
+        <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
+        <p class="demo-subtitle">Upload any image and apply this atmosphere's exact color palette and art style effects — pixel by pixel.</p>
       </div>
 
       <div class="demo-body">
@@ -146,9 +144,7 @@
             </div>
             <p class="control-hint">Remaps every pixel to the closest color in the atmosphere's palette.</p>
           </div>
-
           <div class="control-divider"></div>
-
           <div class="control-group">
             <span class="control-label">✏️ Art Style</span>
             <div class="style-grid">
@@ -163,9 +159,7 @@
             </div>
             <p class="control-hint">Real pixel-level transformations per style.</p>
           </div>
-
           <div class="control-divider"></div>
-
           <div class="control-group">
             <span class="control-label">⚡ Quick Match</span>
             <button class="demo-btn full" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
