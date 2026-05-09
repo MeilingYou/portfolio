@@ -52,6 +52,41 @@
       </div>
     </section>
 
+    <!-- STEAM-STYLE MEDIA GALLERY -->
+    <section class="media-gallery" id="mediaGallery">
+      <div class="gallery-header">
+        <span class="gallery-label">// Media</span>
+        <h2 class="gallery-title" id="galleryTitle">Atmosphere Showcase</h2>
+      </div>
+
+      <!-- Main display area -->
+      <div class="gallery-main">
+        <!-- GIF / main display -->
+        <div class="gallery-display" id="galleryDisplay">
+          <img id="galleryMainImg" src="" alt="" class="gallery-main-img">
+          <div class="gallery-gif-badge" id="gifBadge">
+            <span class="gif-dot"></span> GIF
+          </div>
+          <!-- Caption bar -->
+          <div class="gallery-caption" id="galleryCaption"></div>
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div class="gallery-strip" id="galleryStrip">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-prev" id="lightboxPrev" onclick="lightboxNav(-1, event)">&#8249;</button>
+        <button class="lightbox-next" id="lightboxNext" onclick="lightboxNav(1, event)">&#8250;</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </section>
+
     <!-- ATMOSPHERE DEMO LAB -->
     <section class="demo-lab" id="demoLab">
       <div class="demo-lab-header">
@@ -63,13 +98,10 @@
       </div>
 
       <div class="demo-body">
-
-        <!-- Canvases: before + after -->
         <div class="canvas-area">
           <div class="canvas-col">
             <div class="canvas-top-bar">
               <span class="canvas-tag">Original</span>
-              <!-- Upload button -->
               <label class="upload-btn" for="imageUpload">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 Upload Image
@@ -83,13 +115,13 @@
 
           <div class="canvas-divider">
             <div class="arrow-line"></div>
-            <div class="arrow-label" id="arrowLabel">→</div>
+            <div class="arrow-label">→</div>
           </div>
 
           <div class="canvas-col">
             <div class="canvas-top-bar">
               <span class="canvas-tag" id="resultTag">Result</span>
-              <button class="download-btn" id="downloadBtn" onclick="downloadResult()">
+              <button class="download-btn" onclick="downloadResult()">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Save
               </button>
@@ -104,9 +136,7 @@
           </div>
         </div>
 
-        <!-- Controls -->
         <div class="demo-controls">
-
           <div class="control-group">
             <span class="control-label">🎨 Color Palette</span>
             <div class="toggle-row">
@@ -114,14 +144,14 @@
               <button class="demo-btn" id="btnColorOn" onclick="setColor('on')">Apply Palette</button>
               <button class="demo-btn" id="btnColorRandom" onclick="setColor('random')">Randomize</button>
             </div>
-            <p class="control-hint">Remaps every pixel to the closest color in the atmosphere's palette — keeping shapes and light but shifting the entire mood.</p>
+            <p class="control-hint">Remaps every pixel to the closest color in the atmosphere's palette.</p>
           </div>
 
           <div class="control-divider"></div>
 
           <div class="control-group">
             <span class="control-label">✏️ Art Style</span>
-            <div class="style-grid" id="styleGrid">
+            <div class="style-grid">
               <button class="style-btn active" onclick="setStyle('none')" data-style="none">Original</button>
               <button class="style-btn" onclick="setStyle('pixel')" data-style="pixel">Pixel Art</button>
               <button class="style-btn" onclick="setStyle('lowpoly')" data-style="lowpoly">Low Poly</button>
@@ -131,7 +161,7 @@
               <button class="style-btn" onclick="setStyle('darkfantasy')" data-style="darkfantasy">Dark Fantasy</button>
               <button class="style-btn" onclick="setStyle('openworld')" data-style="openworld">Open World</button>
             </div>
-            <p class="control-hint">Each style applies real pixel-level transformations — not just filters. Pixel Art downsamples to a grid; Horror crushes blacks and adds grain; Neon detects edges and adds glow.</p>
+            <p class="control-hint">Real pixel-level transformations per style.</p>
           </div>
 
           <div class="control-divider"></div>
@@ -139,9 +169,8 @@
           <div class="control-group">
             <span class="control-label">⚡ Quick Match</span>
             <button class="demo-btn full" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
-            <p class="control-hint">Applies the exact palette + best-matched art style for the selected atmosphere in one click.</p>
+            <p class="control-hint">Applies the exact palette + best-matched art style in one click.</p>
           </div>
-
         </div>
       </div>
     </section>
