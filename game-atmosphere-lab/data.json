@@ -3,7 +3,11 @@
     {
       "id": "cozy-pixel-farming",
       "title": "Cozy Pixel Farming",
-      "gameExamples": ["Stardew Valley", "Sun Haven", "Coral Island"],
+      "gameExamples": [
+        "Stardew Valley",
+        "Sun Haven",
+        "Coral Island"
+      ],
       "artStyle": "Pixel art farming and life-sim style",
       "mood": "Peaceful, warm, relaxing",
       "description": "Cozy pixel farming games use warm colors, soft light, small pixel details, and nature-based objects to create a calm and welcoming mood. This type of atmosphere makes the player feel safe, relaxed, and connected to a peaceful daily routine.",
@@ -11,19 +15,32 @@
       "accentColor": "#7AA35A",
       "textColor": "#4B3425",
       "fontClass": "pixel",
-      "image": "images/cozy-pixel-farming.png",
+      "image": "screenshots/cozy-pixel-farming-1.jpg",
       "imageAlt": "A warm pixel art farm scene with crops, animals, and golden sunlight",
       "audio": "audio/cozy-pixel-farming.mp3",
       "screenshots": [
-        { "src": "screenshots/cozy-pixel-farming-1.jpg", "caption": "Stardew Valley — Farm at sunrise" },
-        { "src": "screenshots/cozy-pixel-farming-2.jpg", "caption": "Sun Haven — Town square" },
-        { "src": "screenshots/cozy-pixel-farming-3.jpg", "caption": "Coral Island — Tropical farm life" }
+        {
+          "src": "screenshots/cozy-pixel-farming-1.jpg",
+          "caption": "Stardew Valley — Farm at sunrise"
+        },
+        {
+          "src": "screenshots/cozy-pixel-farming-2.jpg",
+          "caption": "Sun Haven — Town square"
+        },
+        {
+          "src": "screenshots/cozy-pixel-farming-3.jpg",
+          "caption": "Coral Island — Tropical farm life"
+        }
       ]
     },
     {
       "id": "neon-cyberpunk-city",
       "title": "Neon Cyberpunk City",
-      "gameExamples": ["Cyberpunk 2077", "Ghostrunner", "Observer"],
+      "gameExamples": [
+        "Cyberpunk 2077",
+        "Ghostrunner",
+        "Observer"
+      ],
       "artStyle": "Neon sci-fi and futuristic city style",
       "mood": "Futuristic, energetic, high-tech",
       "description": "Cyberpunk games often use dark city backgrounds, glowing neon lights, rain reflections, and futuristic technology. The strong contrast between black shadows and bright neon colors creates a world that feels advanced, busy, and intense.",
@@ -31,19 +48,32 @@
       "accentColor": "#00E5FF",
       "textColor": "#EAFBFF",
       "fontClass": "cyberpunk",
-      "image": "images/neon-cyberpunk-city.png",
+      "image": "screenshots/neon-cyberpunk-city-1.jpg",
       "imageAlt": "A rain-soaked futuristic city at night lit by glowing neon signs",
       "audio": "audio/neon-cyberpunk-city.mp3",
       "screenshots": [
-        { "src": "screenshots/neon-cyberpunk-city-1.jpg", "caption": "Cyberpunk 2077 — Night City streets" },
-        { "src": "screenshots/neon-cyberpunk-city-2.jpg", "caption": "Ghostrunner — Neon rooftop chase" },
-        { "src": "screenshots/neon-cyberpunk-city-3.jpg", "caption": "Observer — Dark apartment corridor" }
+        {
+          "src": "screenshots/neon-cyberpunk-city-1.jpg",
+          "caption": "Cyberpunk 2077 — Night City streets"
+        },
+        {
+          "src": "screenshots/neon-cyberpunk-city-2.jpg",
+          "caption": "Ghostrunner — Neon rooftop chase"
+        },
+        {
+          "src": "screenshots/neon-cyberpunk-city-3.jpg",
+          "caption": "Observer — Dark apartment corridor"
+        }
       ]
     },
     {
       "id": "low-poly-horror",
       "title": "Low-Poly Horror",
-      "gameExamples": ["Fears to Fathom", "Dagon", "The Shore"],
+      "gameExamples": [
+        "Fears to Fathom",
+        "Dagon",
+        "The Shore"
+      ],
       "artStyle": "Low-poly 3D horror style",
       "mood": "Tense, eerie, unsettling",
       "description": "Low-poly horror games use simple 3D shapes, dim lighting, empty rooms, and quiet spaces to create fear. Because the visuals are simple, the player's imagination fills in the missing details, making the atmosphere feel more uncomfortable.",
@@ -51,19 +81,32 @@
       "accentColor": "#7A1F1F",
       "textColor": "#D9D9D9",
       "fontClass": "low-poly-horror",
-      "image": "images/low-poly-horror.png",
+      "image": "screenshots/low-poly-horror-1.jpg",
       "imageAlt": "A dark, empty low-poly room with dim red lighting and eerie shadows",
       "audio": "audio/low-poly-horror.mp3",
       "screenshots": [
-        { "src": "screenshots/low-poly-horror-1.jpg", "caption": "Fears to Fathom — Empty hallway" },
-        { "src": "screenshots/low-poly-horror-2.jpg", "caption": "Dagon — Coastal village at night" },
-        { "src": "screenshots/low-poly-horror-3.jpg", "caption": "The Shore — Foggy coastline" }
+        {
+          "src": "screenshots/low-poly-horror-1.jpg",
+          "caption": "Fears to Fathom — Empty hallway"
+        },
+        {
+          "src": "screenshots/low-poly-horror-2.jpg",
+          "caption": "Dagon — Coastal village at night"
+        },
+        {
+          "src": "screenshots/low-poly-horror-3.jpg",
+          "caption": "The Shore — Foggy coastline"
+        }
       ]
     },
     {
       "id": "dark-cute-cartoon",
       "title": "Dark Cute Cartoon",
-      "gameExamples": ["Cult of the Lamb", "Hollow Knight", "Little Nightmares"],
+      "gameExamples": [
+        "Cult of the Lamb",
+        "Hollow Knight",
+        "Little Nightmares"
+      ],
       "artStyle": "Hand-drawn dark cartoon style",
       "mood": "Dark cute, creepy, playful",
       "description": "Dark cute cartoon games mix adorable character designs with creepy themes, strange symbols, and darker colors. This contrast creates a mood that feels charming and unsettling at the same time.",
@@ -71,19 +114,32 @@
       "accentColor": "#D9C27A",
       "textColor": "#F5EBD8",
       "fontClass": "dark-cute",
-      "image": "images/dark-cute-cartoon.png",
+      "image": "screenshots/dark-cute-cartoon-1.jpg",
       "imageAlt": "A cute cartoon lamb character surrounded by dark cult symbols and candles",
       "audio": "audio/dark-cute-cartoon.mp3",
       "screenshots": [
-        { "src": "screenshots/dark-cute-cartoon-1.jpg", "caption": "Cult of the Lamb — Cult ritual" },
-        { "src": "screenshots/dark-cute-cartoon-2.jpg", "caption": "Hollow Knight — Forgotten crossroads" },
-        { "src": "screenshots/dark-cute-cartoon-3.jpg", "caption": "Little Nightmares — The kitchen" }
+        {
+          "src": "screenshots/dark-cute-cartoon-1.jpg",
+          "caption": "Cult of the Lamb — Cult ritual"
+        },
+        {
+          "src": "screenshots/dark-cute-cartoon-2.jpg",
+          "caption": "Hollow Knight — Forgotten crossroads"
+        },
+        {
+          "src": "screenshots/dark-cute-cartoon-3.jpg",
+          "caption": "Little Nightmares — The kitchen"
+        }
       ]
     },
     {
       "id": "retro-arcade",
       "title": "Retro Arcade",
-      "gameExamples": ["Pac-Man", "Space Invaders", "Galaga"],
+      "gameExamples": [
+        "Pac-Man",
+        "Space Invaders",
+        "Galaga"
+      ],
       "artStyle": "Simple retro arcade style",
       "mood": "Nostalgic, playful, fast-paced",
       "description": "Retro arcade games use simple shapes, bright colors, and clear visual rules. The style is easy to understand quickly, which helps players focus on movement, score, and reaction time.",
@@ -91,19 +147,32 @@
       "accentColor": "#FFD93D",
       "textColor": "#FFFFFF",
       "fontClass": "retro-arcade",
-      "image": "images/retro-arcade.png",
+      "image": "screenshots/retro-arcade-1.jpg",
       "imageAlt": "A classic arcade screen with bright pixel characters on a black background",
       "audio": "audio/retro-arcade.mp3",
       "screenshots": [
-        { "src": "screenshots/retro-arcade-1.jpg", "caption": "Pac-Man — Classic maze" },
-        { "src": "screenshots/retro-arcade-2.jpg", "caption": "Space Invaders — Alien waves" },
-        { "src": "screenshots/retro-arcade-3.jpg", "caption": "Galaga — Boss stage" }
+        {
+          "src": "screenshots/retro-arcade-1.jpg",
+          "caption": "Pac-Man — Classic maze"
+        },
+        {
+          "src": "screenshots/retro-arcade-2.jpg",
+          "caption": "Space Invaders — Alien waves"
+        },
+        {
+          "src": "screenshots/retro-arcade-3.jpg",
+          "caption": "Galaga — Boss stage"
+        }
       ]
     },
     {
       "id": "dark-fantasy",
       "title": "Dark Fantasy",
-      "gameExamples": ["Elden Ring", "Dark Souls", "Blasphemous"],
+      "gameExamples": [
+        "Elden Ring",
+        "Dark Souls",
+        "Blasphemous"
+      ],
       "artStyle": "Dark fantasy and gothic adventure style",
       "mood": "Epic, dangerous, mysterious",
       "description": "Dark fantasy games combine magical worlds with ruins, monsters, fog, and dramatic landscapes. This style often makes the player feel small inside a huge and dangerous world.",
@@ -111,19 +180,32 @@
       "accentColor": "#B08D57",
       "textColor": "#E8DFC8",
       "fontClass": "dark-fantasy",
-      "image": "images/dark-fantasy.png",
+      "image": "screenshots/dark-fantasy-1.jpg",
       "imageAlt": "A foggy gothic landscape with crumbling ruins and a dramatic stormy sky",
       "audio": "audio/dark-fantasy.mp3",
       "screenshots": [
-        { "src": "screenshots/dark-fantasy-1.jpg", "caption": "Elden Ring — The Lands Between" },
-        { "src": "screenshots/dark-fantasy-2.jpg", "caption": "Dark Souls — Anor Londo" },
-        { "src": "screenshots/dark-fantasy-3.jpg", "caption": "Blasphemous — Cathedral of the True Torment" }
+        {
+          "src": "screenshots/dark-fantasy-1.jpg",
+          "caption": "Elden Ring — The Lands Between"
+        },
+        {
+          "src": "screenshots/dark-fantasy-2.jpg",
+          "caption": "Dark Souls — Anor Londo"
+        },
+        {
+          "src": "screenshots/dark-fantasy-3.jpg",
+          "caption": "Blasphemous — Cathedral of the True Torment"
+        }
       ]
     },
     {
       "id": "open-world-fantasy",
       "title": "Open-World Fantasy",
-      "gameExamples": ["Zelda: Breath of the Wild", "Genshin Impact", "Immortals Fenyx Rising"],
+      "gameExamples": [
+        "Zelda: Breath of the Wild",
+        "Genshin Impact",
+        "Immortals Fenyx Rising"
+      ],
       "artStyle": "Bright open-world fantasy adventure style",
       "mood": "Open, peaceful, heroic",
       "description": "Open-world fantasy games use bright skies, wide landscapes, soft colors, and natural environments to make players want to explore. This atmosphere creates a feeling of freedom, curiosity, and adventure.",
@@ -131,19 +213,32 @@
       "accentColor": "#F4C542",
       "textColor": "#244B3C",
       "fontClass": "open-world-fantasy",
-      "image": "images/open-world-fantasy.png",
+      "image": "screenshots/open-world-fantasy-1.jpg",
       "imageAlt": "A vast open landscape with bright skies, rolling hills, and a distant mountain",
       "audio": "audio/open-world-fantasy.mp3",
       "screenshots": [
-        { "src": "screenshots/open-world-fantasy-1.jpg", "caption": "Breath of the Wild — Hyrule fields" },
-        { "src": "screenshots/open-world-fantasy-2.jpg", "caption": "Genshin Impact — Mondstadt overlook" },
-        { "src": "screenshots/open-world-fantasy-3.jpg", "caption": "Immortals Fenyx Rising — Golden Isle" }
+        {
+          "src": "screenshots/open-world-fantasy-1.jpg",
+          "caption": "Breath of the Wild — Hyrule fields"
+        },
+        {
+          "src": "screenshots/open-world-fantasy-2.jpg",
+          "caption": "Genshin Impact — Mondstadt overlook"
+        },
+        {
+          "src": "screenshots/open-world-fantasy-3.jpg",
+          "caption": "Immortals Fenyx Rising — Golden Isle"
+        }
       ]
     },
     {
       "id": "voxel-sandbox",
       "title": "Voxel Sandbox",
-      "gameExamples": ["Minecraft", "Hytale", "Creativerse"],
+      "gameExamples": [
+        "Minecraft",
+        "Hytale",
+        "Creativerse"
+      ],
       "artStyle": "Blocky voxel sandbox style",
       "mood": "Creative, open, playful",
       "description": "Voxel sandbox games use block-shaped worlds and simple textures. The blocky style helps players see the world as something they can shape, destroy, and rebuild creatively.",
@@ -151,13 +246,22 @@
       "accentColor": "#5A8F3D",
       "textColor": "#2E2218",
       "fontClass": "voxel-sandbox",
-      "image": "images/voxel-sandbox.png",
+      "image": "screenshots/voxel-sandbox-1.jpg",
       "imageAlt": "A colorful blocky voxel world with trees, grass, and a clear blue sky",
       "audio": "audio/voxel-sandbox.mp3",
       "screenshots": [
-        { "src": "screenshots/voxel-sandbox-1.jpg", "caption": "Minecraft — Mountain biome build" },
-        { "src": "screenshots/voxel-sandbox-2.jpg", "caption": "Hytale — Adventure zone" },
-        { "src": "screenshots/voxel-sandbox-3.jpg", "caption": "Creativerse — Jungle exploration" }
+        {
+          "src": "screenshots/voxel-sandbox-1.jpg",
+          "caption": "Minecraft — Mountain biome build"
+        },
+        {
+          "src": "screenshots/voxel-sandbox-2.jpg",
+          "caption": "Hytale — Adventure zone"
+        },
+        {
+          "src": "screenshots/voxel-sandbox-3.jpg",
+          "caption": "Creativerse — Jungle exploration"
+        }
       ]
     }
   ]
