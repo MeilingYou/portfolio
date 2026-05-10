@@ -84,22 +84,37 @@ function showTopic(index, autoPlay) {
   document.getElementById('artStyle').textContent = topic.artStyle;
   document.getElementById('mood').textContent = topic.mood;
   document.getElementById('description').textContent = topic.description;
-  document.getElementById('topicImage').src = topic.image;
+
+  // Use topic.image first.
+  // If that is missing, use the first screenshot instead.
+  var mainTopicImage = topic.image;
+
+  if (!mainTopicImage && topic.screenshots && topic.screenshots.length > 0) {
+    mainTopicImage = topic.screenshots[0].src;
+  }
+
+  document.getElementById('topicImage').src = mainTopicImage;
   document.getElementById('topicImage').alt = topic.imageAlt || topic.title;
 
-  switchBg(topic.image);
+  switchBg(mainTopicImage);
 
   document.documentElement.style.setProperty('--accent-color', topic.accentColor);
   document.documentElement.style.setProperty('--text-color', topic.textColor);
   document.documentElement.style.setProperty('--card-color', hexRgba(topic.backgroundColor, 0.22));
-  bgOverlay.style.background = 'linear-gradient(135deg,' + hexRgba(topic.backgroundColor,0.55) + ' 0%,rgba(0,0,0,0.5) 100%)';
+
+  bgOverlay.style.background =
+    'linear-gradient(135deg,' +
+    hexRgba(topic.backgroundColor, 0.55) +
+    ' 0%,rgba(0,0,0,0.5) 100%)';
 
   var mt = document.querySelector('meta[name="theme-color"]');
-  if (mt) mt.setAttribute('content', topic.backgroundColor);
+  if (mt) {
+    mt.setAttribute('content', topic.backgroundColor);
+  }
 
   document.body.className = topic.fontClass;
 
-  // restart card anim
+  // Restart card animation
   var box = document.querySelector('.info-box');
   box.style.animation = 'none';
   box.offsetHeight;
@@ -110,10 +125,15 @@ function showTopic(index, autoPlay) {
   });
 
   history.replaceState(null, '', '#' + topic.id);
+
   renderPalette(topic.id);
+
+  // This builds the 3-image screenshot gallery from data.json
   buildGallery(topic);
 
-  if (colorMode !== 'off') applyEffects();
+  if (colorMode !== 'off') {
+    applyEffects();
+  }
 
   currentAudio.pause();
   currentAudio.currentTime = 0;
@@ -123,8 +143,12 @@ function showTopic(index, autoPlay) {
 
   if (autoPlay) {
     currentAudio.play()
-      .then(function() { document.getElementById('audioBtn').textContent = 'Pause Atmosphere Sound'; })
-      .catch(function() { document.getElementById('audioBtn').textContent = 'Play Atmosphere Sound'; });
+      .then(function() {
+        document.getElementById('audioBtn').textContent = 'Pause Atmosphere Sound';
+      })
+      .catch(function() {
+        document.getElementById('audioBtn').textContent = 'Play Atmosphere Sound';
+      });
   } else {
     document.getElementById('audioBtn').textContent = 'Play Atmosphere Sound';
   }
