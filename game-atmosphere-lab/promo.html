@@ -48,7 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -97,7 +96,6 @@
       border-radius: 4px;
     }
 
-    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -224,7 +222,6 @@
       }
     }
 
-    /* BUTTONS */
     .btn {
       display: inline-block;
       padding: 0.875rem 1.75rem;
@@ -260,17 +257,10 @@
       transform: translateY(-2px);
     }
 
-    /* LAYOUT */
     .divider {
       height: 1px;
       background: var(--border);
       margin: 0 2rem;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
     }
 
     .section-pad {
@@ -303,7 +293,6 @@
       max-width: 500px;
     }
 
-    /* FEATURES */
     .features-wrap {
       background: var(--surface);
     }
@@ -353,7 +342,6 @@
       line-height: 1.6;
     }
 
-    /* ATMOSPHERES */
     .atmo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -399,7 +387,6 @@
       font-weight: 300;
     }
 
-    /* SCREENSHOTS */
     .screenshots-wrap {
       background: var(--surface);
     }
@@ -429,24 +416,6 @@
       display: block;
     }
 
-    .screenshot-placeholder {
-      aspect-ratio: 16 / 9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: #333;
-      font-size: 0.75rem;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .screenshot-placeholder .ph-icon {
-      font-size: 2rem;
-      opacity: 0.3;
-    }
-
     .screenshot-label {
       padding: 0.75rem 1.25rem;
       font-size: 0.8rem;
@@ -455,7 +424,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* INSTALL */
     .install-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -490,7 +458,6 @@
       line-height: 1.6;
     }
 
-    /* CTA */
     .cta-banner {
       background: linear-gradient(135deg, #1a1608 0%, #0f1a1c 100%);
       border-top: 1px solid rgba(255,217,61,0.12);
@@ -511,7 +478,6 @@
       font-weight: 300;
     }
 
-    /* PWA INSTALL POPUP */
     .install-popup {
       position: fixed;
       inset: 0;
@@ -611,7 +577,6 @@
       margin-bottom: 0 !important;
     }
 
-    /* FOOTER */
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -692,7 +657,6 @@
     </ul>
   </nav>
 
-  <!-- PWA INSTALL POPUP -->
   <div id="installPopup" class="install-popup">
     <div class="install-box">
       <button id="closeInstallPopup" class="install-close">×</button>
@@ -720,7 +684,6 @@
     </div>
   </div>
 
-  <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Educational PWA</p>
 
@@ -742,7 +705,6 @@
 
   <div class="divider"></div>
 
-  <!-- FEATURES -->
   <section class="features-wrap" id="features">
     <div class="features-header">
       <span class="label">// Features</span>
@@ -793,7 +755,6 @@
 
   <div class="divider"></div>
 
-  <!-- ATMOSPHERES -->
   <section id="atmospheres">
     <div class="section-pad">
       <span class="label">// Atmospheres</span>
@@ -874,7 +835,6 @@
 
   <div class="divider"></div>
 
-  <!-- SCREENSHOTS -->
   <section class="screenshots-wrap" id="screenshots">
     <div class="section-pad">
       <span class="label">// Screenshots</span>
@@ -906,7 +866,6 @@
 
   <div class="divider"></div>
 
-  <!-- INSTALL -->
   <section id="install">
     <div class="section-pad">
       <span class="label">// Install</span>
@@ -945,7 +904,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-banner">
     <span class="label">// Ready?</span>
 
@@ -956,7 +914,6 @@
     <a href="index.html" class="btn btn-primary">Launch Game Atmosphere Lab</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <a href="#" class="footer-logo">AtmoLab</a>
 
@@ -977,22 +934,28 @@
     const closeInstallPopup = document.getElementById("closeInstallPopup");
     const installHint = document.getElementById("installHint");
 
-    // Register service worker for PWA support
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js").catch(function () {
-        navigator.serviceWorker.register("sw.js").catch(function (error) {
-          console.log("Service worker not registered:", error);
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
+          scope: "/portfolio/game-atmosphere-lab/"
+        })
+        .then(function (registration) {
+          console.log("Service worker registered:", registration.scope);
+        })
+        .catch(function (error) {
+          console.log("Service worker registration failed:", error);
         });
       });
     }
 
-    // Save browser install event
     window.addEventListener("beforeinstallprompt", function (event) {
       event.preventDefault();
+
       deferredPrompt = event;
 
+      installPopup.classList.remove("hidden");
       installBtn.textContent = "Install App";
-      installHint.textContent = "Click Install App to download this PWA.";
+      installHint.textContent = "Click Install App to install this PWA.";
     });
 
     installBtn.addEventListener("click", async function () {
@@ -1005,8 +968,9 @@
         deferredPrompt = null;
         installPopup.classList.add("hidden");
       } else {
+        installPopup.classList.remove("hidden");
         installHint.textContent =
-          "If the install popup does not appear, use your browser menu and choose Install app or Add to Home Screen.";
+          "The browser install prompt is not ready yet. Use Chrome or Edge, wait a few seconds, or use the browser menu → Install app.";
       }
     });
 
