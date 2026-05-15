@@ -4,10 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Game Atmosphere Lab</title>
+  <title>Game Atmosphere Lab | Promo</title>
 
   <meta name="description" content="Game Atmosphere Lab is an educational PWA that teaches how game art styles, colors, fonts, and sounds create different moods.">
   <meta name="theme-color" content="#0a0a0f">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AtmoLab">
 
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -89,9 +94,9 @@
     }
 
     .nav-cta {
-      background: var(--yellow) !important;
+      background: var(--yellow);
       color: #000 !important;
-      font-weight: 600 !important;
+      font-weight: 600;
       padding: 0.5rem 1.25rem;
       border-radius: 4px;
     }
@@ -159,7 +164,7 @@
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--muted);
-      max-width: 500px;
+      max-width: 560px;
       margin: 0 auto 2.5rem;
       font-weight: 300;
       opacity: 0;
@@ -290,10 +295,11 @@
       color: var(--muted);
       font-size: 1rem;
       font-weight: 300;
-      max-width: 500px;
+      max-width: 560px;
     }
 
-    .features-wrap {
+    .features-wrap,
+    .screenshots-wrap {
       background: var(--surface);
     }
 
@@ -308,7 +314,7 @@
       margin: 0 auto;
       padding: 0 2rem 6rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -387,10 +393,6 @@
       font-weight: 300;
     }
 
-    .screenshots-wrap {
-      background: var(--surface);
-    }
-
     .screenshots-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -426,7 +428,7 @@
 
     .install-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
       margin-top: 3rem;
     }
@@ -496,7 +498,7 @@
 
     .install-box {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: #111118;
       border: 1px solid rgba(255,217,61,0.22);
       border-radius: 18px;
@@ -635,6 +637,11 @@
         text-align: center;
       }
 
+      .footer-links {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
       .section-pad {
         padding: 4rem 1.5rem;
       }
@@ -657,9 +664,9 @@
     </ul>
   </nav>
 
-  <div id="installPopup" class="install-popup">
+  <div id="installPopup" class="install-popup hidden">
     <div class="install-box">
-      <button id="closeInstallPopup" class="install-close">×</button>
+      <button id="closeInstallPopup" class="install-close" aria-label="Close install popup">×</button>
 
       <img src="icons/icon-192.png" alt="Game Atmosphere Lab icon">
 
@@ -697,6 +704,7 @@
 
     <div class="hero-btns">
       <a href="index.html" class="btn btn-primary">Launch App</a>
+      <button class="btn btn-ghost install-trigger">Install App</button>
       <a href="#install" class="btn btn-ghost">How to Install</a>
     </div>
 
@@ -708,7 +716,9 @@
   <section class="features-wrap" id="features">
     <div class="features-header">
       <span class="label">// Features</span>
+
       <h2 class="section-heading">Everything in one place</h2>
+
       <p class="section-sub">
         An interactive learning tool that connects visual design theory to real games you know.
       </p>
@@ -716,53 +726,51 @@
 
     <div class="features-grid">
       <div class="feature-card">
+        <span class="feature-icon">🎮</span>
+        <h3>Game Atmosphere Lessons</h3>
+        <p>Learn how art style, color, fonts, and sound change the mood of a game world.</p>
+      </div>
+
+      <div class="feature-card">
         <span class="feature-icon">🎨</span>
-        <h3>8 Distinct Atmospheres</h3>
-        <p>Each fully themed with matching colors, fonts, imagery, and sound.</p>
+        <h3>Color Palette Viewer</h3>
+        <p>Each topic includes colors that match the atmosphere and help explain the visual style.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🎵</span>
-        <h3>Immersive Audio</h3>
-        <p>Ambient sound for every atmosphere, designed to reinforce the mood of the genre.</p>
+        <span class="feature-icon">🔊</span>
+        <h3>Atmosphere Sounds</h3>
+        <p>Each category includes audio so users can connect sound design to visual mood.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🖋️</span>
-        <h3>Dynamic Typography</h3>
-        <p>Fonts shift per atmosphere so you feel the genre, not just read about it.</p>
+        <span class="feature-icon">🧪</span>
+        <h3>Interactive Lab</h3>
+        <p>Upload an image and apply different palettes and visual effects to see mood changes.</p>
       </div>
 
       <div class="feature-card">
         <span class="feature-icon">📱</span>
         <h3>Installable PWA</h3>
-        <p>Install the project like an app on supported browsers and devices.</p>
+        <p>The app includes a manifest and service worker so it can be installed on supported devices.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🎮</span>
-        <h3>Educational Content</h3>
-        <p>Each entry explains the design reasoning — not just what it looks like, but why.</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <h3>Instant Transitions</h3>
-        <p>Click any atmosphere and the entire page transforms all at once.</p>
+        <span class="feature-icon">📁</span>
+        <h3>JSON Dataset</h3>
+        <p>The topics are stored in a JSON file, making it easier to add or replace learning sets.</p>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
   <section id="atmospheres">
     <div class="section-pad">
-      <span class="label">// Atmospheres</span>
+      <span class="label">// Topics</span>
 
-      <h2 class="section-heading">8 worlds to explore</h2>
+      <h2 class="section-heading">Explore eight game moods</h2>
 
       <p class="section-sub">
-        Each atmosphere is drawn from a real game genre and teaches you something different about visual design.
+        The app menu is generated from the JSON topic data.
       </p>
 
       <div class="atmo-grid">
@@ -778,7 +786,7 @@
           <div class="atmo-dot" style="background:#00E5FF"></div>
           <div>
             <span>Neon Cyberpunk City</span>
-            <small>Futuristic · Electric · Intense</small>
+            <small>Futuristic · High-tech · Energetic</small>
           </div>
         </a>
 
@@ -794,7 +802,7 @@
           <div class="atmo-dot" style="background:#D9C27A"></div>
           <div>
             <span>Dark Cute Cartoon</span>
-            <small>Creepy · Charming · Playful</small>
+            <small>Creepy · Playful · Cute</small>
           </div>
         </a>
 
@@ -802,7 +810,7 @@
           <div class="atmo-dot" style="background:#FFD93D"></div>
           <div>
             <span>Retro Arcade</span>
-            <small>Nostalgic · Fast-paced · Bold</small>
+            <small>Nostalgic · Bright · Fast</small>
           </div>
         </a>
 
@@ -880,13 +888,13 @@
         <div class="step">
           <span class="step-num">01</span>
           <h4>Open the Promo Page</h4>
-          <p>Click the Game Atmosphere Lab project from the portfolio.</p>
+          <p>Open this project from the GitHub Pages website, not from the GitHub code page.</p>
         </div>
 
         <div class="step">
           <span class="step-num">02</span>
           <h4>Click Install App</h4>
-          <p>Use the popup button if your browser supports PWA installation.</p>
+          <p>Use the install button if your browser supports PWA installation.</p>
         </div>
 
         <div class="step">
@@ -898,9 +906,13 @@
         <div class="step">
           <span class="step-num">04</span>
           <h4>Launch App</h4>
-          <p>Open Game Atmosphere Lab from your browser or device home screen.</p>
+          <p>Open Game Atmosphere Lab from your browser, desktop, or device home screen.</p>
         </div>
       </div>
+
+      <br>
+
+      <button class="btn btn-primary install-trigger">Install App</button>
     </div>
   </section>
 
@@ -933,6 +945,24 @@
     const installBtn = document.getElementById("installBtn");
     const closeInstallPopup = document.getElementById("closeInstallPopup");
     const installHint = document.getElementById("installHint");
+    const installTriggers = document.querySelectorAll(".install-trigger");
+
+    function isAlreadyInstalled() {
+      return window.matchMedia("(display-mode: standalone)").matches ||
+             window.navigator.standalone === true;
+    }
+
+    function showInstallPopup(message) {
+      installPopup.classList.remove("hidden");
+
+      if (message) {
+        installHint.textContent = message;
+      }
+    }
+
+    function hideInstallPopup() {
+      installPopup.classList.add("hidden");
+    }
 
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
@@ -953,29 +983,69 @@
 
       deferredPrompt = event;
 
-      installPopup.classList.remove("hidden");
-      installBtn.textContent = "Install App";
-      installHint.textContent = "Click Install App to install this PWA.";
-    });
-
-    installBtn.addEventListener("click", async function () {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-
-        const choiceResult = await deferredPrompt.userChoice;
-        console.log("Install choice:", choiceResult.outcome);
-
-        deferredPrompt = null;
-        installPopup.classList.add("hidden");
-      } else {
-        installPopup.classList.remove("hidden");
-        installHint.textContent =
-          "The browser install prompt is not ready yet. Use Chrome or Edge, wait a few seconds, or use the browser menu → Install app.";
+      if (!isAlreadyInstalled()) {
+        installBtn.disabled = false;
+        installBtn.textContent = "Install App";
+        showInstallPopup("Click Install App to install this PWA.");
       }
     });
 
-    closeInstallPopup.addEventListener("click", function () {
-      installPopup.classList.add("hidden");
+    installBtn.addEventListener("click", async function () {
+      if (isAlreadyInstalled()) {
+        showInstallPopup("This app is already installed.");
+        return;
+      }
+
+      if (!deferredPrompt) {
+        showInstallPopup(
+          "The browser install prompt is not ready. Try Chrome or Edge. You can also use the browser menu → Install app. On iPhone/iPad, use Share → Add to Home Screen."
+        );
+        return;
+      }
+
+      deferredPrompt.prompt();
+
+      const choiceResult = await deferredPrompt.userChoice;
+      console.log("Install choice:", choiceResult.outcome);
+
+      deferredPrompt = null;
+
+      if (choiceResult.outcome === "accepted") {
+        hideInstallPopup();
+      } else {
+        showInstallPopup("Install was dismissed. You can still install later from the browser menu.");
+      }
+    });
+
+    installTriggers.forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (isAlreadyInstalled()) {
+          showInstallPopup("This app is already installed.");
+          return;
+        }
+
+        if (deferredPrompt) {
+          showInstallPopup("Click Install App to install this PWA.");
+        } else {
+          showInstallPopup(
+            "The browser install prompt is not ready yet. Try Chrome or Edge, refresh the page, or use the browser menu → Install app."
+          );
+        }
+      });
+    });
+
+    window.addEventListener("appinstalled", function () {
+      deferredPrompt = null;
+      hideInstallPopup();
+      console.log("PWA installed successfully.");
+    });
+
+    closeInstallPopup.addEventListener("click", hideInstallPopup);
+
+    installPopup.addEventListener("click", function (event) {
+      if (event.target === installPopup) {
+        hideInstallPopup();
+      }
     });
   </script>
 
