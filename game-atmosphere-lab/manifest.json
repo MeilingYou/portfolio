@@ -1,22 +1,28 @@
 {
+  "id": "/portfolio/game-atmosphere-lab/",
   "name": "Game Atmosphere Lab",
   "short_name": "AtmoLab",
-  "description": "An educational PWA about how video game art styles, colors, images, and sounds create different moods.",
+  "description": "Explore how video game art styles, colors, fonts, and sounds create different moods.",
   "start_url": "/portfolio/game-atmosphere-lab/index.html",
   "scope": "/portfolio/game-atmosphere-lab/",
   "display": "standalone",
-  "background_color": "#f3e7c9",
-  "theme_color": "#7aa35a",
+  "orientation": "portrait-primary",
+  "background_color": "#F3E7C9",
+  "theme_color": "#F3E7C9",
+  "prefer_related_applications": false,
+  "categories": ["education", "games", "entertainment"],
   "icons": [
     {
-      "src": "/portfolio/game-atmosphere-lab/icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/portfolio/game-atmosphere-lab/icons/icon-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
