@@ -218,13 +218,8 @@
     }
 
     @keyframes blink {
-      0%, 100% {
-        opacity: 0.3;
-      }
-
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
     .btn {
@@ -260,6 +255,15 @@
     .btn-ghost:hover {
       border-color: rgba(255,255,255,0.25);
       transform: translateY(-2px);
+    }
+
+    /* FIX: Install trigger is hidden until browser confirms installability */
+    .btn-ghost.install-trigger {
+      display: none;
+    }
+
+    .btn-ghost.install-trigger.ready {
+      display: inline-block;
     }
 
     .divider {
@@ -480,6 +484,7 @@
       font-weight: 300;
     }
 
+    /* INSTALL POPUP */
     .install-popup {
       position: fixed;
       inset: 0;
@@ -554,6 +559,7 @@
       cursor: pointer;
       margin-top: 0.5rem;
       font-family: var(--body);
+      font-size: 1rem;
     }
 
     .install-btn:hover {
@@ -664,6 +670,8 @@
     </ul>
   </nav>
 
+  <!-- INSTALL POPUP -->
+  <!-- FIX: Starts hidden; only shown after beforeinstallprompt fires -->
   <div id="installPopup" class="install-popup hidden">
     <div class="install-box">
       <button id="closeInstallPopup" class="install-close" aria-label="Close install popup">×</button>
@@ -672,7 +680,7 @@
 
       <h2>Download Game Atmosphere Lab</h2>
 
-      <p>
+      <p id="installMessage">
         Install this PWA so you can open it like an app and use it more easily.
       </p>
 
@@ -686,11 +694,12 @@
 
       <p id="installHint" class="install-hint">
         If the install button does not work, use your browser menu and choose
-        “Install app” or “Add to Home Screen.”
+        "Install app" or "Add to Home Screen."
       </p>
     </div>
   </div>
 
+  <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Educational PWA</p>
 
@@ -704,6 +713,11 @@
 
     <div class="hero-btns">
       <a href="index.html" class="btn btn-primary">Launch App</a>
+      <!--
+        FIX: Install trigger buttons start hidden (via CSS: display:none).
+        The JS adds class "ready" only after beforeinstallprompt fires,
+        making them visible only when the browser actually supports install.
+      -->
       <button class="btn btn-ghost install-trigger">Install App</button>
       <a href="#install" class="btn btn-ghost">How to Install</a>
     </div>
@@ -713,6 +727,7 @@
 
   <div class="divider"></div>
 
+  <!-- FEATURES -->
   <section class="features-wrap" id="features">
     <div class="features-header">
       <span class="label">// Features</span>
@@ -763,6 +778,7 @@
     </div>
   </section>
 
+  <!-- ATMOSPHERES -->
   <section id="atmospheres">
     <div class="section-pad">
       <span class="label">// Topics</span>
@@ -843,6 +859,7 @@
 
   <div class="divider"></div>
 
+  <!-- SCREENSHOTS -->
   <section class="screenshots-wrap" id="screenshots">
     <div class="section-pad">
       <span class="label">// Screenshots</span>
@@ -874,6 +891,7 @@
 
   <div class="divider"></div>
 
+  <!-- INSTALL INSTRUCTIONS -->
   <section id="install">
     <div class="section-pad">
       <span class="label">// Install</span>
@@ -887,35 +905,43 @@
       <div class="install-steps">
         <div class="step">
           <span class="step-num">01</span>
-          <h4>Open the Promo Page</h4>
-          <p>Open this project from the GitHub Pages website, not from the GitHub code page.</p>
+          <h4>Open in Chrome or Edge</h4>
+          <p>The install feature works best in Chrome or Edge on desktop and Android. Safari on iPhone uses Share → Add to Home Screen instead.</p>
         </div>
 
         <div class="step">
           <span class="step-num">02</span>
           <h4>Click Install App</h4>
-          <p>Use the install button if your browser supports PWA installation.</p>
+          <p>An Install App button will appear on this page once your browser confirms the app is ready to install.</p>
         </div>
 
         <div class="step">
           <span class="step-num">03</span>
           <h4>Use Browser Menu</h4>
-          <p>If the popup does not appear, use Install app or Add to Home Screen from the browser menu.</p>
+          <p>If no button appears, open the browser menu (⋮) and choose "Install app" or "Add to Home Screen."</p>
         </div>
 
         <div class="step">
           <span class="step-num">04</span>
-          <h4>Launch App</h4>
-          <p>Open Game Atmosphere Lab from your browser, desktop, or device home screen.</p>
+          <h4>Launch Offline</h4>
+          <p>Once installed, open Game Atmosphere Lab from your desktop or home screen and use it even without internet.</p>
         </div>
       </div>
 
       <br>
 
-      <button class="btn btn-primary install-trigger">Install App</button>
+      <!--
+        FIX: This install button also starts hidden and only becomes visible
+        after the browser fires beforeinstallprompt via the "ready" class.
+      -->
+      <button class="btn btn-primary install-trigger" style="display:none;">Install App</button>
+      <p id="installStatusMsg" style="margin-top:1rem; font-size:0.875rem; color:var(--muted);">
+        Open this page in Chrome or Edge to see the install button.
+      </p>
     </div>
   </section>
 
+  <!-- CTA -->
   <section class="cta-banner">
     <span class="label">// Ready?</span>
 
@@ -939,114 +965,170 @@
   </footer>
 
   <script>
+    // =============================================
+    // PWA INSTALL LOGIC — FIXED VERSION
+    // =============================================
+
     let deferredPrompt = null;
 
-    const installPopup = document.getElementById("installPopup");
-    const installBtn = document.getElementById("installBtn");
-    const closeInstallPopup = document.getElementById("closeInstallPopup");
-    const installHint = document.getElementById("installHint");
+    const installPopup    = document.getElementById("installPopup");
+    const installBtn      = document.getElementById("installBtn");
+    const closeBtn        = document.getElementById("closeInstallPopup");
+    const installMessage  = document.getElementById("installMessage");
+    const installHint     = document.getElementById("installHint");
+    const installStatusMsg = document.getElementById("installStatusMsg");
+
+    // All buttons that trigger the install flow
     const installTriggers = document.querySelectorAll(".install-trigger");
+
+    // ---- Helpers ----
 
     function isAlreadyInstalled() {
       return window.matchMedia("(display-mode: standalone)").matches ||
              window.navigator.standalone === true;
     }
 
-    function showInstallPopup(message) {
+    function showInstallPopup(message, hint) {
+      if (message) installMessage.textContent = message;
+      if (hint)    installHint.textContent = hint;
       installPopup.classList.remove("hidden");
-
-      if (message) {
-        installHint.textContent = message;
-      }
     }
 
     function hideInstallPopup() {
       installPopup.classList.add("hidden");
     }
 
+    // Make all install trigger buttons visible when install is available
+    function revealInstallButtons() {
+      installTriggers.forEach(function (btn) {
+        btn.classList.add("ready");
+        btn.style.display = "";   // clear any inline display:none
+      });
+      if (installStatusMsg) {
+        installStatusMsg.textContent = "Your browser is ready — click the button above to install.";
+      }
+    }
+
+    // ---- Service Worker ----
+
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
         navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
           scope: "/portfolio/game-atmosphere-lab/"
         })
-        .then(function (registration) {
-          console.log("Service worker registered:", registration.scope);
+        .then(function (reg) {
+          console.log("Service worker registered:", reg.scope);
         })
-        .catch(function (error) {
-          console.log("Service worker registration failed:", error);
+        .catch(function (err) {
+          console.warn("Service worker registration failed:", err);
         });
       });
     }
 
-    window.addEventListener("beforeinstallprompt", function (event) {
-      event.preventDefault();
+    // ---- beforeinstallprompt ----
+    // FIX: This is the only place we reveal the install UI.
+    //      The popup does NOT open automatically — buttons become visible instead.
 
+    window.addEventListener("beforeinstallprompt", function (event) {
+      event.preventDefault();           // stop the mini-infobar
       deferredPrompt = event;
 
       if (!isAlreadyInstalled()) {
-        installBtn.disabled = false;
-        installBtn.textContent = "Install App";
-        showInstallPopup("Click Install App to install this PWA.");
+        revealInstallButtons();         // show install buttons now that browser says OK
       }
     });
 
+    // ---- Install button inside popup ----
+
     installBtn.addEventListener("click", async function () {
       if (isAlreadyInstalled()) {
-        showInstallPopup("This app is already installed.");
+        showInstallPopup("This app is already installed on your device.");
         return;
       }
 
       if (!deferredPrompt) {
         showInstallPopup(
-          "The browser install prompt is not ready. Try Chrome or Edge. You can also use the browser menu → Install app. On iPhone/iPad, use Share → Add to Home Screen."
+          "Your browser hasn't offered an install prompt yet.",
+          "Try opening this page in Chrome or Edge. You can also install manually: browser menu → Install app, or on iPhone: Share → Add to Home Screen."
         );
         return;
       }
 
       deferredPrompt.prompt();
 
-      const choiceResult = await deferredPrompt.userChoice;
-      console.log("Install choice:", choiceResult.outcome);
-
+      const choice = await deferredPrompt.userChoice;
+      console.log("Install choice:", choice.outcome);
       deferredPrompt = null;
 
-      if (choiceResult.outcome === "accepted") {
+      if (choice.outcome === "accepted") {
         hideInstallPopup();
       } else {
-        showInstallPopup("Install was dismissed. You can still install later from the browser menu.");
+        showInstallPopup(
+          "Install dismissed.",
+          "You can install later from the browser menu → Install app."
+        );
       }
     });
+
+    // ---- Trigger buttons (hero + install section) ----
 
     installTriggers.forEach(function (button) {
       button.addEventListener("click", function () {
         if (isAlreadyInstalled()) {
-          showInstallPopup("This app is already installed.");
+          showInstallPopup("This app is already installed on your device.");
           return;
         }
 
-        if (deferredPrompt) {
-          showInstallPopup("Click Install App to install this PWA.");
-        } else {
-          showInstallPopup(
-            "The browser install prompt is not ready yet. Try Chrome or Edge, refresh the page, or use the browser menu → Install app."
+        if (!deferredPrompt) {
+          // Shouldn't normally reach here since buttons are hidden until
+          // deferredPrompt is set, but handle it gracefully just in case.
+          alert(
+            "Install not available yet. Try Chrome or Edge, or use the browser menu → Install app.\n\nOn iPhone: Safari → Share → Add to Home Screen."
           );
+          return;
         }
+
+        showInstallPopup(
+          "Install this PWA so you can open it like an app and use it offline.",
+          "Click Install App below to add it to your device."
+        );
       });
     });
 
-    window.addEventListener("appinstalled", function () {
-      deferredPrompt = null;
-      hideInstallPopup();
-      console.log("PWA installed successfully.");
-    });
+    // ---- Close popup ----
 
-    closeInstallPopup.addEventListener("click", hideInstallPopup);
+    closeBtn.addEventListener("click", hideInstallPopup);
 
     installPopup.addEventListener("click", function (event) {
       if (event.target === installPopup) {
         hideInstallPopup();
       }
     });
+
+    // ---- Already installed ----
+
+    window.addEventListener("appinstalled", function () {
+      deferredPrompt = null;
+      hideInstallPopup();
+      installTriggers.forEach(function (btn) {
+        btn.style.display = "none";
+      });
+      if (installStatusMsg) {
+        installStatusMsg.textContent = "App installed successfully! You can launch it from your desktop or home screen.";
+      }
+      console.log("PWA installed successfully.");
+    });
+
+    // ---- If already running as installed PWA, hide install UI ----
+
+    if (isAlreadyInstalled()) {
+      installTriggers.forEach(function (btn) {
+        btn.style.display = "none";
+      });
+      if (installStatusMsg) {
+        installStatusMsg.textContent = "You are already running the installed app.";
+      }
+    }
   </script>
 
 </body>
