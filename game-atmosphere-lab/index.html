@@ -19,7 +19,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&family=Creepster&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -39,12 +39,14 @@
 
     <!-- INFO CARD -->
     <section class="content-card">
-      <div class="image-box">
-        <img id="topicImage" alt="Atmosphere image">
-      </div>
-
       <div class="info-box">
         <h2 id="topicTitle">Topic Title</h2>
+
+        <!-- Image now appears inside the text box, after the title -->
+        <div class="topic-image-wrap">
+          <img id="topicImage" class="topic-image" alt="Atmosphere image">
+        </div>
+
         <p id="gameExamples"></p>
 
         <div class="palette-section">
@@ -215,7 +217,7 @@
     </p>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=4"></script>
 
 </body>
 </html>
