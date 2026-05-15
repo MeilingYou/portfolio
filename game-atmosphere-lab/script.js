@@ -1128,3 +1128,17 @@ function blendHex(a, b, t) {
     Math.round(av[2] + (bv[2] - av[2]) * t) +
     ")";
 }
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
+      scope: "/portfolio/game-atmosphere-lab/"
+    })
+    .then(function (registration) {
+      console.log("Service worker registered:", registration.scope);
+    })
+    .catch(function (error) {
+      console.log("Service worker registration failed:", error);
+    });
+  });
+}
