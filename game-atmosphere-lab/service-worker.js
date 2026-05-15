@@ -1,20 +1,23 @@
-const CACHE_NAME = "game-atmosphere-lab-v6";
-  "/portfolio/game-atmosphere-lab/index.html",
-  "/portfolio/game-atmosphere-lab/promo.html",
-  "/portfolio/game-atmosphere-lab/style.css",
-  "/portfolio/game-atmosphere-lab/script.js",
-  "/portfolio/game-atmosphere-lab/data.json",
-  "/portfolio/game-atmosphere-lab/manifest.json",
-  "/portfolio/game-atmosphere-lab/icons/icon-192.png",
-  "/portfolio/game-atmosphere-lab/icons/icon-512.png"
+const CACHE_NAME = "game-atmosphere-lab-v30";
+
+const BASE = "/portfolio/game-atmosphere-lab/";
+
+const ASSETS = [
+  BASE,
+  BASE + "index.html",
+  BASE + "promo.html",
+  BASE + "style.css",
+  BASE + "script.js",
+  BASE + "data.json",
+  BASE + "manifest.json",
+  BASE + "icons/icon-192.png",
+  BASE + "icons/icon-512.png"
 ];
 
 self.addEventListener("install", function (event) {
-  console.log("[Service Worker] Installing...");
-
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(CORE_ASSETS);
+      return cache.addAll(ASSETS);
     })
   );
 
@@ -22,14 +25,11 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("activate", function (event) {
-  console.log("[Service Worker] Activating...");
-
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(
         cacheNames.map(function (cacheName) {
           if (cacheName !== CACHE_NAME) {
-            console.log("[Service Worker] Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -41,15 +41,21 @@ self.addEventListener("activate", function (event) {
 });
 
 self.addEventListener("fetch", function (event) {
+  if (event.request.method !== "GET") {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(function (cachedResponse) {
+    caches.match(event.request, { ignoreSearch: true }).then(function (cachedResponse) {
       if (cachedResponse) {
         return cachedResponse;
       }
 
-      return fetch(event.request).catch(function () {
-        if (event.request.destination === "document") {
-          return caches.match("/portfolio/game-atmosphere-lab/index.html");
+      return fetch(event.request).then(function (networkResponse) {
+        return networkResponse;
+      }).catch(function () {
+        if (event.request.mode === "navigate") {
+          return caches.match(BASE + "index.html");
         }
       });
     })
