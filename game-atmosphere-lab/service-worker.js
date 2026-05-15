@@ -1,6 +1,4 @@
-// Game Atmosphere Lab - Service Worker
-
-const CACHE_NAME = "game-atmosphere-lab-v5";
+const CACHE_NAME = "game-atmosphere-lab-v6";
 
 const CORE_ASSETS = [
   "/portfolio/game-atmosphere-lab/",
@@ -34,6 +32,7 @@ self.addEventListener("activate", function (event) {
       return Promise.all(
         cacheNames.map(function (cacheName) {
           if (cacheName !== CACHE_NAME) {
+            console.log("[Service Worker] Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
