@@ -219,19 +219,21 @@ document.body.prepend(bgOverlay);
 
 // =====================
 // LOAD DATA
+// FIX: Removed cachebust query param — the SW handles versioning via CACHE_NAME.
+//      Using cache: "no-store" only on the network fetch so the SW still serves
+//      the cached copy when offline.
 // =====================
-fetch("data.json?cachebust=" + Date.now(), { cache: "no-store" })
-  .then(function(response) {
+fetch("data.json")
+  .then(function (response) {
     if (!response.ok) {
       throw new Error("data.json failed to load");
     }
-
     return response.json();
   })
-  .then(function(data) {
+  .then(function (data) {
     startApp(data);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log("Using backup data because data.json did not load:", error);
     startApp(LOCAL_DATA);
   });
@@ -242,7 +244,7 @@ function startApp(data) {
   buildMenu();
 
   var hash = window.location.hash.replace("#", "");
-  var hashIndex = hash ? topics.findIndex(function(topic) {
+  var hashIndex = hash ? topics.findIndex(function (topic) {
     return topic.id === hash;
   }) : -1;
 
@@ -267,13 +269,13 @@ function buildMenu() {
 
   menu.innerHTML = "";
 
-  topics.forEach(function(topic, index) {
+  topics.forEach(function (topic, index) {
     var btn = document.createElement("button");
     btn.textContent = topic.title;
     btn.className = "topic-btn";
     btn.dataset.id = topic.id;
 
-    btn.addEventListener("click", function() {
+    btn.addEventListener("click", function () {
       showTopic(index, true);
     });
 
@@ -339,7 +341,7 @@ function showTopic(index, autoPlay) {
     box.style.animation = "";
   }
 
-  document.querySelectorAll(".topic-btn").forEach(function(button) {
+  document.querySelectorAll(".topic-btn").forEach(function (button) {
     button.classList.toggle("active", button.dataset.id === topic.id);
   });
 
@@ -366,12 +368,12 @@ function showTopic(index, autoPlay) {
 
   if (autoPlay) {
     currentAudio.play()
-      .then(function() {
+      .then(function () {
         if (audioBtn) {
           audioBtn.textContent = "Pause Atmosphere Sound";
         }
       })
-      .catch(function() {
+      .catch(function () {
         if (audioBtn) {
           audioBtn.textContent = "Play Atmosphere Sound";
         }
@@ -393,7 +395,7 @@ function renderPalette(id) {
 
   var colors = PALETTES[id] || [];
 
-  colors.forEach(function(hex) {
+  colors.forEach(function (hex) {
     var swatch = document.createElement("div");
     swatch.className = "swatch";
     swatch.style.background = hex;
@@ -415,7 +417,7 @@ function switchBg(url) {
     oldLayer.classList.remove("active");
     oldLayer.classList.add("leaving");
 
-    setTimeout(function() {
+    setTimeout(function () {
       oldLayer.remove();
     }, 600);
   }
@@ -425,8 +427,8 @@ function switchBg(url) {
   layer.style.backgroundImage = "url('" + url + "')";
   document.body.prepend(layer);
 
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
       layer.classList.add("active");
     });
   });
@@ -456,7 +458,7 @@ function buildGallery(topic) {
   title.textContent = topic.title;
 
   if (topic.screenshots && topic.screenshots.length > 0) {
-    topic.screenshots.forEach(function(screenshot) {
+    topic.screenshots.forEach(function (screenshot) {
       galleryItems.push({
         src: screenshot.src,
         caption: screenshot.caption
@@ -472,7 +474,7 @@ function buildGallery(topic) {
     return;
   }
 
-  mainImg.onerror = function() {
+  mainImg.onerror = function () {
     caption.textContent = "Image not found: " + mainImg.getAttribute("src");
   };
 
@@ -480,7 +482,7 @@ function buildGallery(topic) {
   mainImg.alt = galleryItems[0].caption;
   caption.textContent = galleryItems[0].caption;
 
-  galleryItems.forEach(function(item, index) {
+  galleryItems.forEach(function (item, index) {
     var thumb = document.createElement("div");
     thumb.className = "thumb";
 
@@ -495,7 +497,7 @@ function buildGallery(topic) {
     img.alt = item.caption;
     img.loading = "lazy";
 
-    img.onerror = function() {
+    img.onerror = function () {
       thumb.classList.add("broken");
       thumb.innerHTML = '<div class="thumb-error">Missing<br>' + item.src + "</div>";
     };
@@ -507,7 +509,7 @@ function buildGallery(topic) {
     thumb.appendChild(img);
     thumb.appendChild(num);
 
-    thumb.addEventListener("click", function(event) {
+    thumb.addEventListener("click", function (event) {
       event.stopPropagation();
       selectThumb(index);
     });
@@ -515,7 +517,7 @@ function buildGallery(topic) {
     strip.appendChild(thumb);
   });
 
-  display.onclick = function() {
+  display.onclick = function () {
     openLightbox(activeThumbIndex);
   };
 }
@@ -537,7 +539,7 @@ function selectThumb(index) {
 
   mainImg.style.opacity = "0";
 
-  setTimeout(function() {
+  setTimeout(function () {
     mainImg.src = item.src;
     mainImg.alt = item.caption;
     mainImg.style.opacity = "1";
@@ -545,7 +547,7 @@ function selectThumb(index) {
 
   caption.textContent = item.caption;
 
-  document.querySelectorAll(".thumb").forEach(function(thumb, i) {
+  document.querySelectorAll(".thumb").forEach(function (thumb, i) {
     thumb.classList.toggle("active", i === index);
   });
 
@@ -660,7 +662,7 @@ function lightboxKey(event) {
 var imageUpload = document.getElementById("imageUpload");
 
 if (imageUpload) {
-  imageUpload.addEventListener("change", function(event) {
+  imageUpload.addEventListener("change", function (event) {
     var file = event.target.files[0];
 
     if (!file) {
@@ -669,10 +671,10 @@ if (imageUpload) {
 
     var reader = new FileReader();
 
-    reader.onload = function(readerEvent) {
+    reader.onload = function (readerEvent) {
       var img = new Image();
 
-      img.onload = function() {
+      img.onload = function () {
         offscreen.width = 640;
         offscreen.height = 360;
 
@@ -720,7 +722,7 @@ function drawDefaultScene() {
 
   ctx.fillStyle = "rgba(255,255,255,0.7)";
 
-  [[0.1, 0.05], [0.2, 0.12], [0.35, 0.04], [0.5, 0.09], [0.65, 0.06], [0.75, 0.14], [0.85, 0.03], [0.92, 0.1]].forEach(function(point) {
+  [[0.1, 0.05], [0.2, 0.12], [0.35, 0.04], [0.5, 0.09], [0.65, 0.06], [0.75, 0.14], [0.85, 0.03], [0.92, 0.1]].forEach(function (point) {
     ctx.beginPath();
     ctx.arc(point[0] * W, point[1] * H * 0.7, 1.5, 0, Math.PI * 2);
     ctx.fill();
@@ -761,7 +763,7 @@ function drawDefaultScene() {
   ctx.fillStyle = grass;
   ctx.fillRect(0, H * 0.72, W, H * 0.28);
 
-  [[0.06, 0.28], [0.14, 0.22], [0.72, 0.25], [0.80, 0.32], [0.88, 0.20], [0.94, 0.26]].forEach(function(point) {
+  [[0.06, 0.28], [0.14, 0.22], [0.72, 0.25], [0.80, 0.32], [0.88, 0.20], [0.94, 0.26]].forEach(function (point) {
     drawTree(ctx, point[0] * W, H * 0.72, point[1] * H, "#1E3820");
   });
 
@@ -817,7 +819,7 @@ function applyEffects() {
     overlay.classList.add("visible");
   }
 
-  setTimeout(function() {
+  setTimeout(function () {
     try {
       var W = offscreen.width || 640;
       var H = offscreen.height || 360;
@@ -1111,7 +1113,7 @@ function setColor(mode) {
 function setStyle(style) {
   currentStyle = style;
 
-  document.querySelectorAll(".style-btn").forEach(function(button) {
+  document.querySelectorAll(".style-btn").forEach(function (button) {
     button.classList.toggle("active", button.dataset.style === style);
   });
 
@@ -1133,7 +1135,7 @@ function matchCurrentAtmosphere() {
 
   currentStyle = ATMO_STYLE_MAP[topic.id] || "none";
 
-  document.querySelectorAll(".style-btn").forEach(function(button) {
+  document.querySelectorAll(".style-btn").forEach(function (button) {
     button.classList.toggle("active", button.dataset.style === currentStyle);
   });
 
@@ -1185,13 +1187,13 @@ function updateResultTag() {
 var audioBtn = document.getElementById("audioBtn");
 
 if (audioBtn) {
-  audioBtn.addEventListener("click", function() {
+  audioBtn.addEventListener("click", function () {
     if (currentAudio.paused) {
       currentAudio.play()
-        .then(function() {
+        .then(function () {
           audioBtn.textContent = "Pause Atmosphere Sound";
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("Audio could not play:", error);
           audioBtn.textContent = "Play Atmosphere Sound";
         });
@@ -1267,17 +1269,19 @@ function blendHex(a, b, t) {
 
 // =====================
 // PWA SERVICE WORKER
+// FIX: Register from the correct path. Update this path if your GitHub Pages
+//      URL is different. The scope must match where your files are hosted.
 // =====================
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
       scope: "/portfolio/game-atmosphere-lab/"
     })
-    .then(function (registration) {
-      console.log("Service worker registered:", registration.scope);
-    })
-    .catch(function (error) {
-      console.log("Service worker registration failed:", error);
-    });
+      .then(function (registration) {
+        console.log("Service worker registered:", registration.scope);
+      })
+      .catch(function (error) {
+        console.log("Service worker registration failed:", error);
+      });
   });
 }
