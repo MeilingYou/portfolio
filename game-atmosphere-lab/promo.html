@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Game Atmosphere Lab | Promo</title>
+  <title>Game Atmosphere Lab</title>
 
   <meta name="description" content="Game Atmosphere Lab is an educational PWA that teaches how game art styles, colors, fonts, and sounds create different moods.">
   <meta name="theme-color" content="#0a0a0f">
 
-  <link rel="manifest" href="/portfolio/game-atmosphere-lab/manifest.json">
-  <link rel="apple-touch-icon" href="/portfolio/game-atmosphere-lab/icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -22,6 +21,8 @@
       --surface2: #1a1a26;
       --border: rgba(255,255,255,0.08);
       --yellow: #FFD93D;
+      --cyan: #00E5FF;
+      --green: #7AA35A;
       --white: #F0EEE8;
       --muted: #888;
       --pixel: "Press Start 2P", monospace;
@@ -88,9 +89,9 @@
     }
 
     .nav-cta {
-      background: var(--yellow);
+      background: var(--yellow) !important;
       color: #000 !important;
-      font-weight: 600;
+      font-weight: 600 !important;
       padding: 0.5rem 1.25rem;
       border-radius: 4px;
     }
@@ -158,7 +159,7 @@
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--muted);
-      max-width: 560px;
+      max-width: 500px;
       margin: 0 auto 2.5rem;
       font-weight: 300;
       opacity: 0;
@@ -183,6 +184,41 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: rise 1s ease 1.2s forwards;
+    }
+
+    .scroll-hint::after {
+      content: "";
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
       }
     }
 
@@ -221,6 +257,12 @@
       transform: translateY(-2px);
     }
 
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 2rem;
+    }
+
     .section-pad {
       padding: 6rem 2rem;
       max-width: 1100px;
@@ -248,19 +290,25 @@
       color: var(--muted);
       font-size: 1rem;
       font-weight: 300;
-      max-width: 600px;
+      max-width: 500px;
     }
 
-    .features-wrap,
-    .screenshots-wrap {
+    .features-wrap {
       background: var(--surface);
+    }
+
+    .features-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 3rem;
     }
 
     .features-grid {
       max-width: 1100px;
-      margin: 3rem auto 0;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -292,6 +340,55 @@
       font-size: 0.875rem;
       color: var(--muted);
       line-height: 1.6;
+    }
+
+    .atmo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .atmo-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      background: var(--surface);
+    }
+
+    .atmo-card:hover {
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .atmo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .atmo-card span {
+      font-size: 0.875rem;
+      color: var(--white);
+      font-weight: 500;
+      display: block;
+    }
+
+    .atmo-card small {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .screenshots-wrap {
+      background: var(--surface);
     }
 
     .screenshots-grid {
@@ -329,7 +426,7 @@
 
     .install-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
       margin-top: 3rem;
     }
@@ -381,6 +478,105 @@
       font-weight: 300;
     }
 
+    .install-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .install-popup.hidden {
+      display: none;
+    }
+
+    .install-box {
+      width: 100%;
+      max-width: 440px;
+      background: #111118;
+      border: 1px solid rgba(255,217,61,0.22);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--white);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+      position: relative;
+    }
+
+    .install-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .install-close:hover {
+      color: var(--white);
+    }
+
+    .install-box img {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .install-box h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .install-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .install-btn {
+      width: 100%;
+      border: none;
+      background: var(--yellow);
+      color: #000;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-family: var(--body);
+    }
+
+    .install-btn:hover {
+      background: #ffe566;
+    }
+
+    .open-app-link {
+      display: block;
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .open-app-link:hover {
+      text-decoration: underline;
+    }
+
+    .install-hint {
+      font-size: 0.8rem !important;
+      color: #777 !important;
+      margin-top: 1rem;
+      margin-bottom: 0 !important;
+    }
+
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -421,19 +617,6 @@
       color: #444;
     }
 
-    .note-box {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,217,61,0.25);
-      background: rgba(255,217,61,0.06);
-      border-radius: 10px;
-      color: var(--white);
-    }
-
-    .note-box strong {
-      color: var(--yellow);
-    }
-
     @media (max-width: 768px) {
       nav {
         padding: 1rem 1.5rem;
@@ -452,11 +635,6 @@
         text-align: center;
       }
 
-      .footer-links {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
       .section-pad {
         padding: 4rem 1.5rem;
       }
@@ -471,11 +649,40 @@
 
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#atmospheres">Atmospheres</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#install">Install</a></li>
+      <li><a href="docs/user-guide.html">Docs</a></li>
       <li><a href="index.html" class="nav-cta">Launch App</a></li>
     </ul>
   </nav>
+
+  <div id="installPopup" class="install-popup">
+    <div class="install-box">
+      <button id="closeInstallPopup" class="install-close">×</button>
+
+      <img src="icons/icon-192.png" alt="Game Atmosphere Lab icon">
+
+      <h2>Download Game Atmosphere Lab</h2>
+
+      <p>
+        Install this PWA so you can open it like an app and use it more easily.
+      </p>
+
+      <button id="installBtn" class="install-btn">
+        Install App
+      </button>
+
+      <a class="open-app-link" href="index.html">
+        Continue to Web App
+      </a>
+
+      <p id="installHint" class="install-hint">
+        If the install button does not work, use your browser menu and choose
+        “Install app” or “Add to Home Screen.”
+      </p>
+    </div>
+  </div>
 
   <section class="hero">
     <p class="hero-eyebrow">Educational PWA</p>
@@ -492,57 +699,141 @@
       <a href="index.html" class="btn btn-primary">Launch App</a>
       <a href="#install" class="btn btn-ghost">How to Install</a>
     </div>
+
+    <div class="scroll-hint">scroll</div>
   </section>
 
+  <div class="divider"></div>
+
   <section class="features-wrap" id="features">
-    <div class="section-pad">
+    <div class="features-header">
       <span class="label">// Features</span>
-
       <h2 class="section-heading">Everything in one place</h2>
-
       <p class="section-sub">
-        An interactive learning tool that connects visual design theory to game atmosphere.
+        An interactive learning tool that connects visual design theory to real games you know.
       </p>
+    </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="feature-icon">🎮</span>
-          <h3>Game Atmosphere Lessons</h3>
-          <p>Learn how art style, color, fonts, and sound change the mood of a game world.</p>
-        </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3>8 Distinct Atmospheres</h3>
+        <p>Each fully themed with matching colors, fonts, imagery, and sound.</p>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">🎨</span>
-          <h3>Color Palette Viewer</h3>
-          <p>Each topic includes colors that match the atmosphere and explain the visual style.</p>
-        </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎵</span>
+        <h3>Immersive Audio</h3>
+        <p>Ambient sound for every atmosphere, designed to reinforce the mood of the genre.</p>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">🔊</span>
-          <h3>Atmosphere Sounds</h3>
-          <p>Audio helps users connect sound design to visual mood.</p>
-        </div>
+      <div class="feature-card">
+        <span class="feature-icon">🖋️</span>
+        <h3>Dynamic Typography</h3>
+        <p>Fonts shift per atmosphere so you feel the genre, not just read about it.</p>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">🧪</span>
-          <h3>Interactive Lab</h3>
-          <p>Upload an image and apply palettes or visual effects to see mood changes.</p>
-        </div>
+      <div class="feature-card">
+        <span class="feature-icon">📱</span>
+        <h3>Installable PWA</h3>
+        <p>Install the project like an app on supported browsers and devices.</p>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">📱</span>
-          <h3>Installable PWA</h3>
-          <p>The app includes a manifest and service worker so supported browsers can install it.</p>
-        </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎮</span>
+        <h3>Educational Content</h3>
+        <p>Each entry explains the design reasoning — not just what it looks like, but why.</p>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">📁</span>
-          <h3>JSON Dataset</h3>
-          <p>The topics are stored in a JSON file, making it easier to add new learning sets.</p>
-        </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Instant Transitions</h3>
+        <p>Click any atmosphere and the entire page transforms all at once.</p>
       </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+
+  <section id="atmospheres">
+    <div class="section-pad">
+      <span class="label">// Atmospheres</span>
+
+      <h2 class="section-heading">8 worlds to explore</h2>
+
+      <p class="section-sub">
+        Each atmosphere is drawn from a real game genre and teaches you something different about visual design.
+      </p>
+
+      <div class="atmo-grid">
+        <a href="index.html#cozy-pixel-farming" class="atmo-card">
+          <div class="atmo-dot" style="background:#7AA35A"></div>
+          <div>
+            <span>Cozy Pixel Farming</span>
+            <small>Peaceful · Warm · Relaxing</small>
+          </div>
+        </a>
+
+        <a href="index.html#neon-cyberpunk-city" class="atmo-card">
+          <div class="atmo-dot" style="background:#00E5FF"></div>
+          <div>
+            <span>Neon Cyberpunk City</span>
+            <small>Futuristic · Electric · Intense</small>
+          </div>
+        </a>
+
+        <a href="index.html#low-poly-horror" class="atmo-card">
+          <div class="atmo-dot" style="background:#7A1F1F"></div>
+          <div>
+            <span>Low-Poly Horror</span>
+            <small>Tense · Eerie · Unsettling</small>
+          </div>
+        </a>
+
+        <a href="index.html#dark-cute-cartoon" class="atmo-card">
+          <div class="atmo-dot" style="background:#D9C27A"></div>
+          <div>
+            <span>Dark Cute Cartoon</span>
+            <small>Creepy · Charming · Playful</small>
+          </div>
+        </a>
+
+        <a href="index.html#retro-arcade" class="atmo-card">
+          <div class="atmo-dot" style="background:#FFD93D"></div>
+          <div>
+            <span>Retro Arcade</span>
+            <small>Nostalgic · Fast-paced · Bold</small>
+          </div>
+        </a>
+
+        <a href="index.html#dark-fantasy" class="atmo-card">
+          <div class="atmo-dot" style="background:#B08D57"></div>
+          <div>
+            <span>Dark Fantasy</span>
+            <small>Epic · Dangerous · Mysterious</small>
+          </div>
+        </a>
+
+        <a href="index.html#open-world-fantasy" class="atmo-card">
+          <div class="atmo-dot" style="background:#F4C542"></div>
+          <div>
+            <span>Open-World Fantasy</span>
+            <small>Open · Heroic · Adventurous</small>
+          </div>
+        </a>
+
+        <a href="index.html#voxel-sandbox" class="atmo-card">
+          <div class="atmo-dot" style="background:#5A8F3D"></div>
+          <div>
+            <span>Voxel Sandbox</span>
+            <small>Creative · Blocky · Playful</small>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
 
   <section class="screenshots-wrap" id="screenshots">
     <div class="section-pad">
@@ -573,51 +864,43 @@
     </div>
   </section>
 
+  <div class="divider"></div>
+
   <section id="install">
     <div class="section-pad">
       <span class="label">// Install</span>
 
-      <h2 class="section-heading">How to download the PWA</h2>
+      <h2 class="section-heading">Take it with you</h2>
 
       <p class="section-sub">
-        Open this page or the app page in Chrome or Microsoft Edge. When the PWA passes the browser install check, the install icon appears in the address bar.
+        Install as a PWA for easier access on supported devices.
       </p>
-
-      <div class="note-box">
-        <p>
-          <strong>Important:</strong> The browser controls the real install icon. If the icon does not show, check DevTools → Application → Manifest and Service Workers.
-        </p>
-      </div>
 
       <div class="install-steps">
         <div class="step">
           <span class="step-num">01</span>
-          <h4>Open the live GitHub Pages site</h4>
-          <p>Use the deployed website link, not the GitHub repository code page.</p>
+          <h4>Open the Promo Page</h4>
+          <p>Click the Game Atmosphere Lab project from the portfolio.</p>
         </div>
 
         <div class="step">
           <span class="step-num">02</span>
-          <h4>Look at the address bar</h4>
-          <p>Chrome or Edge should show an install icon on the right side of the address bar.</p>
+          <h4>Click Install App</h4>
+          <p>Use the popup button if your browser supports PWA installation.</p>
         </div>
 
         <div class="step">
           <span class="step-num">03</span>
-          <h4>Click Install</h4>
-          <p>Click the browser install icon, then choose Install when the browser popup appears.</p>
+          <h4>Use Browser Menu</h4>
+          <p>If the popup does not appear, use Install app or Add to Home Screen from the browser menu.</p>
         </div>
 
         <div class="step">
           <span class="step-num">04</span>
-          <h4>Launch the app</h4>
-          <p>After installation, open Game Atmosphere Lab like a normal app.</p>
+          <h4>Launch App</h4>
+          <p>Open Game Atmosphere Lab from your browser or device home screen.</p>
         </div>
       </div>
-
-      <br>
-
-      <a href="index.html" class="btn btn-primary">Open Web App</a>
     </div>
   </section>
 
@@ -636,14 +919,65 @@
 
     <ul class="footer-links">
       <li><a href="index.html">App</a></li>
-      <li><a href="manifest.json">Manifest</a></li>
-      <li><a href="service-worker.js">Service Worker</a></li>
+      <li><a href="docs/user-guide.html">User Guide</a></li>
+      <li><a href="docs/programmer-guide.html">Dev Docs</a></li>
     </ul>
 
     <p class="footer-copy">Educational PWA Project</p>
   </footer>
 
-  <script src="pwa-register.js?v=20"></script>
+  <script>
+    let deferredPrompt = null;
+
+    const installPopup = document.getElementById("installPopup");
+    const installBtn = document.getElementById("installBtn");
+    const closeInstallPopup = document.getElementById("closeInstallPopup");
+    const installHint = document.getElementById("installHint");
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
+          scope: "/portfolio/game-atmosphere-lab/"
+        })
+        .then(function (registration) {
+          console.log("Service worker registered:", registration.scope);
+        })
+        .catch(function (error) {
+          console.log("Service worker registration failed:", error);
+        });
+      });
+    }
+
+    window.addEventListener("beforeinstallprompt", function (event) {
+      event.preventDefault();
+
+      deferredPrompt = event;
+
+      installPopup.classList.remove("hidden");
+      installBtn.textContent = "Install App";
+      installHint.textContent = "Click Install App to install this PWA.";
+    });
+
+    installBtn.addEventListener("click", async function () {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+
+        const choiceResult = await deferredPrompt.userChoice;
+        console.log("Install choice:", choiceResult.outcome);
+
+        deferredPrompt = null;
+        installPopup.classList.add("hidden");
+      } else {
+        installPopup.classList.remove("hidden");
+        installHint.textContent =
+          "The browser install prompt is not ready yet. Use Chrome or Edge, wait a few seconds, or use the browser menu → Install app.";
+      }
+    });
+
+    closeInstallPopup.addEventListener("click", function () {
+      installPopup.classList.add("hidden");
+    });
+  </script>
 
 </body>
 </html>
