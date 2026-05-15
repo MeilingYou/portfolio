@@ -1,4 +1,4 @@
-const CACHE_NAME = "game-atmosphere-lab-v12";
+const CACHE_NAME = "game-atmosphere-lab-v13";
 
 const CORE_ASSETS = [
   "./",
@@ -23,6 +23,9 @@ self.addEventListener("install", function (event) {
       .then(function () {
         return self.skipWaiting();
       })
+      .catch(function (error) {
+        console.log("[Service Worker] Install failed:", error);
+      })
   );
 });
 
@@ -35,6 +38,7 @@ self.addEventListener("activate", function (event) {
         return Promise.all(
           cacheNames.map(function (cacheName) {
             if (cacheName !== CACHE_NAME) {
+              console.log("[Service Worker] Deleting old cache:", cacheName);
               return caches.delete(cacheName);
             }
           })
