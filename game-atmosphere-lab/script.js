@@ -89,7 +89,7 @@ var LOCAL_DATA = {
       textColor: "#F5EBD8",
       fontClass: "dark-cute",
       image: "screenshots/dark-cute-cartoon-1.jpg",
-      imageAlt: "A cute cartoon lamb character surrounded by dark cult symbols and candles",
+      imageAlt: "A cute cartoon character surrounded by dark symbols and candles",
       audio: "audio/dark-cute-cartoon.mp3",
       screenshots: [
         { src: "screenshots/dark-cute-cartoon-1.jpg", caption: "Dark Cute Cartoon screenshot 1" },
@@ -225,6 +225,7 @@ fetch("data.json?cachebust=" + Date.now(), { cache: "no-store" })
     if (!response.ok) {
       throw new Error("data.json failed to load");
     }
+
     return response.json();
   })
   .then(function(data) {
@@ -236,7 +237,7 @@ fetch("data.json?cachebust=" + Date.now(), { cache: "no-store" })
   });
 
 function startApp(data) {
-  topics = data.topics;
+  topics = data.topics || LOCAL_DATA.topics;
 
   buildMenu();
 
@@ -259,6 +260,11 @@ function startApp(data) {
 // =====================
 function buildMenu() {
   var menu = document.getElementById("topicMenu");
+
+  if (!menu) {
+    return;
+  }
+
   menu.innerHTML = "";
 
   topics.forEach(function(topic, index) {
@@ -280,7 +286,12 @@ function buildMenu() {
 // =====================
 function showTopic(index, autoPlay) {
   currentIndex = index;
+
   var topic = topics[index];
+
+  if (!topic) {
+    return;
+  }
 
   var mainTopicImage = topic.image;
 
@@ -288,14 +299,18 @@ function showTopic(index, autoPlay) {
     mainTopicImage = topic.screenshots[0].src;
   }
 
-  document.getElementById("topicTitle").textContent = topic.title;
-  document.getElementById("gameExamples").textContent = "Inspired by: " + topic.gameExamples.join(", ");
-  document.getElementById("artStyle").textContent = topic.artStyle;
-  document.getElementById("mood").textContent = topic.mood;
-  document.getElementById("description").textContent = topic.description;
+  setText("topicTitle", topic.title);
+  setText("gameExamples", "Inspired by: " + topic.gameExamples.join(", "));
+  setText("artStyle", topic.artStyle);
+  setText("mood", topic.mood);
+  setText("description", topic.description);
 
-  document.getElementById("topicImage").src = mainTopicImage;
-  document.getElementById("topicImage").alt = topic.imageAlt || topic.title;
+  var topicImage = document.getElementById("topicImage");
+
+  if (topicImage) {
+    topicImage.src = mainTopicImage;
+    topicImage.alt = topic.imageAlt || topic.title;
+  }
 
   switchBg(mainTopicImage);
 
@@ -309,6 +324,7 @@ function showTopic(index, autoPlay) {
     " 0%, rgba(0,0,0,0.5) 100%)";
 
   var metaTheme = document.querySelector('meta[name="theme-color"]');
+
   if (metaTheme) {
     metaTheme.setAttribute("content", topic.backgroundColor);
   }
@@ -316,6 +332,7 @@ function showTopic(index, autoPlay) {
   document.body.className = topic.fontClass;
 
   var box = document.querySelector(".info-box");
+
   if (box) {
     box.style.animation = "none";
     box.offsetHeight;
@@ -331,7 +348,7 @@ function showTopic(index, autoPlay) {
   renderPalette(topic.id);
   buildGallery(topic);
 
-  if (colorMode !== "off") {
+  if (colorMode !== "off" || currentStyle !== "none") {
     applyEffects();
   }
 
@@ -341,16 +358,24 @@ function showTopic(index, autoPlay) {
   currentAudio.loop = true;
   currentAudio.load();
 
+  var audioBtn = document.getElementById("audioBtn");
+
+  if (audioBtn) {
+    audioBtn.textContent = "Play Atmosphere Sound";
+  }
+
   if (autoPlay) {
     currentAudio.play()
       .then(function() {
-        document.getElementById("audioBtn").textContent = "Pause Atmosphere Sound";
+        if (audioBtn) {
+          audioBtn.textContent = "Pause Atmosphere Sound";
+        }
       })
       .catch(function() {
-        document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
+        if (audioBtn) {
+          audioBtn.textContent = "Play Atmosphere Sound";
+        }
       });
-  } else {
-    document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
   }
 }
 
@@ -359,6 +384,11 @@ function showTopic(index, autoPlay) {
 // =====================
 function renderPalette(id) {
   var container = document.getElementById("paletteSwatches");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   var colors = PALETTES[id] || [];
@@ -413,6 +443,10 @@ function buildGallery(topic) {
   var caption = document.getElementById("galleryCaption");
   var title = document.getElementById("galleryTitle");
   var display = document.getElementById("galleryDisplay");
+
+  if (!strip || !mainImg || !caption || !title || !display) {
+    return;
+  }
 
   strip.innerHTML = "";
   galleryItems = [];
@@ -497,6 +531,10 @@ function selectThumb(index) {
   var mainImg = document.getElementById("galleryMainImg");
   var caption = document.getElementById("galleryCaption");
 
+  if (!mainImg || !caption) {
+    return;
+  }
+
   mainImg.style.opacity = "0";
 
   setTimeout(function() {
@@ -512,6 +550,7 @@ function selectThumb(index) {
   });
 
   var activeThumb = document.querySelector('.thumb[data-index="' + index + '"]');
+
   if (activeThumb) {
     activeThumb.scrollIntoView({
       behavior: "smooth",
@@ -532,9 +571,13 @@ function openLightbox(index) {
   lightboxIndex = index;
   updateLightbox();
 
-  document.getElementById("lightbox").classList.add("open");
-  document.body.style.overflow = "hidden";
-  document.addEventListener("keydown", lightboxKey);
+  var lightbox = document.getElementById("lightbox");
+
+  if (lightbox) {
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", lightboxKey);
+  }
 }
 
 function updateLightbox() {
@@ -547,17 +590,29 @@ function updateLightbox() {
   var img = document.getElementById("lightboxImg");
   var cap = document.getElementById("lightboxCaption");
   var counter = document.getElementById("lightboxCounter");
-
-  img.src = item.src;
-  img.alt = item.caption;
-  cap.textContent = item.caption;
-  counter.textContent = lightboxIndex + 1 + " / " + galleryItems.length;
-
   var prev = document.getElementById("lightboxPrev");
   var next = document.getElementById("lightboxNext");
 
-  prev.disabled = lightboxIndex === 0;
-  next.disabled = lightboxIndex === galleryItems.length - 1;
+  if (img) {
+    img.src = item.src;
+    img.alt = item.caption;
+  }
+
+  if (cap) {
+    cap.textContent = item.caption;
+  }
+
+  if (counter) {
+    counter.textContent = lightboxIndex + 1 + " / " + galleryItems.length;
+  }
+
+  if (prev) {
+    prev.disabled = lightboxIndex === 0;
+  }
+
+  if (next) {
+    next.disabled = lightboxIndex === galleryItems.length - 1;
+  }
 }
 
 function lightboxNav(direction, event) {
@@ -575,7 +630,12 @@ function lightboxNav(direction, event) {
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").classList.remove("open");
+  var lightbox = document.getElementById("lightbox");
+
+  if (lightbox) {
+    lightbox.classList.remove("open");
+  }
+
   document.body.style.overflow = "";
   document.removeEventListener("keydown", lightboxKey);
 }
@@ -597,44 +657,55 @@ function lightboxKey(event) {
 // =====================
 // IMAGE UPLOAD
 // =====================
-document.getElementById("imageUpload").addEventListener("change", function(event) {
-  var file = event.target.files[0];
+var imageUpload = document.getElementById("imageUpload");
 
-  if (!file) {
-    return;
-  }
+if (imageUpload) {
+  imageUpload.addEventListener("change", function(event) {
+    var file = event.target.files[0];
 
-  var reader = new FileReader();
+    if (!file) {
+      return;
+    }
 
-  reader.onload = function(readerEvent) {
-    var img = new Image();
+    var reader = new FileReader();
 
-    img.onload = function() {
-      offscreen.width = 640;
-      offscreen.height = 360;
+    reader.onload = function(readerEvent) {
+      var img = new Image();
 
-      offCtx.drawImage(img, 0, 0, 640, 360);
+      img.onload = function() {
+        offscreen.width = 640;
+        offscreen.height = 360;
 
-      var sourceCanvas = document.getElementById("sourceCanvas");
-      sourceCanvas.width = 640;
-      sourceCanvas.height = 360;
+        offCtx.drawImage(img, 0, 0, 640, 360);
 
-      sourceCanvas.getContext("2d").drawImage(offscreen, 0, 0);
+        var sourceCanvas = document.getElementById("sourceCanvas");
 
-      applyEffects();
+        if (sourceCanvas) {
+          sourceCanvas.width = 640;
+          sourceCanvas.height = 360;
+          sourceCanvas.getContext("2d").drawImage(offscreen, 0, 0);
+        }
+
+        applyEffects();
+      };
+
+      img.src = readerEvent.target.result;
     };
 
-    img.src = readerEvent.target.result;
-  };
-
-  reader.readAsDataURL(file);
-});
+    reader.readAsDataURL(file);
+  });
+}
 
 // =====================
 // DEFAULT CANVAS SCENE
 // =====================
 function drawDefaultScene() {
   var sourceCanvas = document.getElementById("sourceCanvas");
+
+  if (!sourceCanvas) {
+    return;
+  }
+
   var ctx = sourceCanvas.getContext("2d");
 
   var W = sourceCanvas.width = 640;
@@ -707,9 +778,12 @@ function drawDefaultScene() {
   offCtx.drawImage(sourceCanvas, 0, 0);
 
   var resultCanvas = document.getElementById("resultCanvas");
-  resultCanvas.width = 640;
-  resultCanvas.height = 360;
-  resultCanvas.getContext("2d").drawImage(sourceCanvas, 0, 0);
+
+  if (resultCanvas) {
+    resultCanvas.width = 640;
+    resultCanvas.height = 360;
+    resultCanvas.getContext("2d").drawImage(sourceCanvas, 0, 0);
+  }
 }
 
 function drawTree(ctx, x, baseY, h, color) {
@@ -734,16 +808,19 @@ function drawTree(ctx, x, baseY, h, color) {
 }
 
 // =====================
-// PIXEL EFFECTS
+// IMAGE EFFECTS
 // =====================
 function applyEffects() {
   var overlay = document.getElementById("processingOverlay");
-  overlay.classList.add("visible");
+
+  if (overlay) {
+    overlay.classList.add("visible");
+  }
 
   setTimeout(function() {
     try {
-      var W = offscreen.width;
-      var H = offscreen.height;
+      var W = offscreen.width || 640;
+      var H = offscreen.height || 360;
 
       var imageData = offscreen.getContext("2d").getImageData(0, 0, W, H);
 
@@ -756,17 +833,23 @@ function applyEffects() {
       }
 
       var resultCanvas = document.getElementById("resultCanvas");
-      resultCanvas.width = W;
-      resultCanvas.height = H;
-      resultCanvas.getContext("2d").putImageData(imageData, 0, 0);
 
-      postFilter(resultCanvas);
+      if (resultCanvas) {
+        resultCanvas.width = W;
+        resultCanvas.height = H;
+        resultCanvas.getContext("2d").putImageData(imageData, 0, 0);
+
+        postFilter(resultCanvas);
+      }
+
       updateResultTag();
     } catch (error) {
       console.error(error);
     }
 
-    overlay.classList.remove("visible");
+    if (overlay) {
+      overlay.classList.remove("visible");
+    }
   }, 30);
 }
 
@@ -850,7 +933,6 @@ function fxPixel(imageData, W, H, size) {
     for (var x = 0; x < W; x += size) {
       var cx = Math.min(x + Math.floor(size / 2), W - 1);
       var cy = Math.min(y + Math.floor(size / 2), H - 1);
-
       var index = (cy * W + cx) * 4;
 
       var r = data[index];
@@ -873,6 +955,31 @@ function fxPixel(imageData, W, H, size) {
 }
 
 function fxLowPoly(imageData, W, H) {
+  var data = imageData.data;
+  var block = 18;
+
+  for (var y = 0; y < H; y += block) {
+    for (var x = 0; x < W; x += block) {
+      var sampleX = Math.min(x + Math.floor(Math.random() * block), W - 1);
+      var sampleY = Math.min(y + Math.floor(Math.random() * block), H - 1);
+      var sampleIndex = (sampleY * W + sampleX) * 4;
+
+      var r = data[sampleIndex];
+      var g = data[sampleIndex + 1];
+      var b = data[sampleIndex + 2];
+
+      for (var dy = 0; dy < block && y + dy < H; dy++) {
+        for (var dx = 0; dx < block && x + dx < W; dx++) {
+          var i = ((y + dy) * W + (x + dx)) * 4;
+
+          data[i] = r;
+          data[i + 1] = g;
+          data[i + 2] = b;
+        }
+      }
+    }
+  }
+
   return imageData;
 }
 
@@ -994,9 +1101,9 @@ function vignette(data, W, H, strength) {
 function setColor(mode) {
   colorMode = mode;
 
-  document.getElementById("btnColorOff").classList.toggle("active", mode === "off");
-  document.getElementById("btnColorOn").classList.toggle("active", mode === "on");
-  document.getElementById("btnColorRandom").classList.toggle("active", mode === "random");
+  toggleButton("btnColorOff", mode === "off");
+  toggleButton("btnColorOn", mode === "on");
+  toggleButton("btnColorRandom", mode === "random");
 
   applyEffects();
 }
@@ -1020,9 +1127,9 @@ function matchCurrentAtmosphere() {
 
   colorMode = "on";
 
-  document.getElementById("btnColorOff").classList.remove("active");
-  document.getElementById("btnColorOn").classList.add("active");
-  document.getElementById("btnColorRandom").classList.remove("active");
+  toggleButton("btnColorOff", false);
+  toggleButton("btnColorOn", true);
+  toggleButton("btnColorRandom", false);
 
   currentStyle = ATMO_STYLE_MAP[topic.id] || "none";
 
@@ -1035,6 +1142,11 @@ function matchCurrentAtmosphere() {
 
 function downloadResult() {
   var canvas = document.getElementById("resultCanvas");
+
+  if (!canvas) {
+    return;
+  }
+
   var link = document.createElement("a");
 
   link.download = "atmosphere-" + (topics[currentIndex] ? topics[currentIndex].id : "result") + ".png";
@@ -1070,21 +1182,45 @@ function updateResultTag() {
 // =====================
 // AUDIO
 // =====================
-document.getElementById("audioBtn").addEventListener("click", function() {
-  if (currentAudio.paused) {
-    currentAudio.play();
+var audioBtn = document.getElementById("audioBtn");
 
-    document.getElementById("audioBtn").textContent = "Pause Atmosphere Sound";
-  } else {
-    currentAudio.pause();
-
-    document.getElementById("audioBtn").textContent = "Play Atmosphere Sound";
-  }
-});
+if (audioBtn) {
+  audioBtn.addEventListener("click", function() {
+    if (currentAudio.paused) {
+      currentAudio.play()
+        .then(function() {
+          audioBtn.textContent = "Pause Atmosphere Sound";
+        })
+        .catch(function(error) {
+          console.log("Audio could not play:", error);
+          audioBtn.textContent = "Play Atmosphere Sound";
+        });
+    } else {
+      currentAudio.pause();
+      audioBtn.textContent = "Play Atmosphere Sound";
+    }
+  });
+}
 
 // =====================
 // HELPERS
 // =====================
+function setText(id, text) {
+  var element = document.getElementById(id);
+
+  if (element) {
+    element.textContent = text;
+  }
+}
+
+function toggleButton(id, isActive) {
+  var button = document.getElementById(id);
+
+  if (button) {
+    button.classList.toggle("active", isActive);
+  }
+}
+
 function cl(value) {
   return Math.max(0, Math.min(255, Math.round(value)));
 }
@@ -1129,6 +1265,9 @@ function blendHex(a, b, t) {
     ")";
 }
 
+// =====================
+// PWA SERVICE WORKER
+// =====================
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
