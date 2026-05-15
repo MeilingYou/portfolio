@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Game Atmosphere Lab</title>
+
+  <meta name="description" content="Game Atmosphere Lab is an educational PWA that teaches how game art styles, colors, fonts, and sounds create different moods.">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0a0a0f;
@@ -20,8 +29,15 @@
       --body: "Outfit", sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -35,7 +51,9 @@
     /* NAV */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 50;
       display: flex;
       align-items: center;
@@ -67,7 +85,9 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover {
+      color: var(--white);
+    }
 
     .nav-cta {
       background: var(--yellow) !important;
@@ -93,9 +113,11 @@
     .hero::before {
       content: "";
       position: absolute;
-      width: 700px; height: 700px;
+      width: 700px;
+      height: 700px;
       background: radial-gradient(circle, rgba(255,217,61,0.06) 0%, transparent 70%);
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
@@ -111,7 +133,8 @@
     }
 
     .hero-icon {
-      width: 100px; height: 100px;
+      width: 100px;
+      height: 100px;
       border-radius: 18px;
       border: 1px solid rgba(255,217,61,0.3);
       box-shadow: 0 0 40px rgba(255,217,61,0.12), 0 20px 60px rgba(0,0,0,0.5);
@@ -130,7 +153,10 @@
       animation: rise 0.8s ease 0.3s forwards;
     }
 
-    .hero h1 em { font-style: normal; color: var(--yellow); }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
 
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.15rem);
@@ -152,13 +178,21 @@
     }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .scroll-hint {
       position: absolute;
-      bottom: 2rem; left: 50%;
+      bottom: 2rem;
+      left: 50%;
       transform: translateX(-50%);
       color: var(--muted);
       font-size: 0.7rem;
@@ -174,12 +208,21 @@
 
     .scroll-hint::after {
       content: "";
-      width: 1px; height: 40px;
+      width: 1px;
+      height: 40px;
       background: linear-gradient(to bottom, var(--muted), transparent);
       animation: blink 2s ease-in-out infinite;
     }
 
-    @keyframes blink { 0%,100%{opacity:0.3} 50%{opacity:1} }
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
 
     /* BUTTONS */
     .btn {
@@ -195,7 +238,11 @@
       border: none;
     }
 
-    .btn-primary { background: var(--yellow); color: #000; }
+    .btn-primary {
+      background: var(--yellow);
+      color: #000;
+    }
+
     .btn-primary:hover {
       background: #ffe566;
       box-shadow: 0 0 30px rgba(255,217,61,0.25);
@@ -207,15 +254,30 @@
       color: var(--white);
       border: 1px solid var(--border);
     }
+
     .btn-ghost:hover {
       border-color: rgba(255,255,255,0.25);
       transform: translateY(-2px);
     }
 
     /* LAYOUT */
-    .divider { height: 1px; background: var(--border); margin: 0 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-    .section-pad { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-pad {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
     .label {
       font-family: var(--pixel);
@@ -242,7 +304,9 @@
     }
 
     /* FEATURES */
-    .features-wrap { background: var(--surface); }
+    .features-wrap {
+      background: var(--surface);
+    }
 
     .features-header {
       max-width: 1100px;
@@ -267,9 +331,15 @@
       transition: background 0.2s;
     }
 
-    .feature-card:hover { background: var(--surface2); }
+    .feature-card:hover {
+      background: var(--surface2);
+    }
 
-    .feature-icon { font-size: 1.75rem; margin-bottom: 1rem; display: block; }
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
 
     .feature-card h3 {
       font-size: 1rem;
@@ -277,7 +347,11 @@
       margin-bottom: 0.4rem;
     }
 
-    .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* ATMOSPHERES */
     .atmo-grid {
@@ -306,16 +380,29 @@
     }
 
     .atmo-dot {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 2px;
       flex-shrink: 0;
     }
 
-    .atmo-card span { font-size: 0.875rem; color: var(--white); font-weight: 500; display: block; }
-    .atmo-card small { font-size: 0.75rem; color: var(--muted); font-weight: 300; }
+    .atmo-card span {
+      font-size: 0.875rem;
+      color: var(--white);
+      font-weight: 500;
+      display: block;
+    }
+
+    .atmo-card small {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
 
     /* SCREENSHOTS */
-    .screenshots-wrap { background: var(--surface); }
+    .screenshots-wrap {
+      background: var(--surface);
+    }
 
     .screenshots-grid {
       display: grid;
@@ -337,10 +424,13 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-frame img {
+      width: 100%;
+      display: block;
+    }
 
     .screenshot-placeholder {
-      aspect-ratio: 16/9;
+      aspect-ratio: 16 / 9;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -352,7 +442,10 @@
       padding: 1rem;
     }
 
-    .screenshot-placeholder .ph-icon { font-size: 2rem; opacity: 0.3; }
+    .screenshot-placeholder .ph-icon {
+      font-size: 2rem;
+      opacity: 0.3;
+    }
 
     .screenshot-label {
       padding: 0.75rem 1.25rem;
@@ -385,8 +478,17 @@
       display: block;
     }
 
-    .step h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .step h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* CTA */
     .cta-banner {
@@ -403,7 +505,111 @@
       margin-bottom: 0.75rem;
     }
 
-    .cta-banner p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+    .cta-banner p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    /* PWA INSTALL POPUP */
+    .install-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .install-popup.hidden {
+      display: none;
+    }
+
+    .install-box {
+      width: 100%;
+      max-width: 440px;
+      background: #111118;
+      border: 1px solid rgba(255,217,61,0.22);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--white);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+      position: relative;
+    }
+
+    .install-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .install-close:hover {
+      color: var(--white);
+    }
+
+    .install-box img {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .install-box h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .install-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .install-btn {
+      width: 100%;
+      border: none;
+      background: var(--yellow);
+      color: #000;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-family: var(--body);
+    }
+
+    .install-btn:hover {
+      background: #ffe566;
+    }
+
+    .open-app-link {
+      display: block;
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .open-app-link:hover {
+      text-decoration: underline;
+    }
+
+    .install-hint {
+      font-size: 0.8rem !important;
+      color: #777 !important;
+      margin-top: 1rem;
+      margin-bottom: 0 !important;
+    }
 
     /* FOOTER */
     footer {
@@ -424,24 +630,58 @@
       text-decoration: none;
     }
 
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { font-size: 0.8rem; color: #444; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: #444;
+    }
 
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero { padding: 7rem 1.5rem 4rem; }
-      footer { flex-direction: column; text-align: center; }
-      .section-pad { padding: 4rem 1.5rem; }
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 7rem 1.5rem 4rem;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section-pad {
+        padding: 4rem 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
     <a href="#" class="nav-logo">AtmoLab</a>
+
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#atmospheres">Atmospheres</a></li>
@@ -452,16 +692,51 @@
     </ul>
   </nav>
 
+  <!-- PWA INSTALL POPUP -->
+  <div id="installPopup" class="install-popup">
+    <div class="install-box">
+      <button id="closeInstallPopup" class="install-close">×</button>
+
+      <img src="icons/icon-192.png" alt="Game Atmosphere Lab icon">
+
+      <h2>Download Game Atmosphere Lab</h2>
+
+      <p>
+        Install this PWA so you can open it like an app and use it more easily.
+      </p>
+
+      <button id="installBtn" class="install-btn">
+        Install App
+      </button>
+
+      <a class="open-app-link" href="index.html">
+        Continue to Web App
+      </a>
+
+      <p id="installHint" class="install-hint">
+        If the install button does not work, use your browser menu and choose
+        “Install app” or “Add to Home Screen.”
+      </p>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Educational PWA</p>
+
     <img src="icons/icon-512.png" alt="Game Atmosphere Lab icon" class="hero-icon">
+
     <h1>Game <em>Atmosphere</em> Lab</h1>
-    <p class="hero-sub">Discover how video games use art, color, typography, and sound to build unforgettable worlds and moods.</p>
+
+    <p class="hero-sub">
+      Discover how video games use art, color, typography, and sound to build unforgettable worlds and moods.
+    </p>
+
     <div class="hero-btns">
       <a href="index.html" class="btn btn-primary">Launch App</a>
       <a href="#install" class="btn btn-ghost">How to Install</a>
     </div>
+
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -472,15 +747,47 @@
     <div class="features-header">
       <span class="label">// Features</span>
       <h2 class="section-heading">Everything in one place</h2>
-      <p class="section-sub">An interactive learning tool that connects visual design theory to real games you know.</p>
+      <p class="section-sub">
+        An interactive learning tool that connects visual design theory to real games you know.
+      </p>
     </div>
+
     <div class="features-grid">
-      <div class="feature-card"><span class="feature-icon">🎨</span><h3>8 Distinct Atmospheres</h3><p>Each fully themed with matching colors, fonts, imagery, and sound.</p></div>
-      <div class="feature-card"><span class="feature-icon">🎵</span><h3>Immersive Audio</h3><p>Ambient sound for every atmosphere, designed to reinforce the mood of the genre.</p></div>
-      <div class="feature-card"><span class="feature-icon">🖋️</span><h3>Dynamic Typography</h3><p>Fonts shift per atmosphere so you feel the genre, not just read about it.</p></div>
-      <div class="feature-card"><span class="feature-icon">📱</span><h3>Works Offline</h3><p>Install as a PWA and explore any atmosphere without an internet connection.</p></div>
-      <div class="feature-card"><span class="feature-icon">🎮</span><h3>Educational Content</h3><p>Each entry explains the design reasoning — not just what it looks like, but why.</p></div>
-      <div class="feature-card"><span class="feature-icon">⚡</span><h3>Instant Transitions</h3><p>Click any atmosphere and the entire page transforms all at once.</p></div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3>8 Distinct Atmospheres</h3>
+        <p>Each fully themed with matching colors, fonts, imagery, and sound.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🎵</span>
+        <h3>Immersive Audio</h3>
+        <p>Ambient sound for every atmosphere, designed to reinforce the mood of the genre.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🖋️</span>
+        <h3>Dynamic Typography</h3>
+        <p>Fonts shift per atmosphere so you feel the genre, not just read about it.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📱</span>
+        <h3>Installable PWA</h3>
+        <p>Install the project like an app on supported browsers and devices.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🎮</span>
+        <h3>Educational Content</h3>
+        <p>Each entry explains the design reasoning — not just what it looks like, but why.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Instant Transitions</h3>
+        <p>Click any atmosphere and the entire page transforms all at once.</p>
+      </div>
     </div>
   </section>
 
@@ -490,17 +797,77 @@
   <section id="atmospheres">
     <div class="section-pad">
       <span class="label">// Atmospheres</span>
+
       <h2 class="section-heading">8 worlds to explore</h2>
-      <p class="section-sub">Each atmosphere is drawn from a real game genre and teaches you something different about visual design.</p>
+
+      <p class="section-sub">
+        Each atmosphere is drawn from a real game genre and teaches you something different about visual design.
+      </p>
+
       <div class="atmo-grid">
-        <a href="index.html#cozy-pixel-farming" class="atmo-card"><div class="atmo-dot" style="background:#7AA35A"></div><div><span>Cozy Pixel Farming</span><small>Peaceful · Warm · Relaxing</small></div></a>
-        <a href="index.html#neon-cyberpunk-city" class="atmo-card"><div class="atmo-dot" style="background:#00E5FF"></div><div><span>Neon Cyberpunk City</span><small>Futuristic · Electric · Intense</small></div></a>
-        <a href="index.html#low-poly-horror" class="atmo-card"><div class="atmo-dot" style="background:#7A1F1F"></div><div><span>Low-Poly Horror</span><small>Tense · Eerie · Unsettling</small></div></a>
-        <a href="index.html#dark-cute-cartoon" class="atmo-card"><div class="atmo-dot" style="background:#D9C27A"></div><div><span>Dark Cute Cartoon</span><small>Creepy · Charming · Playful</small></div></a>
-        <a href="index.html#retro-arcade" class="atmo-card"><div class="atmo-dot" style="background:#FFD93D"></div><div><span>Retro Arcade</span><small>Nostalgic · Fast-paced · Bold</small></div></a>
-        <a href="index.html#dark-fantasy" class="atmo-card"><div class="atmo-dot" style="background:#B08D57"></div><div><span>Dark Fantasy</span><small>Epic · Dangerous · Mysterious</small></div></a>
-        <a href="index.html#open-world-fantasy" class="atmo-card"><div class="atmo-dot" style="background:#F4C542"></div><div><span>Open-World Fantasy</span><small>Open · Heroic · Adventurous</small></div></a>
-        <a href="index.html#voxel-sandbox" class="atmo-card"><div class="atmo-dot" style="background:#5A8F3D"></div><div><span>Voxel Sandbox</span><small>Creative · Blocky · Playful</small></div></a>
+        <a href="index.html#cozy-pixel-farming" class="atmo-card">
+          <div class="atmo-dot" style="background:#7AA35A"></div>
+          <div>
+            <span>Cozy Pixel Farming</span>
+            <small>Peaceful · Warm · Relaxing</small>
+          </div>
+        </a>
+
+        <a href="index.html#neon-cyberpunk-city" class="atmo-card">
+          <div class="atmo-dot" style="background:#00E5FF"></div>
+          <div>
+            <span>Neon Cyberpunk City</span>
+            <small>Futuristic · Electric · Intense</small>
+          </div>
+        </a>
+
+        <a href="index.html#low-poly-horror" class="atmo-card">
+          <div class="atmo-dot" style="background:#7A1F1F"></div>
+          <div>
+            <span>Low-Poly Horror</span>
+            <small>Tense · Eerie · Unsettling</small>
+          </div>
+        </a>
+
+        <a href="index.html#dark-cute-cartoon" class="atmo-card">
+          <div class="atmo-dot" style="background:#D9C27A"></div>
+          <div>
+            <span>Dark Cute Cartoon</span>
+            <small>Creepy · Charming · Playful</small>
+          </div>
+        </a>
+
+        <a href="index.html#retro-arcade" class="atmo-card">
+          <div class="atmo-dot" style="background:#FFD93D"></div>
+          <div>
+            <span>Retro Arcade</span>
+            <small>Nostalgic · Fast-paced · Bold</small>
+          </div>
+        </a>
+
+        <a href="index.html#dark-fantasy" class="atmo-card">
+          <div class="atmo-dot" style="background:#B08D57"></div>
+          <div>
+            <span>Dark Fantasy</span>
+            <small>Epic · Dangerous · Mysterious</small>
+          </div>
+        </a>
+
+        <a href="index.html#open-world-fantasy" class="atmo-card">
+          <div class="atmo-dot" style="background:#F4C542"></div>
+          <div>
+            <span>Open-World Fantasy</span>
+            <small>Open · Heroic · Adventurous</small>
+          </div>
+        </a>
+
+        <a href="index.html#voxel-sandbox" class="atmo-card">
+          <div class="atmo-dot" style="background:#5A8F3D"></div>
+          <div>
+            <span>Voxel Sandbox</span>
+            <small>Creative · Blocky · Playful</small>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -511,19 +878,26 @@
   <section class="screenshots-wrap" id="screenshots">
     <div class="section-pad">
       <span class="label">// Screenshots</span>
+
       <h2 class="section-heading">See it in action</h2>
-      <p class="section-sub">Replace the placeholders below with real screenshots from your running app.</p>
+
+      <p class="section-sub">
+        Preview some of the visual styles used inside Game Atmosphere Lab.
+      </p>
+
       <div class="screenshots-grid">
         <div class="screenshot-frame">
-          <div class="screenshot-placeholder"><div class="ph-icon">🌾</div><p style="color:#444">Add screenshot — Cozy Pixel Farming</p></div>
+          <img src="screenshots/cozy-pixel-farming-1.jpg" alt="Cozy Pixel Farming screenshot">
           <div class="screenshot-label">Cozy Pixel Farming</div>
         </div>
+
         <div class="screenshot-frame">
-          <div class="screenshot-placeholder"><div class="ph-icon">🌆</div><p style="color:#444">Add screenshot — Neon Cyberpunk City</p></div>
+          <img src="screenshots/neon-cyberpunk-city-1.jpg" alt="Neon Cyberpunk City screenshot">
           <div class="screenshot-label">Neon Cyberpunk City</div>
         </div>
+
         <div class="screenshot-frame">
-          <div class="screenshot-placeholder"><div class="ph-icon">⚔️</div><p style="color:#444">Add screenshot — Dark Fantasy</p></div>
+          <img src="screenshots/dark-fantasy-1.jpg" alt="Dark Fantasy screenshot">
           <div class="screenshot-label">Dark Fantasy</div>
         </div>
       </div>
@@ -536,13 +910,37 @@
   <section id="install">
     <div class="section-pad">
       <span class="label">// Install</span>
+
       <h2 class="section-heading">Take it with you</h2>
-      <p class="section-sub">Install as a PWA for instant offline access on any device.</p>
+
+      <p class="section-sub">
+        Install as a PWA for easier access on supported devices.
+      </p>
+
       <div class="install-steps">
-        <div class="step"><span class="step-num">01</span><h4>Open in Browser</h4><p>Visit the app in Chrome (Android/Desktop) or Safari (iOS).</p></div>
-        <div class="step"><span class="step-num">02</span><h4>Find Install Prompt</h4><p>Chrome: tap menu (⋮) → "Add to Home Screen". Safari: tap Share → "Add to Home Screen".</p></div>
-        <div class="step"><span class="step-num">03</span><h4>Confirm</h4><p>Tap "Add" or "Install". The icon will appear on your home screen.</p></div>
-        <div class="step"><span class="step-num">04</span><h4>Use Offline</h4><p>All content is cached after the first visit — no internet needed.</p></div>
+        <div class="step">
+          <span class="step-num">01</span>
+          <h4>Open the Promo Page</h4>
+          <p>Click the Game Atmosphere Lab project from the portfolio.</p>
+        </div>
+
+        <div class="step">
+          <span class="step-num">02</span>
+          <h4>Click Install App</h4>
+          <p>Use the popup button if your browser supports PWA installation.</p>
+        </div>
+
+        <div class="step">
+          <span class="step-num">03</span>
+          <h4>Use Browser Menu</h4>
+          <p>If the popup does not appear, use Install app or Add to Home Screen from the browser menu.</p>
+        </div>
+
+        <div class="step">
+          <span class="step-num">04</span>
+          <h4>Launch App</h4>
+          <p>Open Game Atmosphere Lab from your browser or device home screen.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -550,21 +948,72 @@
   <!-- CTA -->
   <section class="cta-banner">
     <span class="label">// Ready?</span>
+
     <h2>Start exploring atmospheres</h2>
+
     <p>No download required. Works in any modern browser.</p>
+
     <a href="index.html" class="btn btn-primary">Launch Game Atmosphere Lab</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <a href="#" class="footer-logo">AtmoLab</a>
+
     <ul class="footer-links">
       <li><a href="index.html">App</a></li>
       <li><a href="docs/user-guide.html">User Guide</a></li>
       <li><a href="docs/programmer-guide.html">Dev Docs</a></li>
     </ul>
+
     <p class="footer-copy">Educational PWA Project</p>
   </footer>
+
+  <script>
+    let deferredPrompt = null;
+
+    const installPopup = document.getElementById("installPopup");
+    const installBtn = document.getElementById("installBtn");
+    const closeInstallPopup = document.getElementById("closeInstallPopup");
+    const installHint = document.getElementById("installHint");
+
+    // Register service worker for PWA support
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js").catch(function () {
+        navigator.serviceWorker.register("sw.js").catch(function (error) {
+          console.log("Service worker not registered:", error);
+        });
+      });
+    }
+
+    // Save browser install event
+    window.addEventListener("beforeinstallprompt", function (event) {
+      event.preventDefault();
+      deferredPrompt = event;
+
+      installBtn.textContent = "Install App";
+      installHint.textContent = "Click Install App to download this PWA.";
+    });
+
+    installBtn.addEventListener("click", async function () {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+
+        const choiceResult = await deferredPrompt.userChoice;
+        console.log("Install choice:", choiceResult.outcome);
+
+        deferredPrompt = null;
+        installPopup.classList.add("hidden");
+      } else {
+        installHint.textContent =
+          "If the install popup does not appear, use your browser menu and choose Install app or Add to Home Screen.";
+      }
+    });
+
+    closeInstallPopup.addEventListener("click", function () {
+      installPopup.classList.add("hidden");
+    });
+  </script>
 
 </body>
 </html>
