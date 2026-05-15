@@ -1,15 +1,16 @@
-const CACHE_NAME = "game-atmosphere-lab-v13";
+const CACHE_NAME = "game-atmosphere-lab-v20";
+const BASE_PATH = "/portfolio/game-atmosphere-lab/";
 
 const CORE_ASSETS = [
-  "./",
-  "./index.html",
-  "./promo.html",
-  "./style.css",
-  "./script.js",
-  "./data.json",
-  "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  BASE_PATH,
+  BASE_PATH + "index.html",
+  BASE_PATH + "promo.html",
+  BASE_PATH + "style.css",
+  BASE_PATH + "script.js",
+  BASE_PATH + "data.json",
+  BASE_PATH + "manifest.json",
+  BASE_PATH + "icons/icon-192.png",
+  BASE_PATH + "icons/icon-512.png"
 ];
 
 self.addEventListener("install", function (event) {
@@ -18,13 +19,24 @@ self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function (cache) {
-        return cache.addAll(CORE_ASSETS);
+        return Promise.all(
+          CORE_ASSETS.map(function (url) {
+            return fetch(url, { cache: "reload" })
+              .then(function (response) {
+                if (response.ok) {
+                  return cache.put(url, response);
+                }
+
+                console.warn("[Service Worker] Could not cache:", url, response.status);
+              })
+              .catch(function (error) {
+                console.warn("[Service Worker] Cache failed:", url, error);
+              });
+          })
+        );
       })
       .then(function () {
         return self.skipWaiting();
-      })
-      .catch(function (error) {
-        console.log("[Service Worker] Install failed:", error);
       })
   );
 });
@@ -67,7 +79,7 @@ self.addEventListener("fetch", function (event) {
             if (
               networkResponse &&
               networkResponse.ok &&
-              event.request.url.includes("/portfolio/game-atmosphere-lab/")
+              event.request.url.includes(BASE_PATH)
             ) {
               const responseCopy = networkResponse.clone();
 
@@ -80,7 +92,7 @@ self.addEventListener("fetch", function (event) {
           })
           .catch(function () {
             if (event.request.mode === "navigate") {
-              return caches.match("./index.html");
+              return caches.match(BASE_PATH + "index.html");
             }
           });
       })
