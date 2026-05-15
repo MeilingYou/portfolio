@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Game Atmosphere Lab</title>
@@ -19,7 +20,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&family=Creepster&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 
 <body>
@@ -27,25 +28,25 @@
   <header>
     <h1>Game Atmosphere Lab</h1>
     <p>Explore how video game art styles, colors, fonts, and sounds create different moods.</p>
+
+    <nav style="margin-top: 1rem;">
+      <a href="promo.html" style="color:white;">Promo Page</a>
+    </nav>
   </header>
 
   <main>
 
-    <!-- MENU -->
     <section class="menu-section">
       <h2>Choose an Atmosphere</h2>
       <div id="topicMenu" class="topic-menu"></div>
     </section>
 
-    <!-- INFO CARD WITH IMAGE BESIDE TEXT -->
     <section class="content-card">
 
-      <!-- Image beside the text box -->
       <div class="image-box">
         <img id="topicImage" class="topic-side-image" alt="Atmosphere image">
       </div>
 
-      <!-- Text box -->
       <div class="info-box">
         <h2 id="topicTitle">Topic Title</h2>
 
@@ -70,7 +71,6 @@
 
     </section>
 
-    <!-- SCREENSHOT GALLERY -->
     <section class="media-gallery">
       <div class="gallery-header">
         <span class="gallery-label">// Screenshots</span>
@@ -85,12 +85,6 @@
           <div class="gallery-caption" id="galleryCaption"></div>
 
           <div class="gallery-expand-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <polyline points="9 21 3 21 3 15"></polyline>
-              <line x1="21" y1="3" x2="14" y2="10"></line>
-              <line x1="3" y1="21" x2="10" y2="14"></line>
-            </svg>
             Click to expand
           </div>
         </div>
@@ -98,7 +92,6 @@
         <div class="gallery-strip" id="galleryStrip"></div>
       </div>
 
-      <!-- LIGHTBOX -->
       <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <button class="lightbox-prev" id="lightboxPrev" onclick="lightboxNav(-1,event)">&#8249;</button>
@@ -111,12 +104,11 @@
       </div>
     </section>
 
-    <!-- DEMO LAB -->
     <section class="demo-lab">
       <div class="demo-lab-header">
         <span class="demo-label">// Atmosphere Lab</span>
         <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
-        <p class="demo-subtitle">Upload any image and apply this atmosphere's exact color palette and art style — pixel by pixel.</p>
+        <p class="demo-subtitle">Upload any image and apply this atmosphere's color palette and art style.</p>
       </div>
 
       <div class="demo-body">
@@ -192,17 +184,7 @@
               <button class="style-btn" onclick="setStyle('openworld')" data-style="openworld">Open World</button>
             </div>
 
-            <p class="control-hint">Real pixel-level transformations per style.</p>
-          </div>
-
-          <div class="control-divider"></div>
-
-          <div class="control-group">
-            <span class="control-label">⚡ Quick Match</span>
-
-            <button class="demo-btn full" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
-
-            <p class="control-hint">Applies the exact palette + best-matched art style in one click.</p>
+            <button class="match-btn" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
           </div>
 
         </div>
@@ -211,16 +193,21 @@
 
   </main>
 
-  <footer>
-    <p>Game Atmosphere Lab | Educational PWA Project</p>
-    <p>
-      <a href="promo.html">About</a> |
-      <a href="docs/user-guide.html">User Guide</a> |
-      <a href="docs/programmer-guide.html">Dev Docs</a>
-    </p>
-  </footer>
+  <script src="script.js?v=12"></script>
 
-  <script src="script.js?v=8"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js")
+          .then(function (registration) {
+            console.log("Service worker registered:", registration.scope);
+          })
+          .catch(function (error) {
+            console.log("Service worker registration failed:", error);
+          });
+      });
+    }
+  </script>
 
 </body>
 </html>
