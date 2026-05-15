@@ -1,6 +1,5 @@
-const CACHE_NAME = "game-atmosphere-lab-v9";
+const CACHE_NAME = "game-atmosphere-lab-v10";
 const BASE = "/portfolio/game-atmosphere-lab/";
-
 const CORE_ASSETS = [
   BASE,
   BASE + "index.html",
@@ -14,8 +13,7 @@ const CORE_ASSETS = [
 ];
 
 self.addEventListener("install", function (event) {
-  console.log("[Service Worker] Installing...");
-
+  console.log("[Service Worker] Installing v10...");
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return Promise.all(
@@ -25,7 +23,6 @@ self.addEventListener("install", function (event) {
               if (response.ok) {
                 return cache.put(url, response);
               }
-
               console.warn("[Service Worker] Could not cache:", url, response.status);
             })
             .catch(function (error) {
@@ -40,8 +37,7 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("activate", function (event) {
-  console.log("[Service Worker] Activating...");
-
+  console.log("[Service Worker] Activating v10...");
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(
@@ -77,12 +73,10 @@ self.addEventListener("fetch", function (event) {
             event.request.url.includes(BASE)
           ) {
             const responseClone = networkResponse.clone();
-
             caches.open(CACHE_NAME).then(function (cache) {
               cache.put(event.request, responseClone);
             });
           }
-
           return networkResponse;
         })
         .catch(function () {
