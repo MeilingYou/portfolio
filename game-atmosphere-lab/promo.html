@@ -10,13 +10,8 @@
   <meta name="description" content="Game Atmosphere Lab is an educational PWA that teaches how game art styles, colors, fonts, and sounds create different moods.">
   <meta name="theme-color" content="#0a0a0f">
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="AtmoLab">
-
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="/portfolio/game-atmosphere-lab/manifest.json">
+  <link rel="apple-touch-icon" href="/portfolio/game-atmosphere-lab/icons/icon-192.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -585,12 +580,12 @@
       <h2 class="section-heading">How to download the PWA</h2>
 
       <p class="section-sub">
-        Open this page or the app page in Chrome or Microsoft Edge. When the PWA passes the browser's install check, the install icon appears in the address bar.
+        Open this page or the app page in Chrome or Microsoft Edge. When the PWA passes the browser install check, the install icon appears in the address bar.
       </p>
 
       <div class="note-box">
         <p>
-          <strong>Important:</strong> This page does not force a custom install popup. The browser install icon appears automatically when the manifest and service worker are valid.
+          <strong>Important:</strong> The browser controls the real install icon. If the icon does not show, check DevTools → Application → Manifest and Service Workers.
         </p>
       </div>
 
@@ -648,19 +643,7 @@
     <p class="footer-copy">Educational PWA Project</p>
   </footer>
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker.register("./service-worker.js")
-          .then(function (registration) {
-            console.log("Service worker registered:", registration.scope);
-          })
-          .catch(function (error) {
-            console.log("Service worker registration failed:", error);
-          });
-      });
-    }
-  </script>
+  <script src="pwa-register.js?v=20"></script>
 
 </body>
 </html>
