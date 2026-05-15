@@ -2,225 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Game Atmosphere Lab</title>
 
-  <meta name="description" content="Explore how video game art styles, colors, fonts, and sounds create different moods.">
-  <meta name="theme-color" content="#F3E7C9">
+  <meta name="description" content="An educational PWA about video game atmosphere.">
+  <meta name="theme-color" content="#7aa35a">
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="AtmoLab">
+  <link rel="manifest" href="/portfolio/game-atmosphere-lab/manifest.json">
+  <link rel="apple-touch-icon" href="/portfolio/game-atmosphere-lab/icons/icon-192.png">
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3e7c9;
+      color: #2e2218;
+    }
 
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&family=Creepster&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    header {
+      background: #7aa35a;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
 
-  <link rel="stylesheet" href="style.css?v=8">
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    nav {
+      text-align: center;
+      padding: 15px;
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      color: #2e2218;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .menu button {
+      border: none;
+      background: #7aa35a;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .menu button:hover {
+      background: #5d8543;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #ddd;
+    }
+
+    .info {
+      margin-top: 20px;
+    }
+
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #5d8543;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+    }
+  </style>
 </head>
 
 <body>
 
   <header>
     <h1>Game Atmosphere Lab</h1>
-    <p>Explore how video game art styles, colors, fonts, and sounds create different moods.</p>
+    <p>
+      Learn how video game art styles, colors, images, and sounds create different moods.
+    </p>
   </header>
 
+  <nav>
+    <a href="index.html">App</a>
+    <a href="promo.html">Promo Page</a>
+    <a href="manifest.json">Manifest</a>
+    <a href="service-worker.js">Service Worker</a>
+  </nav>
+
   <main>
+    <h2>Choose a Topic</h2>
 
-    <!-- MENU -->
-    <section class="menu-section">
-      <h2>Choose an Atmosphere</h2>
-      <div id="topicMenu" class="topic-menu"></div>
-    </section>
+    <div id="topicMenu" class="menu"></div>
 
-    <!-- INFO CARD WITH IMAGE BESIDE TEXT -->
-    <section class="content-card">
+    <section class="card">
+      <img id="topicImage" src="" alt="Topic image">
 
-      <!-- Image beside the text box -->
-      <div class="image-box">
-        <img id="topicImage" class="topic-side-image" alt="Atmosphere image">
-      </div>
+      <div class="info">
+        <h2 id="topicTitle">Loading...</h2>
 
-      <!-- Text box -->
-      <div class="info-box">
-        <h2 id="topicTitle">Topic Title</h2>
+        <p>
+          <span class="label">Game Examples:</span>
+          <span id="gameExamples"></span>
+        </p>
 
-        <p id="gameExamples"></p>
+        <p>
+          <span class="label">Art Style:</span>
+          <span id="artStyle"></span>
+        </p>
 
-        <div class="palette-section">
-          <span class="palette-label">Color Palette</span>
-          <div class="palette-swatches" id="paletteSwatches"></div>
-        </div>
+        <p>
+          <span class="label">Mood:</span>
+          <span id="mood"></span>
+        </p>
 
-        <h3>Art Style</h3>
-        <p id="artStyle"></p>
+        <p>
+          <span class="label">Description:</span>
+          <span id="description"></span>
+        </p>
 
-        <h3>Mood</h3>
-        <p id="mood"></p>
-
-        <h3>Why It Creates This Atmosphere</h3>
-        <p id="description"></p>
-
-        <button id="audioBtn">Play Atmosphere Sound</button>
-      </div>
-
-    </section>
-
-    <!-- SCREENSHOT GALLERY -->
-    <section class="media-gallery">
-      <div class="gallery-header">
-        <span class="gallery-label">// Screenshots</span>
-        <h2 class="gallery-title" id="galleryTitle">Atmosphere Showcase</h2>
-        <p class="gallery-subtitle">Click any screenshot to view fullscreen</p>
-      </div>
-
-      <div class="gallery-main">
-        <div class="gallery-display" id="galleryDisplay">
-          <img id="galleryMainImg" alt="Atmosphere screenshot" class="gallery-main-img">
-
-          <div class="gallery-caption" id="galleryCaption"></div>
-
-          <div class="gallery-expand-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <polyline points="9 21 3 21 3 15"></polyline>
-              <line x1="21" y1="3" x2="14" y2="10"></line>
-              <line x1="3" y1="21" x2="10" y2="14"></line>
-            </svg>
-            Click to expand
-          </div>
-        </div>
-
-        <div class="gallery-strip" id="galleryStrip"></div>
-      </div>
-
-      <!-- LIGHTBOX -->
-      <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <button class="lightbox-prev" id="lightboxPrev" onclick="lightboxNav(-1,event)">&#8249;</button>
-        <button class="lightbox-next" id="lightboxNext" onclick="lightboxNav(1,event)">&#8250;</button>
-
-        <img class="lightbox-img" id="lightboxImg" alt="Expanded screenshot" onclick="event.stopPropagation()">
-
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-        <div class="lightbox-counter" id="lightboxCounter"></div>
+        <audio id="topicAudio" controls></audio>
       </div>
     </section>
-
-    <!-- DEMO LAB -->
-    <section class="demo-lab">
-      <div class="demo-lab-header">
-        <span class="demo-label">// Atmosphere Lab</span>
-        <h2 class="demo-title">See How Color &amp; Style Create Mood</h2>
-        <p class="demo-subtitle">Upload any image and apply this atmosphere's exact color palette and art style — pixel by pixel.</p>
-      </div>
-
-      <div class="demo-body">
-        <div class="canvas-area">
-
-          <div class="canvas-col">
-            <div class="canvas-top-bar">
-              <span class="canvas-tag">Original</span>
-
-              <label class="upload-btn" for="imageUpload">
-                Upload Image
-              </label>
-
-              <input type="file" id="imageUpload" accept="image/*" style="display:none">
-            </div>
-
-            <div class="canvas-wrap">
-              <canvas id="sourceCanvas" width="640" height="360"></canvas>
-            </div>
-          </div>
-
-          <div class="canvas-divider">
-            <div class="arrow-line"></div>
-            <div class="arrow-label">→</div>
-          </div>
-
-          <div class="canvas-col">
-            <div class="canvas-top-bar">
-              <span class="canvas-tag" id="resultTag">Result</span>
-
-              <button class="download-btn" onclick="downloadResult()">Save</button>
-            </div>
-
-            <div class="canvas-wrap">
-              <canvas id="resultCanvas" width="640" height="360"></canvas>
-
-              <div class="processing-overlay" id="processingOverlay">
-                <div class="spinner"></div>
-                <span>Processing…</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="demo-controls">
-
-          <div class="control-group">
-            <span class="control-label">🎨 Color Palette</span>
-
-            <div class="toggle-row">
-              <button class="demo-btn active" id="btnColorOff" onclick="setColor('off')">Off</button>
-              <button class="demo-btn" id="btnColorOn" onclick="setColor('on')">Apply Palette</button>
-              <button class="demo-btn" id="btnColorRandom" onclick="setColor('random')">Randomize</button>
-            </div>
-
-            <p class="control-hint">Remaps every pixel to the closest color in the atmosphere's palette.</p>
-          </div>
-
-          <div class="control-divider"></div>
-
-          <div class="control-group">
-            <span class="control-label">✏️ Art Style</span>
-
-            <div class="style-grid">
-              <button class="style-btn active" onclick="setStyle('none')" data-style="none">Original</button>
-              <button class="style-btn" onclick="setStyle('pixel')" data-style="pixel">Pixel Art</button>
-              <button class="style-btn" onclick="setStyle('lowpoly')" data-style="lowpoly">Low Poly</button>
-              <button class="style-btn" onclick="setStyle('horror')" data-style="horror">Horror</button>
-              <button class="style-btn" onclick="setStyle('neon')" data-style="neon">Neon / Cyber</button>
-              <button class="style-btn" onclick="setStyle('painterly')" data-style="painterly">Painterly</button>
-              <button class="style-btn" onclick="setStyle('darkfantasy')" data-style="darkfantasy">Dark Fantasy</button>
-              <button class="style-btn" onclick="setStyle('openworld')" data-style="openworld">Open World</button>
-            </div>
-
-            <p class="control-hint">Real pixel-level transformations per style.</p>
-          </div>
-
-          <div class="control-divider"></div>
-
-          <div class="control-group">
-            <span class="control-label">⚡ Quick Match</span>
-
-            <button class="demo-btn full" onclick="matchCurrentAtmosphere()">Match Current Atmosphere</button>
-
-            <p class="control-hint">Applies the exact palette + best-matched art style in one click.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <footer>
-    <p>Game Atmosphere Lab | Educational PWA Project</p>
-    <p>
-      <a href="promo.html">About</a> |
-      <a href="docs/user-guide.html">User Guide</a> |
-      <a href="docs/programmer-guide.html">Dev Docs</a>
-    </p>
+    Educational PWA Project
   </footer>
 
-  <script src="script.js?v=8"></script>
+  <script>
+    function registerServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
+          scope: "/portfolio/game-atmosphere-lab/"
+        })
+        .then(function (registration) {
+          console.log("Service worker registered:", registration.scope);
+        })
+        .catch(function (error) {
+          console.log("Service worker registration failed:", error);
+        });
+      }
+    }
+
+    function loadData() {
+      fetch("data.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          const topics = data.topics;
+          buildMenu(topics);
+          showTopic(topics[0]);
+        })
+        .catch(function (error) {
+          console.log("Could not load data.json:", error);
+          document.getElementById("topicTitle").textContent = "Could not load data.";
+        });
+    }
+
+    function buildMenu(topics) {
+      const menu = document.getElementById("topicMenu");
+      menu.innerHTML = "";
+
+      topics.forEach(function (topic) {
+        const button = document.createElement("button");
+        button.textContent = topic.title;
+
+        button.addEventListener("click", function () {
+          showTopic(topic);
+        });
+
+        menu.appendChild(button);
+      });
+    }
+
+    function showTopic(topic) {
+      document.getElementById("topicTitle").textContent = topic.title;
+      document.getElementById("gameExamples").textContent = topic.gameExamples.join(", ");
+      document.getElementById("artStyle").textContent = topic.artStyle;
+      document.getElementById("mood").textContent = topic.mood;
+      document.getElementById("description").textContent = topic.description;
+
+      document.getElementById("topicImage").src = topic.image;
+      document.getElementById("topicImage").alt = topic.imageAlt || topic.title;
+
+      document.getElementById("topicAudio").src = topic.audio;
+
+      document.body.style.backgroundColor = topic.backgroundColor || "#f3e7c9";
+      document.querySelector("header").style.backgroundColor = topic.accentColor || "#7aa35a";
+    }
+
+    window.addEventListener("load", function () {
+      registerServiceWorker();
+      loadData();
+    });
+  </script>
 
 </body>
 </html>
