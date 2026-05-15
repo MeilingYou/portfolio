@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Game Atmosphere Lab | Promo</title>
@@ -26,8 +27,6 @@
       --surface2: #1a1a26;
       --border: rgba(255,255,255,0.08);
       --yellow: #FFD93D;
-      --cyan: #00E5FF;
-      --green: #7AA35A;
       --white: #F0EEE8;
       --muted: #888;
       --pixel: "Press Start 2P", monospace;
@@ -192,36 +191,6 @@
       }
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--muted);
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      animation: rise 1s ease 1.2s forwards;
-    }
-
-    .scroll-hint::after {
-      content: "";
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-      animation: blink 2s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
     .btn {
       display: inline-block;
       padding: 0.875rem 1.75rem;
@@ -257,21 +226,6 @@
       transform: translateY(-2px);
     }
 
-    /* FIX: Install trigger is hidden until browser confirms installability */
-    .btn-ghost.install-trigger {
-      display: none;
-    }
-
-    .btn-ghost.install-trigger.ready {
-      display: inline-block;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 0 2rem;
-    }
-
     .section-pad {
       padding: 6rem 2rem;
       max-width: 1100px;
@@ -299,7 +253,7 @@
       color: var(--muted);
       font-size: 1rem;
       font-weight: 300;
-      max-width: 560px;
+      max-width: 600px;
     }
 
     .features-wrap,
@@ -307,16 +261,9 @@
       background: var(--surface);
     }
 
-    .features-header {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 6rem 2rem 3rem;
-    }
-
     .features-grid {
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem 6rem;
+      margin: 3rem auto 0;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1px;
@@ -350,51 +297,6 @@
       font-size: 0.875rem;
       color: var(--muted);
       line-height: 1.6;
-    }
-
-    .atmo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-
-    .atmo-card {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.2s;
-      text-decoration: none;
-      background: var(--surface);
-    }
-
-    .atmo-card:hover {
-      border-color: rgba(255,255,255,0.2);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
-
-    .atmo-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-
-    .atmo-card span {
-      font-size: 0.875rem;
-      color: var(--white);
-      font-weight: 500;
-      display: block;
-    }
-
-    .atmo-card small {
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-weight: 300;
     }
 
     .screenshots-grid {
@@ -484,107 +386,6 @@
       font-weight: 300;
     }
 
-    /* INSTALL POPUP */
-    .install-popup {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(0,0,0,0.72);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .install-popup.hidden {
-      display: none;
-    }
-
-    .install-box {
-      width: 100%;
-      max-width: 460px;
-      background: #111118;
-      border: 1px solid rgba(255,217,61,0.22);
-      border-radius: 18px;
-      padding: 2rem;
-      text-align: center;
-      color: var(--white);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
-      position: relative;
-    }
-
-    .install-close {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.9rem;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .install-close:hover {
-      color: var(--white);
-    }
-
-    .install-box img {
-      width: 72px;
-      height: 72px;
-      border-radius: 14px;
-      margin-bottom: 1rem;
-    }
-
-    .install-box h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .install-box p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .install-btn {
-      width: 100%;
-      border: none;
-      background: var(--yellow);
-      color: #000;
-      padding: 0.9rem 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      font-family: var(--body);
-      font-size: 1rem;
-    }
-
-    .install-btn:hover {
-      background: #ffe566;
-    }
-
-    .open-app-link {
-      display: block;
-      color: var(--yellow);
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 1rem;
-    }
-
-    .open-app-link:hover {
-      text-decoration: underline;
-    }
-
-    .install-hint {
-      font-size: 0.8rem !important;
-      color: #777 !important;
-      margin-top: 1rem;
-      margin-bottom: 0 !important;
-    }
-
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -625,6 +426,19 @@
       color: #444;
     }
 
+    .note-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,217,61,0.25);
+      background: rgba(255,217,61,0.06);
+      border-radius: 10px;
+      color: var(--white);
+    }
+
+    .note-box strong {
+      color: var(--yellow);
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 1rem 1.5rem;
@@ -662,44 +476,12 @@
 
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
-      <li><a href="#atmospheres">Atmospheres</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#install">Install</a></li>
-      <li><a href="docs/user-guide.html">Docs</a></li>
       <li><a href="index.html" class="nav-cta">Launch App</a></li>
     </ul>
   </nav>
 
-  <!-- INSTALL POPUP -->
-  <!-- FIX: Starts hidden; only shown after beforeinstallprompt fires -->
-  <div id="installPopup" class="install-popup hidden">
-    <div class="install-box">
-      <button id="closeInstallPopup" class="install-close" aria-label="Close install popup">×</button>
-
-      <img src="icons/icon-192.png" alt="Game Atmosphere Lab icon">
-
-      <h2>Download Game Atmosphere Lab</h2>
-
-      <p id="installMessage">
-        Install this PWA so you can open it like an app and use it more easily.
-      </p>
-
-      <button id="installBtn" class="install-btn">
-        Install App
-      </button>
-
-      <a class="open-app-link" href="index.html">
-        Continue to Web App
-      </a>
-
-      <p id="installHint" class="install-hint">
-        If the install button does not work, use your browser menu and choose
-        "Install app" or "Add to Home Screen."
-      </p>
-    </div>
-  </div>
-
-  <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Educational PWA</p>
 
@@ -713,153 +495,60 @@
 
     <div class="hero-btns">
       <a href="index.html" class="btn btn-primary">Launch App</a>
-      <!--
-        FIX: Install trigger buttons start hidden (via CSS: display:none).
-        The JS adds class "ready" only after beforeinstallprompt fires,
-        making them visible only when the browser actually supports install.
-      -->
-      <button class="btn btn-ghost install-trigger">Install App</button>
       <a href="#install" class="btn btn-ghost">How to Install</a>
     </div>
-
-    <div class="scroll-hint">scroll</div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- FEATURES -->
   <section class="features-wrap" id="features">
-    <div class="features-header">
+    <div class="section-pad">
       <span class="label">// Features</span>
 
       <h2 class="section-heading">Everything in one place</h2>
 
       <p class="section-sub">
-        An interactive learning tool that connects visual design theory to real games you know.
+        An interactive learning tool that connects visual design theory to game atmosphere.
       </p>
-    </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🎮</span>
-        <h3>Game Atmosphere Lessons</h3>
-        <p>Learn how art style, color, fonts, and sound change the mood of a game world.</p>
-      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎮</span>
+          <h3>Game Atmosphere Lessons</h3>
+          <p>Learn how art style, color, fonts, and sound change the mood of a game world.</p>
+        </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">🎨</span>
-        <h3>Color Palette Viewer</h3>
-        <p>Each topic includes colors that match the atmosphere and help explain the visual style.</p>
-      </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3>Color Palette Viewer</h3>
+          <p>Each topic includes colors that match the atmosphere and explain the visual style.</p>
+        </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">🔊</span>
-        <h3>Atmosphere Sounds</h3>
-        <p>Each category includes audio so users can connect sound design to visual mood.</p>
-      </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔊</span>
+          <h3>Atmosphere Sounds</h3>
+          <p>Audio helps users connect sound design to visual mood.</p>
+        </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">🧪</span>
-        <h3>Interactive Lab</h3>
-        <p>Upload an image and apply different palettes and visual effects to see mood changes.</p>
-      </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧪</span>
+          <h3>Interactive Lab</h3>
+          <p>Upload an image and apply palettes or visual effects to see mood changes.</p>
+        </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">📱</span>
-        <h3>Installable PWA</h3>
-        <p>The app includes a manifest and service worker so it can be installed on supported devices.</p>
-      </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <h3>Installable PWA</h3>
+          <p>The app includes a manifest and service worker so supported browsers can install it.</p>
+        </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">📁</span>
-        <h3>JSON Dataset</h3>
-        <p>The topics are stored in a JSON file, making it easier to add or replace learning sets.</p>
+        <div class="feature-card">
+          <span class="feature-icon">📁</span>
+          <h3>JSON Dataset</h3>
+          <p>The topics are stored in a JSON file, making it easier to add new learning sets.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ATMOSPHERES -->
-  <section id="atmospheres">
-    <div class="section-pad">
-      <span class="label">// Topics</span>
-
-      <h2 class="section-heading">Explore eight game moods</h2>
-
-      <p class="section-sub">
-        The app menu is generated from the JSON topic data.
-      </p>
-
-      <div class="atmo-grid">
-        <a href="index.html#cozy-pixel-farming" class="atmo-card">
-          <div class="atmo-dot" style="background:#7AA35A"></div>
-          <div>
-            <span>Cozy Pixel Farming</span>
-            <small>Peaceful · Warm · Relaxing</small>
-          </div>
-        </a>
-
-        <a href="index.html#neon-cyberpunk-city" class="atmo-card">
-          <div class="atmo-dot" style="background:#00E5FF"></div>
-          <div>
-            <span>Neon Cyberpunk City</span>
-            <small>Futuristic · High-tech · Energetic</small>
-          </div>
-        </a>
-
-        <a href="index.html#low-poly-horror" class="atmo-card">
-          <div class="atmo-dot" style="background:#7A1F1F"></div>
-          <div>
-            <span>Low-Poly Horror</span>
-            <small>Tense · Eerie · Unsettling</small>
-          </div>
-        </a>
-
-        <a href="index.html#dark-cute-cartoon" class="atmo-card">
-          <div class="atmo-dot" style="background:#D9C27A"></div>
-          <div>
-            <span>Dark Cute Cartoon</span>
-            <small>Creepy · Playful · Cute</small>
-          </div>
-        </a>
-
-        <a href="index.html#retro-arcade" class="atmo-card">
-          <div class="atmo-dot" style="background:#FFD93D"></div>
-          <div>
-            <span>Retro Arcade</span>
-            <small>Nostalgic · Bright · Fast</small>
-          </div>
-        </a>
-
-        <a href="index.html#dark-fantasy" class="atmo-card">
-          <div class="atmo-dot" style="background:#B08D57"></div>
-          <div>
-            <span>Dark Fantasy</span>
-            <small>Epic · Dangerous · Mysterious</small>
-          </div>
-        </a>
-
-        <a href="index.html#open-world-fantasy" class="atmo-card">
-          <div class="atmo-dot" style="background:#F4C542"></div>
-          <div>
-            <span>Open-World Fantasy</span>
-            <small>Open · Heroic · Adventurous</small>
-          </div>
-        </a>
-
-        <a href="index.html#voxel-sandbox" class="atmo-card">
-          <div class="atmo-dot" style="background:#5A8F3D"></div>
-          <div>
-            <span>Voxel Sandbox</span>
-            <small>Creative · Blocky · Playful</small>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- SCREENSHOTS -->
   <section class="screenshots-wrap" id="screenshots">
     <div class="section-pad">
       <span class="label">// Screenshots</span>
@@ -889,59 +578,54 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- INSTALL INSTRUCTIONS -->
   <section id="install">
     <div class="section-pad">
       <span class="label">// Install</span>
 
-      <h2 class="section-heading">Take it with you</h2>
+      <h2 class="section-heading">How to download the PWA</h2>
 
       <p class="section-sub">
-        Install as a PWA for easier access on supported devices.
+        Open this page or the app page in Chrome or Microsoft Edge. When the PWA passes the browser's install check, the install icon appears in the address bar.
       </p>
+
+      <div class="note-box">
+        <p>
+          <strong>Important:</strong> This page does not force a custom install popup. The browser install icon appears automatically when the manifest and service worker are valid.
+        </p>
+      </div>
 
       <div class="install-steps">
         <div class="step">
           <span class="step-num">01</span>
-          <h4>Open in Chrome or Edge</h4>
-          <p>The install feature works best in Chrome or Edge on desktop and Android. Safari on iPhone uses Share → Add to Home Screen instead.</p>
+          <h4>Open the live GitHub Pages site</h4>
+          <p>Use the deployed website link, not the GitHub repository code page.</p>
         </div>
 
         <div class="step">
           <span class="step-num">02</span>
-          <h4>Click Install App</h4>
-          <p>An Install App button will appear on this page once your browser confirms the app is ready to install.</p>
+          <h4>Look at the address bar</h4>
+          <p>Chrome or Edge should show an install icon on the right side of the address bar.</p>
         </div>
 
         <div class="step">
           <span class="step-num">03</span>
-          <h4>Use Browser Menu</h4>
-          <p>If no button appears, open the browser menu (⋮) and choose "Install app" or "Add to Home Screen."</p>
+          <h4>Click Install</h4>
+          <p>Click the browser install icon, then choose Install when the browser popup appears.</p>
         </div>
 
         <div class="step">
           <span class="step-num">04</span>
-          <h4>Launch Offline</h4>
-          <p>Once installed, open Game Atmosphere Lab from your desktop or home screen and use it even without internet.</p>
+          <h4>Launch the app</h4>
+          <p>After installation, open Game Atmosphere Lab like a normal app.</p>
         </div>
       </div>
 
       <br>
 
-      <!--
-        FIX: This install button also starts hidden and only becomes visible
-        after the browser fires beforeinstallprompt via the "ready" class.
-      -->
-      <button class="btn btn-primary install-trigger" style="display:none;">Install App</button>
-      <p id="installStatusMsg" style="margin-top:1rem; font-size:0.875rem; color:var(--muted);">
-        Open this page in Chrome or Edge to see the install button.
-      </p>
+      <a href="index.html" class="btn btn-primary">Open Web App</a>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-banner">
     <span class="label">// Ready?</span>
 
@@ -957,177 +641,24 @@
 
     <ul class="footer-links">
       <li><a href="index.html">App</a></li>
-      <li><a href="docs/user-guide.html">User Guide</a></li>
-      <li><a href="docs/programmer-guide.html">Dev Docs</a></li>
+      <li><a href="manifest.json">Manifest</a></li>
+      <li><a href="service-worker.js">Service Worker</a></li>
     </ul>
 
     <p class="footer-copy">Educational PWA Project</p>
   </footer>
 
   <script>
-    // =============================================
-    // PWA INSTALL LOGIC — FIXED VERSION
-    // =============================================
-
-    let deferredPrompt = null;
-
-    const installPopup    = document.getElementById("installPopup");
-    const installBtn      = document.getElementById("installBtn");
-    const closeBtn        = document.getElementById("closeInstallPopup");
-    const installMessage  = document.getElementById("installMessage");
-    const installHint     = document.getElementById("installHint");
-    const installStatusMsg = document.getElementById("installStatusMsg");
-
-    // All buttons that trigger the install flow
-    const installTriggers = document.querySelectorAll(".install-trigger");
-
-    // ---- Helpers ----
-
-    function isAlreadyInstalled() {
-      return window.matchMedia("(display-mode: standalone)").matches ||
-             window.navigator.standalone === true;
-    }
-
-    function showInstallPopup(message, hint) {
-      if (message) installMessage.textContent = message;
-      if (hint)    installHint.textContent = hint;
-      installPopup.classList.remove("hidden");
-    }
-
-    function hideInstallPopup() {
-      installPopup.classList.add("hidden");
-    }
-
-    // Make all install trigger buttons visible when install is available
-    function revealInstallButtons() {
-      installTriggers.forEach(function (btn) {
-        btn.classList.add("ready");
-        btn.style.display = "";   // clear any inline display:none
-      });
-      if (installStatusMsg) {
-        installStatusMsg.textContent = "Your browser is ready — click the button above to install.";
-      }
-    }
-
-    // ---- Service Worker ----
-
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/portfolio/game-atmosphere-lab/service-worker.js", {
-          scope: "/portfolio/game-atmosphere-lab/"
-        })
-        .then(function (reg) {
-          console.log("Service worker registered:", reg.scope);
-        })
-        .catch(function (err) {
-          console.warn("Service worker registration failed:", err);
-        });
+        navigator.serviceWorker.register("./service-worker.js")
+          .then(function (registration) {
+            console.log("Service worker registered:", registration.scope);
+          })
+          .catch(function (error) {
+            console.log("Service worker registration failed:", error);
+          });
       });
-    }
-
-    // ---- beforeinstallprompt ----
-    // FIX: This is the only place we reveal the install UI.
-    //      The popup does NOT open automatically — buttons become visible instead.
-
-    window.addEventListener("beforeinstallprompt", function (event) {
-      event.preventDefault();           // stop the mini-infobar
-      deferredPrompt = event;
-
-      if (!isAlreadyInstalled()) {
-        revealInstallButtons();         // show install buttons now that browser says OK
-      }
-    });
-
-    // ---- Install button inside popup ----
-
-    installBtn.addEventListener("click", async function () {
-      if (isAlreadyInstalled()) {
-        showInstallPopup("This app is already installed on your device.");
-        return;
-      }
-
-      if (!deferredPrompt) {
-        showInstallPopup(
-          "Your browser hasn't offered an install prompt yet.",
-          "Try opening this page in Chrome or Edge. You can also install manually: browser menu → Install app, or on iPhone: Share → Add to Home Screen."
-        );
-        return;
-      }
-
-      deferredPrompt.prompt();
-
-      const choice = await deferredPrompt.userChoice;
-      console.log("Install choice:", choice.outcome);
-      deferredPrompt = null;
-
-      if (choice.outcome === "accepted") {
-        hideInstallPopup();
-      } else {
-        showInstallPopup(
-          "Install dismissed.",
-          "You can install later from the browser menu → Install app."
-        );
-      }
-    });
-
-    // ---- Trigger buttons (hero + install section) ----
-
-    installTriggers.forEach(function (button) {
-      button.addEventListener("click", function () {
-        if (isAlreadyInstalled()) {
-          showInstallPopup("This app is already installed on your device.");
-          return;
-        }
-
-        if (!deferredPrompt) {
-          // Shouldn't normally reach here since buttons are hidden until
-          // deferredPrompt is set, but handle it gracefully just in case.
-          alert(
-            "Install not available yet. Try Chrome or Edge, or use the browser menu → Install app.\n\nOn iPhone: Safari → Share → Add to Home Screen."
-          );
-          return;
-        }
-
-        showInstallPopup(
-          "Install this PWA so you can open it like an app and use it offline.",
-          "Click Install App below to add it to your device."
-        );
-      });
-    });
-
-    // ---- Close popup ----
-
-    closeBtn.addEventListener("click", hideInstallPopup);
-
-    installPopup.addEventListener("click", function (event) {
-      if (event.target === installPopup) {
-        hideInstallPopup();
-      }
-    });
-
-    // ---- Already installed ----
-
-    window.addEventListener("appinstalled", function () {
-      deferredPrompt = null;
-      hideInstallPopup();
-      installTriggers.forEach(function (btn) {
-        btn.style.display = "none";
-      });
-      if (installStatusMsg) {
-        installStatusMsg.textContent = "App installed successfully! You can launch it from your desktop or home screen.";
-      }
-      console.log("PWA installed successfully.");
-    });
-
-    // ---- If already running as installed PWA, hide install UI ----
-
-    if (isAlreadyInstalled()) {
-      installTriggers.forEach(function (btn) {
-        btn.style.display = "none";
-      });
-      if (installStatusMsg) {
-        installStatusMsg.textContent = "You are already running the installed app.";
-      }
     }
   </script>
 
