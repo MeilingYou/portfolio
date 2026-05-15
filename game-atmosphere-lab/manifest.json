@@ -3,8 +3,8 @@
   "name": "Game Atmosphere Lab",
   "short_name": "AtmoLab",
   "description": "Explore how video game art styles, colors, fonts, and sounds create different moods.",
-  "start_url": "/portfolio/game-atmosphere-lab/index.html",
-  "scope": "/portfolio/game-atmosphere-lab/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#F3E7C9",
@@ -23,6 +23,22 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/cozy-pixel-farming-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Cozy Pixel Farming atmosphere lesson"
+    },
+    {
+      "src": "screenshots/neon-cyberpunk-city-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Neon Cyberpunk City atmosphere lesson"
     }
   ]
 }
